@@ -13,7 +13,7 @@ import { MonitoringService } from './monitoring.service';
             <div class="row">
                 <div class="col-lg-5">
                     <h2>
-                        Requests
+                        请求数
                     </h2>
                     <requests-chart></requests-chart>
                 </div>
@@ -21,7 +21,7 @@ import { MonitoringService } from './monitoring.service';
                 </div>
                 <div class="col-lg-5">
                     <h2>
-                        Network
+                        网络
                     </h2>
                     <network-chart></network-chart>
                 </div>
@@ -32,7 +32,7 @@ import { MonitoringService } from './monitoring.service';
                 <div class="row">
                     <div class="col-lg-5">
                         <h2>
-                            Memory
+                            内存
                         </h2>
                         <memory-chart></memory-chart>
                     </div>

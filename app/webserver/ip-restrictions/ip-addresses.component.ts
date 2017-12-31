@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+﻿import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { IpRestrictions } from './ip-restrictions'
 
@@ -6,21 +6,21 @@ import { IpRestrictions } from './ip-restrictions'
     selector: 'ip-addresses',
     template: `
         <fieldset>
-            <label>Response Status When Denied</label>
+            <label>拒绝返回状态</label>
             <select class="form-control name" [(ngModel)]="model.deny_action" (modelChanged)="onModelChanged()">
-                <option value="Abort">Abort Connection</option>
-                <option value="Unauthorized">HTTP 401 Unauthorized</option>
-                <option value="Forbidden">HTTP 403 Forbidden</option>
-                <option value="NotFound">HTTP 404 Not Found</option>
+                <option value="Abort">终止连接</option>
+                <option value="Unauthorized">HTTP 401 未经授权</option>
+                <option value="Forbidden">HTTP 403 禁止访问</option>
+                <option value="NotFound">HTTP 404 文件为找到</option>
             </select>
         </fieldset>
         <fieldset>
-            <label>Proxy Mode</label>
-            <switch class="block" [(model)]="model.enable_proxy_mode" (modelChanged)="onModelChanged()">{{model.enable_proxy_mode ? "On" : "Off"}}</switch>
+            <label>代理模式</label>
+            <switch class="block" [(model)]="model.enable_proxy_mode" (modelChanged)="onModelChanged()">{{model.enable_proxy_mode ? "启用" : "禁用"}}</switch>
         </fieldset>
         <fieldset>
-            <label>Use Reverse DNS Lookup</label>
-            <switch class="block" [(model)]="model.enable_reverse_dns" (modelChanged)="onModelChanged()">{{model.enable_reverse_dns ? "Yes" : "No"}}</switch>
+            <label>使用DNS找</label>
+            <switch class="block" [(model)]="model.enable_reverse_dns" (modelChanged)="onModelChanged()">{{model.enable_reverse_dns ? "启用" : "禁用"}}</switch>
         </fieldset>
     `,
     styles: [`

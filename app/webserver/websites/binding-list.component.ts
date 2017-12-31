@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ElementRef, ViewChild, ViewChildren, QueryList, OnInit, OnChanges, SimpleChange, Optional, Inject } from '@angular/core';
+﻿import { Component, Input, Output, EventEmitter, ElementRef, ViewChild, ViewChildren, QueryList, OnInit, OnChanges, SimpleChange, Optional, Inject } from '@angular/core';
 import { NgModel } from '@angular/forms';
 
 import 'rxjs/add/operator/first';
@@ -15,35 +15,35 @@ import { Binding } from './site';
     template: `
         <div class="row grid-item" [class.background-editing]="edit">
             <div class="actions">
-                <button title="Edit" [disabled]="!allowed('edit')" class='no-editing' (click)="onEdit()">
+                <button title="编辑" [disabled]="!allowed('edit')" class='no-editing' (click)="onEdit()">
                     <i class="fa fa-pencil color-active"></i>
                 </button>
-                <button title="Save" [disabled]="!isValid()" class="editing" (click)="onSave()">
+                <button title="保存" [disabled]="!isValid()" class="editing" (click)="onSave()">
                     <i class="fa fa-check color-active"></i>
                 </button>
-                <button title="Cancel" class="editing" (click)="onCancel()">
+                <button title="取消" class="editing" (click)="onCancel()">
                     <i class="fa fa-times red"></i>
                 </button>
-                <button title="Delete" *ngIf="!model.isNew" [disabled]="!allowed('delete')" (click)="onDelete()">
+                <button title="删除" *ngIf="!model.isNew" [disabled]="!allowed('delete')" (click)="onDelete()">
                     <i class="fa fa-trash-o red"></i>
                 </button>
             </div>
 
             <div class='valign' *ngIf="!edit">
                 <div class="col-xs-8 col-md-1">
-                    <label class="visible-xs visible-sm">Protocol</label>
+                    <label class="visible-xs visible-sm">协议</label>
                     <span class="inline-block">{{model.protocol}}</span>
                 </div>
                 <div class="col-xs-8 col-md-3" *ngIf="isHttp()">
-                    <label class="visible-xs visible-sm">Host Name</label>
+                    <label class="visible-xs visible-sm">主机名</label>
                     <span class="inline-block">{{hostname()}}</span>
                 </div>
                 <div class="col-xs-12 col-md-3" *ngIf="isHttp()">
-                    <label class="visible-xs visible-sm">IP Address</label>
+                    <label class="visible-xs visible-sm">IP地址</label>
                     <span class="inline-block">{{ipAddress()}}</span>
                 </div>
                 <div class="col-xs-12 col-md-1" *ngIf="isHttp()">
-                    <label class="visible-xs visible-sm">Port</label>
+                    <label class="visible-xs visible-sm">端口</label>
                     <span class="inline-block">{{model.port}}</span>
                 </div>
                
@@ -60,26 +60,26 @@ import { Binding } from './site';
 
             <div class="valign" *ngIf="edit">
                 <fieldset class="col-xs-8 col-md-4" *ngIf="isHttp()">
-                    <label>Host Name</label>
+                    <label>Host名</label>
                     <input class="form-control" type="text" [(ngModel)]="model.hostname"/>
                 </fieldset>
                 <fieldset class="col-xs-12 col-sm-10 col-md-4" *ngIf="isHttp()">
-                    <label>IP Address</label>
+                    <label>IP地址</label>
                     <input class="form-control" type="text" [(ngModel)]="model.ip_address" required />
                 </fieldset>
                 <fieldset class="col-xs-12 col-sm-2" *ngIf="isHttp()">
-                    <label>Port</label>
+                    <label>端口</label>
                     <input class="form-control" type="number" max="65535" min="1" [(ngModel)]="model.port" required />
                 </fieldset>
 
                 <div class="col-xs-12 overflow-visible" *ngIf="isHttp()">   
                     <fieldset class="inline-block">
                         <label>HTTPS</label>
-                        <switch class="block" (modelChange)="model.is_https=$event" [model]="model.is_https" (modelChanged)=onHttps()>{{model.is_https ? "On" : "Off"}}</switch>
+                        <switch class="block" (modelChange)="model.is_https=$event" [model]="model.is_https" (modelChanged)=onHttps()>{{model.is_https ? "启用" : "禁用"}}</switch>
                     </fieldset>
                     <fieldset class="inline-block cert bottom" *ngIf="model.is_https">
                         <button (click)="selectCert()" class="background-normal select-cert" [class.background-active]="!!_certSelect.first && _certSelect.first.opened">
-                            <span>{{!model.certificate ? 'Select Certificate' : name()}}</span><i class="fa fa-caret-down"></i>
+                            <span>{{!model.certificate ? '选择证书' : name()}}</span><i class="fa fa-caret-down"></i>
                         </button>
                     </fieldset>
                     <fieldset class="inline-block bottom" *ngIf="model.is_https && _supportsSni">
@@ -96,11 +96,11 @@ import { Binding } from './site';
                 </div>
                 <div class="col-xs-8">
                     <fieldset class="inline-block">
-                        <label>Custom Protocol</label>
-                        <switch class="block" [model]="!isHttp()" (modelChange)="onCustomProtocol($event)">{{isHttp() ? "Off" : "On"}}</switch>
+                        <label>自定义协议</label>
+                        <switch class="block" [model]="!isHttp()" (modelChange)="onCustomProtocol($event)">{{isHttp() ? "禁用" : "启用"}}</switch>
                     </fieldset>
                     <fieldset class="inline-block protocol" *ngIf="!isHttp()">
-                        <label>Protocol</label>
+                        <label>协议</label>
                         <input class="form-control" type="text" [(ngModel)]="model.protocol"/>
                     </fieldset>
                     <fieldset class="inline-block protocol" *ngIf="!isHttp()">
@@ -318,7 +318,7 @@ export class BindingItem implements OnInit, OnChanges {
     }
 
     onDelete() {
-        if (confirm("Are you sure you want to delete this binding?\nProtocol: " + this.model.protocol + "\nPort: " + this.model.port)) {
+        if (confirm("你确认要删除这个绑定?\n协议: " + this.model.protocol + "\n端口: " + this.model.port)) {
             this.edit = false;
             this.delete.emit(this.model);
         }
@@ -428,14 +428,14 @@ export class BindingItem implements OnInit, OnChanges {
     `],
     template: `
         <button class="create" [disabled]="_editing >= 0 && _editing < model.length" (click)="add()">
-            <i class="fa fa-plus color-active"></i> Add
+            <i class="fa fa-plus color-active"></i> 添加
         </button>
         <div class="container-fluid" [hidden]="!model || model.length < 1">
             <div class="row hidden-xs hidden-sm border-active grid-list-header">
-                <label class="col-md-1">Protocol</label>
-                <label class="col-md-3">Host Name</label>
-                <label class="col-md-3">IP Address</label>
-                <label class="col-md-2">Port</label>
+                <label class="col-md-1">协议</label>
+                <label class="col-md-3">主机名称</label>
+                <label class="col-md-3">IP地址</label>
+                <label class="col-md-2">端口</label>
             </div>
             <ul class="grid-list">
                 <li *ngFor="let b of model; let i = index;">

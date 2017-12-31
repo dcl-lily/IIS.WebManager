@@ -1,4 +1,4 @@
-
+﻿
 import {Component, OnInit} from '@angular/core';
 
 import {HttpResponseHeadersService} from './http-response-headers.service';
@@ -14,15 +14,15 @@ import {HttpResponseHeaders, CustomHeader, RedirectHeader} from './http-response
         <div *ngIf="httpResponseHeaders">
             <override-mode class="pull-right" [metadata]="httpResponseHeaders.metadata" (revert)="onRevert()" (modelChanged)="onModelChanged()"></override-mode>
             <fieldset>
-                <label>Keep Alive</label>
-                <switch class="block" [disabled]="_locked" [(model)]="httpResponseHeaders.allow_keep_alive" (modelChanged)="onModelChanged()">{{httpResponseHeaders.allow_keep_alive ? "On" : "Off"}}</switch>
+                <label>保持活跃</label>
+                <switch class="block" [disabled]="_locked" [(model)]="httpResponseHeaders.allow_keep_alive" (modelChanged)="onModelChanged()">{{httpResponseHeaders.allow_keep_alive ? "启用" : "禁用"}}</switch>
             </fieldset>
             <tabs>
-                <tab [name]="'Custom Headers'">
+                <tab [name]="'自定义头部'">
                     <custom-headers [model]="httpResponseHeaders" [headers]="customHeaders" [originalHeaders]="originalCustomHeaders"
                                     (add)="addHeader($event, true)" (delete)="deleteHeader($event)" (save)="saveHeaderChanges($event, true)" [locked]="_locked"></custom-headers> 
                 </tab>
-                <tab [name]="'Redirect Headers'">
+                <tab [name]="'重定向头部'">
                     <redirect-headers [model]="httpResponseHeaders" [headers]="redirectHeaders" [originalHeaders]="originalRedirectHeaders"
                                     (add)="addHeader($event, false)" (delete)="deleteHeader($event)" (save)="saveHeaderChanges($event, false)" [locked]="_locked"></redirect-headers> 
                 </tab>

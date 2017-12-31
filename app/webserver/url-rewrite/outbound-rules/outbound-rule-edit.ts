@@ -8,19 +8,19 @@ import { OutboundRule, OutboundMatchType } from '../url-rewrite';
     template: `
         <div>
             <tabs>
-                <tab [name]="'Settings'">
+                <tab [name]="'设置'">
                     <outbound-rule-settings [rule]="rule"></outbound-rule-settings>
                 </tab>
-                <tab [name]="'Rewrite'">
+                <tab [name]="'重写'">
                     <outbound-rule-type [rule]="rule"></outbound-rule-type>
                 </tab>
-                <tab [name]="'Conditions'">
+                <tab [name]="'条件'">
                     <inbound-rule-conditions [rule]="rule"></inbound-rule-conditions>
                 </tab>
             </tabs>
             <p class="pull-right">
-                <button [disabled]="!isValid()" class="ok" (click)="onOk()">OK</button>
-                <button (click)="onDiscard()" class="cancel">Cancel</button>
+                <button [disabled]="!isValid()" class="ok" (click)="onOk()">确认</button>
+                <button (click)="onDiscard()" class="cancel">取消</button>
             </p>
         </div>
     `,

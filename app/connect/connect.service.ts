@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http } from '@angular/http';
 
@@ -146,7 +146,7 @@ export class ConnectService {
             .catch(e => {
                 if (e.status == 403) {
                     this.error(conn, _ => this._notificationSvc.invalidAccessToken());
-                    return Promise.reject("Could not connect.");
+                    return Promise.reject("不能连接.");
                 }
                 else {
                     return this._client.options(conn, "/api").toPromise()
@@ -165,7 +165,7 @@ export class ConnectService {
                                     else {
                                         // Notify that the user is unauthorized but don't force the connecting page
                                         this.error(conn, _ => this._notificationSvc.unauthorized())
-                                        return Promise.reject("Could not connect.");
+                                        return Promise.reject("不能连接.");
                                     }
                                 });
                         })
@@ -199,7 +199,7 @@ export class ConnectService {
             }
             else {
                 this.error(conn, _ => this._notificationSvc.remoteServerCantBeReached(conn));
-                reject("Could not connect.");
+                reject("不能连接.");
             }
         });
     }

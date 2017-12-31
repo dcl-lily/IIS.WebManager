@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+﻿import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ApplicationPoolIdentity } from './app-pool';
 
 
@@ -6,35 +6,35 @@ import { ApplicationPoolIdentity } from './app-pool';
     selector: 'identity',
     template: `
         <fieldset class='inline-block'>
-            <label>Identity</label>
+            <label>认证身份</label>
             <select class="form-control" [(ngModel)]="model.identity_type" (modelChanged)="onModelChanged()">
-                <option value="ApplicationPoolIdentity">Application Pool Identity</option>
-                <option value="LocalSystem">Local System</option>
-                <option value="LocalService">Local Service</option>
-                <option value="NetworkService">Network Service</option>
-                <option value="SpecificUser">Custom</option>
+                <option value="ApplicationPoolIdentity">资源池</option>
+                <option value="LocalSystem">本地系统</option>
+                <option value="LocalService">本地服务</option>
+                <option value="NetworkService">网络服务</option>
+                <option value="SpecificUser">自定义</option>
             </select>
         </fieldset>
         <div *ngIf="model.identity_type == 'SpecificUser'" class='inline-block'>
             <fieldset class='inline-block'>
-                <label>Username</label>
+                <label>用户名</label>
                 <input class="form-control" type="text" [(ngModel)]="model.username" throttle (modelChanged)="onModelChanged()" />
             </fieldset>
             <div class='inline-block'>
                 <fieldset class='inline-block'>
-                    <label>Password</label>
+                    <label>密码</label>
                     <input class="form-control" type="password" [(ngModel)]="_password" (modelChanged)="onModelChanged()" />
                 </fieldset>
                 <fieldset *ngIf="!!(_password)" class='inline-block'>
-                    <label>Confirm Password</label>
+                    <label>确认密码</label>
                     <input class="form-control" type="password" ngModel (ngModelChange)="onConfirmPassword($event)" [validateEqual]="_password" />
                 </fieldset>
             </div>
         </div>
         <fieldset class='inline-block' *ngIf="useUserProfile">
-            <label>Load User Profile</label>
+            <label>本地用户配置文件</label>
             <switch class="block" [(model)]="model.load_user_profile" (modelChanged)="onModelChanged()">
-                {{model.load_user_profile ? "On" : "Off"}}
+                {{model.load_user_profile ? "启用" : "禁用"}}
             </switch>
         </fieldset>
     `

@@ -12,9 +12,9 @@ import { Certificate } from './certificate';
         <div *ngIf="model" class="grid-item row" tabindex="-1">
             <div *ngIf="!_viewing" class="row-data">
                 <div class="visible-xs col-xs-9 col-data cer">
-                    <label>Name</label>
+                    <label>名字</label>
                     <span>{{displayName}}</span>
-                    <label>Valid To</label>
+                    <label>有效期</label>
                     <span>{{validTo}}</span>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 hidden-xs cer">
@@ -40,8 +40,8 @@ import { Certificate } from './certificate';
                     </button>
                     <selector [right]="true">
                         <ul>
-                            <li><button *ngIf="!_viewing" class="edit" title="Details" (click)="onDetails($event)">Details</button></li>
-                            <li><button  *ngIf="_viewing" class="cancel" title="Close" (click)="onDetails($event)">Close</button></li>
+                            <li><button *ngIf="!_viewing" class="edit" title="Details" (click)="onDetails($event)">详细</button></li>
+                            <li><button  *ngIf="_viewing" class="cancel" title="Close" (click)="onDetails($event)">关闭</button></li>
                         </ul>
                     </selector>
                 </div>

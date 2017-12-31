@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy} from '@angular/core';
+﻿import { Component, OnInit, OnDestroy} from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -10,7 +10,7 @@ import { StaticContent, MimeMap } from '../static-content/static-content';
     template: `
         <loading *ngIf="_service.status == 'unknown' && !_service.error"></loading>
         <error [error]="_service.error"></error>
-        <span *ngIf="_service.status == 'stopped'">Mime Maps are off. Turn them on <a [routerLink]="['/webserver/static-content']">here</a></span>
+        <span *ngIf="_service.status == 'stopped'">MIME类型关闭. 如需启用请点击 <a [routerLink]="['/webserver/static-content']">这里</a></span>
         <override-mode class="pull-right" *ngIf="staticContent" [scope]="staticContent.scope" [metadata]="staticContent.metadata" (revert)="onRevert()" (modelChanged)="onModelChanged()"></override-mode>
         <div *ngIf="staticContent">
             <mime-maps (modelChanged)="onSave($event)" (delete)="onDelete($event)" (add)="onAdd($event)"><mime-maps>

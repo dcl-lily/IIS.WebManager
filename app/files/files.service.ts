@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { RequestMethod, RequestOptionsArgs, Headers, Response } from '@angular/http';
 
 import { Subject } from "rxjs/Subject";
@@ -334,16 +334,16 @@ export class FilesService implements IDisposable {
     public handleError(e, path: string=null) {
         if (e.status) {
             if (e.status === 403 && e.title && e.title.toLowerCase() == 'forbidden') {
-                e.message = "Access Denied\n\n" + e.name;
+                e.message = "访问被拒绝\n\n" + e.name;
             }
             else if ((e.status === 404 || e.status == 400) && e.name && (e.name.toLowerCase() == 'path' || e.name.toLowerCase() == 'physical_path')) {
-                e.message = "Path not found\n\n" + (path || "");
+                e.message = "没有找到路径\n\n" + (path || "");
             }
             else if (e.status == 409) {
-                e.message = "Already exists\n\n" + (path || "");
+                e.message = "已经存在\n\n" + (path || "");
             }
             else if (e.status == 403 && e.title && e.title.toLowerCase() == 'object is locked') {
-                e.message = "File in use\n\n" + (path || "");
+                e.message = "文件正在被使用\n\n" + (path || "");
             }
 
             this._notificationService.apiError(e);
@@ -378,7 +378,7 @@ export class FilesService implements IDisposable {
                     //
                     // Location API not installed. Api is trying to create a directory is being created
 
-                    e.message = "Ability to create root folders is not available. Please install the latest version."
+                    e.message = "无法创建根文件夹。请安装最新版本."
 
                     this._notificationService.apiError(e);
                 }
@@ -495,7 +495,7 @@ export class FilesService implements IDisposable {
         let root = files.find(file => !file.parent);
 
         if (root) {
-            let message = "Root folders cannot be deleted: '" + root.name + "'";
+            let message = "无法删除根文件夹: '" + root.name + "'";
 
             this._notificationService.warn(message);
 
@@ -535,7 +535,7 @@ export class FilesService implements IDisposable {
                 }
 
                 if (overwrite === null) {
-                    overwrite = confirm(content.name + " already exists. Would you like to overwrite existing files?");
+                    overwrite = confirm(content.name + " 已经存在。要覆盖现有文件吗？?");
                 }
 
                 let path = parent.physical_path + '\\' + content.name;
@@ -633,7 +633,7 @@ export class FilesService implements IDisposable {
                     .catch(e => {
                         this.handleError(e);
                         if (newDir) {
-                            this._notificationService.warn("An error occured while uploading " + dir.physical_path);
+                            this._notificationService.warn("上载时发生一个错误 " + dir.physical_path);
                         }
                         throw e;
                     });
@@ -714,9 +714,9 @@ export class FilesService implements IDisposable {
                                 if (s.parent.id == destination.id) {
                                     return copy ? this.performCopy(s, destination, this.getUniqueName(children, n, " - Copy")) : Promise.resolve(s);
                                 }
-                                else if ((forAll || confirm('The destination already has a file named "' + n + '". Do you want to overwrite it?'))) {
+                                else if ((forAll || confirm('已有文件名 "' + n + '". 需要覆盖吗?'))) {
                                     if (sources.length > 1 && forAll === null) {
-                                        forAll = confirm("Do this for all conflicts?");
+                                        forAll = confirm("对所有冲突都这样?");
                                     }
 
                                     return copy ? this.performCopy(s, destination, n) : this.performMove(s, destination, n);
@@ -882,7 +882,7 @@ export class FilesService implements IDisposable {
                     })
                     .catch(e => {
                         this.delete([f]);
-                        return Promise.reject("Upload failed.");
+                        return Promise.reject("上传失败.");
                     });
             });
     }

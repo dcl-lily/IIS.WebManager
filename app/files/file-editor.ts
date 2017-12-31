@@ -1,4 +1,4 @@
-import { NgModule, Component, Input, Output, EventEmitter, Inject, OnInit, ViewChild } from '@angular/core';
+﻿import { NgModule, Component, Input, Output, EventEmitter, Inject, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
@@ -31,10 +31,10 @@ import { CodeEditorComponent } from "./code-editor.component";
         <navigation></navigation>
         <div *ngIf="_unsupported" class="unsupported">
             <p>
-              Preview is currently not avaialble.<br>
-              Try <a href="" (click)="openAsText($event)">Open As Text</a>
+              预览当前不可用.请确认是TXT文件。<br>
+               请尝试<a href="" (click)="openAsText($event)">打开TXT文件</a>
             </p>
-            <button class="active" (click)="download($event)">Download</button>
+            <button class="active" (click)="download($event)">下载</button>
         </div>
         <code-editor #codeEditor (keydown.control.s)="save($event)" 
                     [file]="file" 
@@ -157,11 +157,11 @@ export class FileEditor {
     selector: 'toolbar',
     template: `
         <div>
-            <button title="Save (Ctrl+S)" class="save" (click)="onsave.next($event)" *ngIf="save !== null" [attr.disabled]="save === false || null"></button>
-            <button title="Replace with Unmodified" class="undo color-active" (click)="onreload.next($event)" *ngIf="reload !== null" [attr.disabled]="reload === false || null"></button>
-            <button title="Compare with Unmodified" class="compare" (click)="oncompare.next($event)" *ngIf="compare !== null" [attr.disabled]="compare === false || null"></button>
-            <button title="Exit Compare Mode" class="uncompare active" (click)="onuncompare.next($event)" *ngIf="uncompare !== null" [attr.disabled]="uncompare === false || null"></button>
-            <button title="Download" class="download" (click)="ondownload.next($event)" *ngIf="download !== null" [attr.disabled]="download === false || null"></button>
+            <button title="保存 (Ctrl+S)" class="save" (click)="onsave.next($event)" *ngIf="save !== null" [attr.disabled]="save === false || null"></button>
+            <button title="替换修该" class="undo color-active" (click)="onreload.next($event)" *ngIf="reload !== null" [attr.disabled]="reload === false || null"></button>
+            <button title="比较修该" class="compare" (click)="oncompare.next($event)" *ngIf="compare !== null" [attr.disabled]="compare === false || null"></button>
+            <button title="退出比较模式" class="uncompare active" (click)="onuncompare.next($event)" *ngIf="uncompare !== null" [attr.disabled]="uncompare === false || null"></button>
+            <button title="下载" class="download" (click)="ondownload.next($event)" *ngIf="download !== null" [attr.disabled]="download === false || null"></button>
         </div>
         <div class="clear"></div>
     `,

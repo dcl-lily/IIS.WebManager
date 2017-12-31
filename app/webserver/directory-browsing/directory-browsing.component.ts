@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+﻿import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -16,34 +16,34 @@ import { NotificationService } from '../../notification/notification.service';
                 [model]="_service.status == 'started' || _service.status == 'starting'" 
                 [disabled]="_service.status == 'starting' || _service.status == 'stopping'"
                 (modelChanged)="install(!s.model)">
-                    <span *ngIf="!isPending()">{{s.model ? "On" : "Off"}}</span>
+                    <span *ngIf="!isPending()">{{s.model ? "启用" : "禁用"}}</span>
                     <span *ngIf="isPending()" class="loading"></span>
         </switch>
-        <span *ngIf="_service.status == 'stopped' && !_service.webserverScope">Directory Browsing is off. Turn it on <a [routerLink]="['/webserver/directory-browsing']">here</a></span>
+        <span *ngIf="_service.status == 'stopped' && !_service.webserverScope">不允许目录浏览. 如需打开请点击 <a [routerLink]="['/webserver/directory-browsing']">这里</a></span>
         <override-mode class="pull-right" *ngIf="feature" [scope]="feature.scope" [metadata]="feature.metadata" (revert)="onRevert()" (modelChanged)="onModelChanged()"></override-mode>
         <div *ngIf="feature">
             <fieldset>
-                <label *ngIf="!feature.scope">Web Site Default</label>
-                <switch class="block" [disabled]="_locked" [(model)]="feature.enabled" (modelChanged)="onModelChanged()">{{feature.enabled ? "On" : "Off"}}</switch>
+                <label *ngIf="!feature.scope">默认站点</label>
+                <switch class="block" [disabled]="_locked" [(model)]="feature.enabled" (modelChanged)="onModelChanged()">{{feature.enabled ? "启用" : "禁用"}}</switch>
             </fieldset>
             <div [hidden]="!feature.enabled && feature.scope">
                 <fieldset>
-                    <label>Directory Attributes</label>
+                    <label>目录属性</label>
                     <ul class="allowed-attributes">
                         <li class="checkbox">
-                            <checkbox2 [disabled]="_locked" [(model)]="feature.allowed_attributes.date" (modelChanged)="onModelChanged()">Date</checkbox2>
+                            <checkbox2 [disabled]="_locked" [(model)]="feature.allowed_attributes.date" (modelChanged)="onModelChanged()">日期</checkbox2>
                         </li>
                         <li class="checkbox">
-                            <checkbox2 [disabled]="_locked" [(model)]="feature.allowed_attributes.time" (modelChanged)="onModelChanged()">Time</checkbox2>
+                            <checkbox2 [disabled]="_locked" [(model)]="feature.allowed_attributes.time" (modelChanged)="onModelChanged()">时间</checkbox2>
                         </li>
                         <li class="checkbox">
-                            <checkbox2 [disabled]="_locked" [(model)]="feature.allowed_attributes.size" (modelChanged)="onModelChanged()">Size</checkbox2>
+                            <checkbox2 [disabled]="_locked" [(model)]="feature.allowed_attributes.size" (modelChanged)="onModelChanged()">大小</checkbox2>
                         </li>
                         <li class="checkbox">
-                            <checkbox2 [disabled]="_locked" [(model)]="feature.allowed_attributes.extension" (modelChanged)="onModelChanged()">Extension</checkbox2>
+                            <checkbox2 [disabled]="_locked" [(model)]="feature.allowed_attributes.extension" (modelChanged)="onModelChanged()">扩展</checkbox2>
                         </li>
                         <li class="checkbox">
-                            <checkbox2 [disabled]="_locked" [(model)]="feature.allowed_attributes.long_date" (modelChanged)="onModelChanged()">Long Date</checkbox2>
+                            <checkbox2 [disabled]="_locked" [(model)]="feature.allowed_attributes.long_date" (modelChanged)="onModelChanged()">长日期</checkbox2>
                         </li>
                     </ul>
                 </fieldset>
@@ -112,7 +112,7 @@ export class DirectoryBrowsingComponent implements OnInit, OnDestroy {
             return this._service.install();
         }
         else {
-            this._notificationService.confirm("Turn Off Directory Browsing", 'This will turn off "Directory Browsing" for the entire web server.')
+            this._notificationService.confirm("关闭目录浏览", '你确认要关闭这个服务器的目录浏览功能?.')
                 .then(confirmed => {
                     if (confirmed) {
                         this._service.uninstall();

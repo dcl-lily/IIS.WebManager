@@ -1,4 +1,4 @@
-
+﻿
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 
 import {AppPoolsService} from './app-pools.service';
@@ -9,27 +9,27 @@ import {ApplicationPool} from './app-pool';
     selector: 'app-pool-general',
     template: `
         <tabs>
-            <tab [name]="'Settings'">
+            <tab [name]="'设置'">
                 <fieldset>
-                    <label>Name</label>
+                    <label>名字</label>
                     <input class="form-control name" type="text" [(ngModel)]="pool.name" (modelChanged)="onModelChanged()" required throttle />
                 </fieldset>
                 <fieldset>
-                    <label>Auto Start</label>
+                    <label>自动启动</label>
                     <switch class="block" [(model)]="pool.auto_start" (modelChanged)="onModelChanged()">{{pool.auto_start ? "On" : "Off"}}</switch>
                 </fieldset>
                 <fieldset>
                     <identity [model]="pool.identity" (modelChanged)="onModelChanged()"></identity>
                 </fieldset>
                 <fieldset>
-                    <label>Pipeline</label>
+                    <label>管道</label>
                     <enum [(model)]="pool.pipeline_mode" (modelChanged)="onModelChanged()">
-                        <field name="Integrated" value="integrated"></field>
-                        <field name="Classic" value="classic"></field>
+                        <field name="集成" value="integrated"></field>
+                        <field name="典型" value="classic"></field>
                     </enum>
                 </fieldset>
                 <fieldset>
-                    <label>.NET Framework</label>
+                    <label>.NET版本</label>
                     <enum  [(model)]="pool.managed_runtime_version" (modelChanged)="onModelChanged()">
                         <field name="3.5" value="v2.0"></field>
                         <field name="4.x" value="v4.0"></field>
@@ -37,19 +37,19 @@ import {ApplicationPool} from './app-pool';
                     </enum>
                 </fieldset>
             </tab>
-            <tab [name]="'Process'">
+            <tab [name]="'进程'">
                 <process-model [model]="pool" (modelChanged)="onModelChanged()"></process-model>
                 <process-orphaning [model]="pool.process_orphaning" (modelChanged)="onModelChanged()"></process-orphaning>
             </tab>
-            <tab [name]="'Fail Protection'">
+            <tab [name]="'失败保护'">
                 <rapid-fail-protection [model]="pool.rapid_fail_protection" (modelChanged)="onModelChanged()"></rapid-fail-protection>
             </tab>
-            <tab [name]="'Recycling'">
+            <tab [name]="'回收'">
                 <recycling [model]="pool.recycling" (modelChanged)="onModelChanged()"></recycling>
             </tab>
-            <tab [name]="'Limits'">
+            <tab [name]="'限制'">
                 <fieldset>
-                    <label>Request Queue Length</label>
+                    <label>请求队列长度</label>
                     <div class="validation-container">
                         <input class="form-control" type="number" [(ngModel)]="pool.queue_length" throttle (modelChanged)="onModelChanged()" />
                     </div>

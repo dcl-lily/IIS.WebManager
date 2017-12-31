@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy, Input, Output, EventEmitter, Inject} from '@angular/core';
+﻿import {Component, OnInit, OnDestroy, Input, Output, EventEmitter, Inject} from '@angular/core';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 
@@ -12,7 +12,7 @@ import {AppPoolList} from './app-pool-list';
     template: `
         <loading *ngIf="!_appPools && !lazy"></loading>
         <div>
-            <button [class.background-active]="newAppPool.opened" (click)="newAppPool.toggle()">Create Application Pool <i class="fa fa-caret-down"></i></button>
+            <button [class.background-active]="newAppPool.opened" (click)="newAppPool.toggle()">创建资源池 <i class="fa fa-caret-down"></i></button>
             <selector #newAppPool class="container-fluid">
                 <new-app-pool (created)="newAppPool.close()" (cancel)="newAppPool.close()"></new-app-pool>
             </selector>

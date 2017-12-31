@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck, OnDestroy } from '@angular/core';
+﻿import { Component, OnInit, DoCheck, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -12,13 +12,13 @@ import { DiffUtil } from '../../utils/diff';
     template: `
         <loading *ngIf="!settings"></loading>
         <tabs *ngIf="settings">
-            <tab [name]="'Anonymous'">
+            <tab [name]="'匿名'">
                 <anon-auth></anon-auth>
             </tab>
-            <tab [name]="'Basic'">
+            <tab [name]="'基础'">
                 <basic-auth></basic-auth>
             </tab>
-            <tab [name]="'Digest'">
+            <tab [name]="'摘要式'">
                 <digest-auth></digest-auth>
             </tab>
             <tab [name]="'Windows'">

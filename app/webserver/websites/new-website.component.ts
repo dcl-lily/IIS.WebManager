@@ -1,4 +1,4 @@
-import { Component, ViewChild, Output, EventEmitter, Inject } from '@angular/core';
+﻿import { Component, ViewChild, Output, EventEmitter, Inject } from '@angular/core';
 import { Subject } from 'rxjs/Subject'
 
 import { Selector } from '../../common/selector';
@@ -16,30 +16,30 @@ import { ApplicationPool } from '../app-pools/app-pool';
     selector: 'new-website',
     template: `
         <tabs>
-            <tab [name]="'Settings'">
+            <tab [name]="'设置'">
                 <fieldset>
-                    <label>Name</label>
+                    <label>名称</label>
                     <input type="text" class="form-control name" [ngModel]="site.name" (ngModelChange)="onNameChange($event)" required />
                 </fieldset>
                 <fieldset class="path">
-                    <label>Physical Path</label>
-                    <button [class.background-active]="fileSelector.isOpen()" title="Select Folder" class="right select" (click)="fileSelector.toggle()"></button>
+                    <label>物理路径</label>
+                    <button [class.background-active]="fileSelector.isOpen()" title="选择目录" class="right select" (click)="fileSelector.toggle()"></button>
                     <div class="fill">
                         <input type="text" class="form-control" [(ngModel)]="site.physical_path" required />
                     </div>
                     <server-file-selector #fileSelector [types]="['directory']" [defaultPath]="site.physical_path" (selected)="onSelectPath($event)"></server-file-selector>
                 </fieldset>
             </tab>
-            <tab [name]="'Bindings'">
+            <tab [name]="'绑定'">
                 <binding-list #bindingList [(model)]="site.bindings"></binding-list>
             </tab>
-            <tab [name]="'Application Pool'">
+            <tab [name]="'应用池'">
                 <fieldset>
-                    <label>Create Own Application Pool</label>
-                    <switch class="block" [(model)]="_createAppPool" (modelChange)="onNewAppPool($event)">{{_createAppPool ? "Yes" : "No"}}</switch>
+                    <label>创建应用池</label>
+                    <switch class="block" [(model)]="_createAppPool" (modelChange)="onNewAppPool($event)">{{_createAppPool ? "启用" : "禁用"}}</switch>
                 </fieldset>
                 <div class="app-pool" *ngIf="!_createAppPool">
-                    <button [class.background-active]="poolSelect.opened" (click)="selectAppPool()">{{!site.application_pool ? "Choose Application Pool" : "Change Application Pool" }} <i class="fa fa-caret-down"></i></button>
+                    <button [class.background-active]="poolSelect.opened" (click)="selectAppPool()">{{!site.application_pool ? "选择应用池" : "改变应用池" }} <i class="fa fa-caret-down"></i></button>
                     <selector #poolSelect class="container-fluid create">
                         <app-pools #appPools [actions]="'view'" [lazy]="true" (itemSelected)="onAppPoolSelected($event)"></app-pools>
                     </selector>

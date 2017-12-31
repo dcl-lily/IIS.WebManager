@@ -1,4 +1,4 @@
-import { Component, ViewChild, Input, Output, EventEmitter, Inject } from '@angular/core';
+﻿import { Component, ViewChild, Input, Output, EventEmitter, Inject } from '@angular/core';
 
 import { Selector } from '../../common/selector';
 
@@ -16,27 +16,27 @@ import { ApplicationPool } from '../app-pools/app-pool';
     selector: 'new-webapp',
     template: `
         <tabs>
-            <tab [name]="'Settings'">
+            <tab [name]="'设置'">
                 <fieldset>
-                    <label>Path</label>
+                    <label>路径</label>
                     <input type="text" class="form-control path" [(ngModel)]="model.path" required />
                 </fieldset>
                 <fieldset class="path">
-                    <label>Physical Path</label>
-                    <button [class.background-active]="fileSelector.isOpen()" title="Select Folder" class="right select" (click)="fileSelector.toggle()"></button>
+                    <label>物理路径</label>
+                    <button [class.background-active]="fileSelector.isOpen()" title="选择目录" class="right select" (click)="fileSelector.toggle()"></button>
                     <div class="fill">
                         <input type="text" class="form-control" [(ngModel)]="model.physical_path" required />
                     </div>
                     <server-file-selector #fileSelector [types]="['directory']" [defaultPath]="model.physical_path" (selected)="onSelectPath($event)"></server-file-selector>
                 </fieldset>
             </tab>
-            <tab [name]="'Application Pool'">
+            <tab [name]="'应用池'">
                 <fieldset>
-                    <label>Use Custom Application Pool</label>
-                    <switch class="block" [(model)]="_customPool" (modelChange)="onNewAppPool($event)">{{_customPool ? "Yes" : "No"}}</switch>
+                    <label>使用自定义应用池</label>
+                    <switch class="block" [(model)]="_customPool" (modelChange)="onNewAppPool($event)">{{_customPool ? "启用" : "禁用"}}</switch>
                 </fieldset>
                 <div class="app-pool" *ngIf="_customPool">
-                    <button [class.background-active]="poolSelect.opened" (click)="selectAppPool()">{{!model.application_pool ? "Choose Application Pool" : "Change Application Pool" }} <i class="fa fa-caret-down"></i></button>
+                    <button [class.background-active]="poolSelect.opened" (click)="selectAppPool()">{{!model.application_pool ? "选择应用池" : "重写选择资源池" }} <i class="fa fa-caret-down"></i></button>
                     <selector #poolSelect class="container-fluid create">
                         <app-pools #appPools [actions]="'view'" [lazy]="true" (itemSelected)="onAppPoolSelected($event)"></app-pools>
                     </selector>
@@ -48,7 +48,7 @@ import { ApplicationPool } from '../app-pools/app-pool';
         </tabs>
         <p class="pull-right">
             <button (click)="onSave()" [disabled]="!IsValid()">
-                <i title="Create" class="fa fa-check color-active"></i> Create
+                <i title="创建" class="fa fa-check color-active"></i> Create
             </button>
             <button (click)="onCancel()">
                 <i class="fa fa-times red"></i> Cancel

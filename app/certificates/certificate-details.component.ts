@@ -11,43 +11,43 @@ import { Certificate } from './certificate';
         <div *ngIf="model">
             <div class="inline-block">
                 <fieldset>
-                    <label>Alias</label>
+                    <label>别名</label>
                     <span>{{model.friendly_name || model.alias}}</span>
                 </fieldset>
                 <fieldset>
-                    <label>Subject</label>
+                    <label>主题</label>
                     <span>{{model.subject}}</span>
                 </fieldset>
                 <fieldset>
-                    <label>Issued By</label>
+                    <label>发行人</label>
                     <span>{{model.issued_by}}</span>
                 </fieldset>
                 <fieldset>
-                    <label>Thumbprint</label>
+                    <label>特征指纹</label>
                     <span>{{model.thumbprint}}</span>
                 </fieldset>
             </div>
             <div class="inline-block">
                 <fieldset>
-                    <label>Valid To</label>
+                    <label>有效期</label>
                     <span>{{validTo}}</span>
                 </fieldset>
                 <fieldset>
-                    <label>Valid From</label>
+                    <label>开始日期</label>
                     <span>{{validFrom}}</span>
                 </fieldset>
                 <fieldset>
-                    <label>Signature Algorithm</label>
+                    <label>签名算法</label>
                     <span>{{model.hash_algorithm || model.signature_algorithm}}</span>
                 </fieldset>
                 <fieldset>
-                    <label>Certificate Store</label>
+                    <label>存储位置</label>
                     <span>{{!(model.store) ? "" : model.store.name}}</span>
                 </fieldset>
             </div>
             <div class="inline-block">
                 <fieldset>
-                    <label>Subject Alternative Names</label>
+                    <label>主题选择的名字</label>
                     <ul *ngIf="model.subject_alternative_names">
                         <li *ngFor="let san of model.subject_alternative_names">
                             {{san}}
@@ -55,7 +55,7 @@ import { Certificate } from './certificate';
                     </ul>
                 </fieldset>
                 <fieldset>
-                    <label>Intended Purposes</label>
+                    <label>使用目的</label>
                     <ul *ngIf="model.intended_purposes">
                         <li *ngFor="let purpose of model.intended_purposes">
                             {{purpose}}

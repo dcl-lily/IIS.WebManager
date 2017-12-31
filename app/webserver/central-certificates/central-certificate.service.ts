@@ -97,13 +97,13 @@ export class CentralCertificateService {
 
     private onError(e) {
         if (e.status && e.status == 400 && e.name == 'identity') {
-            this._notificationService.warn("Unable to connect to the central certificate store using the given credentials");
+            this._notificationService.warn("无法连接到证书存储区,请指定其他凭据");
         }
         else if (e.status && e.status == 403 && e.name == 'physical_path') {
-            this._notificationService.warn("Access to the specified physical path is not allowed");
+            this._notificationService.warn("不允许访问指定的物理路径");
         }
         else if (e.status && e.status == 404 && e.name == 'physical_path') {
-            this._notificationService.warn("The specified directory could not be found");
+            this._notificationService.warn("找不到指定的目录");
         }
     }
 }

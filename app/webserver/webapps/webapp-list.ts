@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, Inject, ViewChild } from '@angular/core';
+﻿import { Component, OnInit, Input, Output, EventEmitter, Inject, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Selector } from '../../common/selector';
@@ -41,14 +41,14 @@ import { WebSitesService } from '../websites/websites.service';
         <div>
         <div class="actions" *ngIf="actions">
             <div class="selector-wrapper">
-                <button title="More" (click)="openSelector($event)" (dblclick)="prevent($event)" [class.background-active]="(_selector && _selector.opened) || false">
+                <button title="更多" (click)="openSelector($event)" (dblclick)="prevent($event)" [class.background-active]="(_selector && _selector.opened) || false">
                     <i class="fa fa-ellipsis-h"></i>
                 </button>
                 <selector [right]="true">
                     <ul>
-                        <li *ngIf="action('edit')"><button class="edit" title="Edit" (click)="onEdit($event)">Edit</button></li>
-                        <li *ngIf="action('browse')"><a class="bttn link" href={{url}} title={{url}} target="_blank">Browse</a></li>
-                        <li *ngIf="action('delete')"><button class="delete" title="Delete" (click)="onDelete($event)">Delete</button></li>
+                        <li *ngIf="action('edit')"><button class="edit" title="编辑" (click)="onEdit($event)">编辑</button></li>
+                        <li *ngIf="action('browse')"><a class="bttn link" href={{url}} title={{url}} target="_blank">浏览</a></li>
+                        <li *ngIf="action('delete')"><button class="delete" title="删除" (click)="onDelete($event)">删除</button></li>
                     </ul>
                 </selector>
             </div>
@@ -143,7 +143,7 @@ export class WebAppItem {
         e.preventDefault();
         this._selector.close();
 
-        if (confirm("Are you sure you want to delete '" + this.model.location + "'?")) {
+        if (confirm("你确认要删除 '" + this.model.location + "'?")) {
             this._service.delete(this.model);
         }
     }
@@ -178,9 +178,9 @@ export class WebAppItem {
     template: `
         <div class="container-fluid">
             <div class="hidden-xs border-active grid-list-header row" [hidden]="model.length == 0">
-                <label class="col-xs-8 col-sm-4" [ngClass]="css('path')" (click)="sort('path')">Path</label>
-                <label class="col-sm-2" *ngIf="field('app-pool')" [ngClass]="css('application_pool.name')" (click)="sort('application_pool.name')">Application Pool</label>
-                <label class="col-sm-2" *ngIf="field('site')" [ngClass]="css('website.name')" (click)="sort('website.name')">Web Site</label>
+                <label class="col-xs-8 col-sm-4" [ngClass]="css('path')" (click)="sort('path')">路径</label>
+                <label class="col-sm-2" *ngIf="field('app-pool')" [ngClass]="css('application_pool.name')" (click)="sort('application_pool.name')">应用池</label>
+                <label class="col-sm-2" *ngIf="field('site')" [ngClass]="css('website.name')" (click)="sort('website.name')">站点</label>
             </div>
             
             <ul class="grid-list">

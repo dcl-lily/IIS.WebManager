@@ -1,4 +1,4 @@
-import { Injectable, Inject, Optional } from '@angular/core';
+﻿import { Injectable, Inject, Optional } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -140,7 +140,7 @@ export class WebFilesService implements IDisposable {
 
     public rename(file: WebFile, name: string) {
         if (!file.file_info) {
-            this._notificationService.warn("'" + file.path + "' could not be renamed");
+            this._notificationService.warn("'" + file.path + "' 不能重命名");
         }
 
         if (name) {

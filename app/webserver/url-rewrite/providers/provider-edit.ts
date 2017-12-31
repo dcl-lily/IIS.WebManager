@@ -8,19 +8,19 @@ import { Provider, ProviderSetting } from '../url-rewrite';
     template: `
         <div *ngIf="provider">
             <fieldset>
-                <label>Name</label>
+                <label>名称</label>
                 <input type="text" required class="form-control name" [(ngModel)]="provider.name" />
             </fieldset>
             <fieldset>
-                <label>Type</label>
+                <label>类型</label>
                 <input type="text" required class="form-control name" [(ngModel)]="provider.type" />
             </fieldset>
 
-            <button (click)="add()" class="create"><span>Add Setting</span></button>
+            <button (click)="add()" class="create"><span>添加设置</span></button>
             <div class="container-fluid">
                 <div class="row hidden-xs border-active grid-list-header">
-                    <label class="col-xs-6 col-sm-4">Name</label>
-                    <label class="col-xs-6 col-sm-4">Value</label>
+                    <label class="col-xs-6 col-sm-4">名称</label>
+                    <label class="col-xs-6 col-sm-4">值</label>
                 </div>
             </div>
 
@@ -34,8 +34,8 @@ import { Provider, ProviderSetting } from '../url-rewrite';
             </ul>
 
             <p class="pull-right">
-                <button [disabled]="!isValid()" (click)="onOk()" class="ok">OK</button>
-                <button (click)="onDiscard()" class="cancel">Cancel</button>
+                <button [disabled]="!isValid()" (click)="onOk()" class="ok">确认</button>
+                <button (click)="onDiscard()" class="cancel">取消</button>
             </p>
         </div>
     `,

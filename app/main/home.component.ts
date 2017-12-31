@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+﻿import { Component, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { OptionsService } from './options.service';
@@ -23,14 +23,14 @@ import { OptionsService } from './options.service';
         <div>
             <div class="sidebar" [class.nav]="_options.active">
                 <vtabs [markLocation]="true" (activate)="_options.refresh()">
-                    <item [name]="'Web Sites'" [ico]="'fa fa-globe'">
+                    <item [name]="'站点'" [ico]="'fa fa-globe'">
                         <dynamic [name]="'WebSiteListComponent'" [module]="'app/webserver/websites/websites.module#WebSitesModule'"></dynamic>
                     </item>
-                    <item [name]="'Web Server'" [ico]="'fa fa-server'" [routerLink]="['/webserver']"></item>
-                    <item [name]="'Files'" [ico]="'fa fa-files-o'">
+                    <item [name]="'IIS服务器'" [ico]="'fa fa-server'" [routerLink]="['/webserver']"></item>
+                    <item [name]="'文件'" [ico]="'fa fa-files-o'">
                         <dynamic [name]="'FilesComponent'" [module]="'app/files/files.module#FilesModule'"></dynamic>
                     </item>
-                    <item [name]="'Monitoring'" [ico]="'fa fa-medkit'">
+                    <item [name]="'监控'" [ico]="'fa fa-medkit'">
                         <dynamic [name]="'MonitoringComponent'" [module]="'app/webserver/monitoring/monitoring.module#MonitoringModule'"></dynamic>
                     </item>
                 </vtabs>

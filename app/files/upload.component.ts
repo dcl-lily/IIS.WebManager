@@ -1,4 +1,4 @@
-import { NgModule, Component, Inject, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+﻿import { NgModule, Component, Inject, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -14,14 +14,14 @@ import { FilesService } from './files.service';
     selector: 'notification',
     template: `
         <div class="container">
-            <span class="support">Total items: {{numFinished + _numUploading}}</span>
-            <span>{{uploadProgress}}% complete</span>
+            <span class="support">总数量: {{numFinished + _numUploading}}</span>
+            <span>完成 {{uploadProgress}}%</span>
             <div class="load-border border-active">
                 <div class="background-active" [style.width]="_uploadProgress + '%'"></div>
             </div>
-            <span class="support">Time remaining: {{getTimeRemaining()}}</span>
-            <span class="support">Items remaining: {{_numUploading}} ({{getRemaining()}})</span>
-            <span class="support">Speed: {{getSpeed()}}</span>
+            <span class="support">剩余时间: {{getTimeRemaining()}}</span>
+            <span class="support">剩余数量: {{_numUploading}} ({{getRemaining()}})</span>
+            <span class="support">速率: {{getSpeed()}}</span>
         </div>
     `,
     styles: [`

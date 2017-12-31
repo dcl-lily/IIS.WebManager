@@ -1,4 +1,4 @@
-declare var SETTINGS: any;
+﻿declare var SETTINGS: any;
 
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
@@ -15,34 +15,36 @@ import { ConnectService } from '../connect/connect.service';
     template: `
         <div class="center">
             <div *ngIf='!_inProgress'>
-                <h1>Hi there!</h1>
+                <h1>欢迎使用IIS UI管理中文版</h1>
                 <p>
-                    Start managing your Microsoft IIS Server right here.
+                    开始管理你的IIS服务.
                     <br/>
-                    <a href="https://blogs.iis.net/adminapi">Learn More</a>
+                    <a href="https://blogs.iis.net/adminapi">更多帮助(英文)</a>
+                    <br/>
+                    <a href="https://www.qnjslm.com/?s=iis">关于我发表的一些博客</a>
                 </p>
                 <p>
                     <a class="bttn background-active" [attr.href]="DOWNLOAD_URL" (click)="download($event)">
-                        Download Microsoft IIS Administration
+                        下载IIS管理工具
                     </a>
                     <small class='block'>
-                        Version {{SETUP_VERSION}}
-                        <br/>
-                        For Windows and Windows Server (64-bit)
+                        最新Windows 64位版本 {{SETUP_VERSION}}
                     </small>
                 </p>
             </div>
             <div *ngIf='_inProgress'>
-                <h1>Setting Up</h1>
+                <h1>开始</h1>
                 <p>
-                    Please follow up the download and complete the installation.<br/><br/>
-                    Then we'll continue from here automatically.
+                    请保存文件，并进行安装.<br/>
+                    安装可以参考我的博客文档https://www.qnjslm.com/ITHelp/629.html
+                    <br/>
+                    如果你是安装在本地的那么这个页面在安装完成后会自动跳转,否者请点击跳过.
                 </p>
                 <p><i class="fa fa-spinner fa-pulse fa-3x"></i></p>
                 <p><small class='block color-active'>{{_status}}</small></p>
             </div>
             <div class="skip">
-                <button class="bordered" (click)="skip()">Skip this</button>
+                <button class="bordered" (click)="skip()">跳过</button>
             </div>
         </div>
     `,

@@ -1,4 +1,4 @@
-import { Component, Input, Inject, ViewChild } from '@angular/core';
+﻿import { Component, Input, Inject, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Selector } from '../../common/selector';
@@ -12,11 +12,11 @@ import { WebSitesService } from '../websites/websites.service';
         <div class="feature-header">
             <div class="actions">
                 <div class="selector-wrapper">
-                    <button title="Actions" (click)="_selector.toggle()" [class.background-active]="(_selector && _selector.opened) || false"><i class="fa fa-caret-down"></i></button>
+                    <button title="动作" (click)="_selector.toggle()" [class.background-active]="(_selector && _selector.opened) || false"><i class="fa fa-caret-down"></i></button>
                     <selector [right]="true">
                         <ul>
-                            <li><a class="bttn link" title="Browse" [attr.title]="url" [attr.href]="url" target="_blank">Browse</a></li>
-                            <li><button class="delete" title="Delete" (click)="onDelete()">Delete</button></li>
+                            <li><a class="bttn link" title="浏览" [attr.title]="url" [attr.href]="url" target="_blank">浏览</a></li>
+                            <li><button class="delete" title="删除" (click)="onDelete()">删除</button></li>
                         </ul>
                     </selector>
                 </div>
@@ -46,7 +46,7 @@ export class WebAppHeaderComponent {
     }
 
     onDelete() {
-        if (confirm("Are you sure you would like to delete '" + this.model.path + "'?")) {
+        if (confirm("你确认要删除 '" + this.model.path + "'?")) {
             this._service.delete(this.model)
                 .then(() => {
                     this._router.navigate(['/webserver/websites/', { id: this.model.website.id }]);

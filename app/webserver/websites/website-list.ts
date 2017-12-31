@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, Inject } from '@angular/core';
+﻿import { Component, OnInit, Input, Output, EventEmitter, ViewChild, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Selector } from '../../common/selector';
@@ -20,7 +20,7 @@ import { NotificationService } from '../../notification/notification.service';
         </div>
         <div class='col-xs-3 col-sm-2 col-md-1 valign' *ngIf="field('status')">
             <span class='status' [ngClass]="model.status">{{model.status}}</span>
-            <span title="HTTPS is ON" class="visible-xs-inline https" *ngIf="hasHttps()"></span>
+            <span title="HTTPS开启" class="visible-xs-inline https" *ngIf="hasHttps()"></span>
         </div>
         <div class='col-lg-2 visible-lg valign'  *ngIf="field('app-pool')">
             <div *ngIf="model.application_pool">
@@ -36,16 +36,16 @@ import { NotificationService } from '../../notification/notification.service';
         </div>
         <div class="actions">
             <div class="selector-wrapper">
-                <button title="More" (click)="openSelector($event)" (dblclick)="prevent($event)" [class.background-active]="(_selector && _selector.opened) || false">
+                <button title="更多" (click)="openSelector($event)" (dblclick)="prevent($event)" [class.background-active]="(_selector && _selector.opened) || false">
                     <i class="fa fa-ellipsis-h"></i>
                 </button>
                 <selector [right]="true">
                     <ul>
-                        <li *ngIf="allow('edit')"><a class="bttn edit" [routerLink]="['/webserver/websites', model.id]">Edit</a></li>
-                        <li *ngIf="allow('browse')"><a class="bttn link" href={{url}} title={{url}} target="_blank">Browse</a></li>
-                        <li *ngIf="allow('start')"><button class="start" [attr.disabled]="model.status != 'stopped' || null" (click)="onStart($event)">Start</button></li>
-                        <li *ngIf="allow('stop')"><button class="stop" [attr.disabled]="!started() || null" (click)="onStop($event)">Stop</button></li>
-                        <li *ngIf="allow('delete')"><button class="delete" (click)="onDelete($event)">Delete</button></li>
+                        <li *ngIf="allow('edit')"><a class="bttn edit" [routerLink]="['/webserver/websites', model.id]">编辑</a></li>
+                        <li *ngIf="allow('browse')"><a class="bttn link" href={{url}} title={{url}} target="_blank">浏览</a></li>
+                        <li *ngIf="allow('start')"><button class="start" [attr.disabled]="model.status != 'stopped' || null" (click)="onStart($event)">启动</button></li>
+                        <li *ngIf="allow('stop')"><button class="stop" [attr.disabled]="!started() || null" (click)="onStop($event)">停止</button></li>
+                        <li *ngIf="allow('delete')"><button class="delete" (click)="onDelete($event)">删除</button></li>
                     </ul>
                 </selector>
             </div>
@@ -141,7 +141,7 @@ export class WebSiteItem {
         e.preventDefault();
         this._selector.close();
 
-        this._notificationService.confirm("Delete Web Site", "Are you sure you want to delete '" + this.model.name + "'?")
+        this._notificationService.confirm("删除站点", "你确认要删除站点 '" + this.model.name + "'?")
             .then(confirmed => confirmed && this._service.delete(this.model));
     }
 
@@ -195,9 +195,9 @@ export class WebSiteItem {
     template: `
         <div class="container-fluid">
             <div class="hidden-xs border-active grid-list-header row" [hidden]="model.length == 0">
-                <label class="col-xs-8 col-sm-4 col-md-3 col-lg-3" [ngClass]="_orderBy.css('name')" (click)="doSort('name')">Name</label>
-                <label class="col-xs-3 col-md-1 col-lg-1" [ngClass]="_orderBy.css('status')" (click)="doSort('status')">Status</label>
-                <label class="col-lg-2 visible-lg" *ngIf="hasField('app-pool')" [ngClass]="_orderBy.css('application_pool.name')" (click)="doSort('application_pool.name')">Application Pool</label>
+                <label class="col-xs-8 col-sm-4 col-md-3 col-lg-3" [ngClass]="_orderBy.css('name')" (click)="doSort('name')">名称</label>
+                <label class="col-xs-3 col-md-1 col-lg-1" [ngClass]="_orderBy.css('status')" (click)="doSort('status')">状态</label>
+                <label class="col-lg-2 visible-lg" *ngIf="hasField('app-pool')" [ngClass]="_orderBy.css('application_pool.name')" (click)="doSort('application_pool.name')">应用池</label>
             </div>
             <virtual-list class="grid-list"
                         *ngIf="model"

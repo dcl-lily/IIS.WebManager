@@ -8,23 +8,23 @@ import { RewriteMap, RewriteMapping } from '../url-rewrite';
     template: `
         <div *ngIf="map">
             <fieldset>
-                <label>Name</label>
+                <label>名称</label>
                 <input type="text" required class="form-control name" [(ngModel)]="map.name" />
             </fieldset>
             <fieldset>
-                <label>Default Value</label>
+                <label>默认值</label>
                 <input type="text" class="form-control name" [(ngModel)]="map.default_value" />
             </fieldset>
             <fieldset>
-                <label>Ignore Case</label>
-                <switch [(model)]="map.ignore_case">{{map.ignore_case ? "Yes" : "No"}}</switch>
+                <label>忽略大小写</label>
+                <switch [(model)]="map.ignore_case">{{map.ignore_case ? "启用" : "禁用"}}</switch>
             </fieldset>
             
-            <button (click)="add()" class="create"><span>Add Mapping</span></button>
+            <button (click)="add()" class="create"><span>添加映射</span></button>
             <div class="container-fluid">
                 <div class="row hidden-xs border-active grid-list-header">
-                    <label class="col-xs-6 col-sm-4">Name</label>
-                    <label class="col-xs-6 col-sm-4">Value</label>
+                    <label class="col-xs-6 col-sm-4">名称</label>
+                    <label class="col-xs-6 col-sm-4">值</label>
                 </div>
             </div>
 
@@ -38,8 +38,8 @@ import { RewriteMap, RewriteMapping } from '../url-rewrite';
             </ul>
 
             <p class="pull-right">
-                <button [disabled]="!isValid()" (click)="onOk()" class="ok">OK</button>
-                <button (click)="onDiscard()" class="cancel">Cancel</button>
+                <button [disabled]="!isValid()" (click)="onOk()" class="ok">确认</button>
+                <button (click)="onDiscard()" class="cancel">取消</button>
             </p>
         </div>
     `,
@@ -71,11 +71,11 @@ export class RewriteMapEditComponent {
 
     private add() {
         let mapping = new RewriteMapping();
-        mapping.name = "New mapping";
+        mapping.name = "新匹配";
 
         let i = 1;
         while (this.map.mappings.find(m => m.name.toLocaleLowerCase() == mapping.name.toLocaleLowerCase())) {
-            mapping.name = "New Mapping " + (i++);
+            mapping.name = "新匹配 " + (i++);
         }
 
         this._newMapping = mapping;

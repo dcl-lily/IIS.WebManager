@@ -1,28 +1,28 @@
-
+﻿
 import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 import {HttpResponseHeaders, RedirectHeader} from './http-response-headers';
 
 @Component({
     selector: 'redirect-headers',
     template: `
-        <button class="create" [disabled]="locked" (click)="create()" [class.inactive]="_editing != -1"><i class="fa fa-plus color-active"></i><span>Add</span></button>
+        <button class="create" [disabled]="locked" (click)="create()" [class.inactive]="_editing != -1"><i class="fa fa-plus color-active"></i><span>添加</span></button>
         <div class="container-fluid">
             <div class="row hidden-xs border-active grid-list-header" [hidden]="headers.length == 0">
-                <label class="col-sm-4 col-lg-5">Name</label>
-                <label class="col-sm-6 col-lg-5">Value</label>
+                <label class="col-sm-4 col-lg-5">名字</label>
+                <label class="col-sm-6 col-lg-5">值</label>
             </div>
         </div>
         <ul class="grid-list container-fluid">
             <li *ngFor="let header of headers; let i = index;">
                 <div class="row grid-item" [class.background-editing]="_editing == i">
                     <div class="actions">
-                        <button class="no-border" [disabled]="locked || !isValid(header) || null" title="Ok" *ngIf="_editing == i" (click)="onFinishEditing(i)">
+                        <button class="no-border" [disabled]="locked || !isValid(header) || null" title="确认" *ngIf="_editing == i" (click)="onFinishEditing(i)">
                             <i class="fa fa-check color-active"></i>
                         </button>
-                        <button class="no-border" title="Cancel" *ngIf="_editing == i" (click)="discard()">
+                        <button class="no-border" title="取消" *ngIf="_editing == i" (click)="discard()">
                             <i class="fa fa-times red"></i>
                         </button>
-                        <button class="no-border" title="Edit" [class.inactive]="_editing != -1" *ngIf="_editing != i" (click)="edit(i)">
+                        <button class="no-border" title="编辑" [class.inactive]="_editing != -1" *ngIf="_editing != i" (click)="edit(i)">
                             <i class="fa fa-pencil color-active"></i>
                         </button>
                         <button class="no-border" *ngIf="header.id" [disabled]="locked || _editing == i" title="Delete"  [class.inactive]="_editing !== -1 && _editing !== i" (click)="onDelete(i)">
@@ -30,8 +30,8 @@ import {HttpResponseHeaders, RedirectHeader} from './http-response-headers';
                         </button>
                     </div>
                     <fieldset class="col-xs-12 col-sm-4 col-lg-5">
-                        <label class="visible-xs">Name</label>
-                        <label *ngIf="_editing == i" class="hidden-xs">Name</label>
+                        <label class="visible-xs">名字</label>
+                        <label *ngIf="_editing == i" class="hidden-xs">名字</label>
                         <span *ngIf="_editing != i">{{header.name}}</span>
                         <input *ngIf="_editing == i" [disabled]="locked" class="form-control" type="text" [(ngModel)]="header.name" throttle required />
                         <div *ngIf="_editing !== i">
@@ -39,8 +39,8 @@ import {HttpResponseHeaders, RedirectHeader} from './http-response-headers';
                         </div>
                     </fieldset>
                     <fieldset class="col-xs-12 col-sm-6 col-lg-5">
-                        <label class="visible-xs">Value</label>
-                        <label *ngIf="_editing == i" class="hidden-xs">Value</label>
+                        <label class="visible-xs">值</label>
+                        <label *ngIf="_editing == i" class="hidden-xs">值</label>
                         <span *ngIf="_editing != i">{{header.value}}</span>
                         <input *ngIf="_editing == i" [disabled]="locked" class="form-control" type="text" [(ngModel)]="header.value" throttle required />
                     </fieldset>

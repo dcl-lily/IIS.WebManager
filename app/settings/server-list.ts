@@ -12,13 +12,13 @@ import { ApiConnection } from '../connect/api-connection';
     selector: 'server-list',
     template: `
         <div>
-            <button title="New Server" class="create" [attr.disabled]="!!_newServer || null" (click)="onNewServer()"><i class="fa fa-plus color-active"></i><span>Add Server</span></button>
+            <button title="New Server" class="create" [attr.disabled]="!!_newServer || null" (click)="onNewServer()"><i class="fa fa-plus color-active"></i><span>添加IIS服务器</span></button>
         </div>
         <br/>
         <div class="container-fluid hidden-xs">
             <div class="border-active grid-list-header row">
-                <label class="col-xs-4" [ngClass]="_orderBy.css('displayName')" (click)="sort('displayName')">Display Name</label>
-                <label class="col-sm-6" [ngClass]="_orderBy.css('url')" (click)="sort('url')">Server Url</label>
+                <label class="col-xs-4" [ngClass]="_orderBy.css('displayName')" (click)="sort('displayName')">显示名称</label>
+                <label class="col-sm-6" [ngClass]="_orderBy.css('url')" (click)="sort('url')">服务器URL</label>
             </div>
         </div>
         <ul class="container-fluid grid-list" *ngIf="_servers">

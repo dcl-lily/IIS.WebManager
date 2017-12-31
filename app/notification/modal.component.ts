@@ -1,4 +1,4 @@
-import { NgModule, Component, OnDestroy } from '@angular/core';
+﻿import { NgModule, Component, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -15,8 +15,8 @@ import { NotificationService } from './notification.service';
             <h2 *ngIf="title" class="color-normal border-active">{{title}}</h2>
             <p class="message">{{message}}</p>
             <p>
-                <button (click)="onConfirm()">OK</button>
-                <button (click)="onCancel()">Cancel</button>
+                <button (click)="onConfirm()">确认</button>
+                <button (click)="onCancel()">取消</button>
             </p>
           </div>
 

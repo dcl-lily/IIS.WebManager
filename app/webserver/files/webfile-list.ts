@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input, ViewChild, ElementRef } from '@angular/core';
+﻿import { Component, OnInit, OnDestroy, Input, ViewChild, ElementRef } from '@angular/core';
 
 import 'rxjs/add/operator/buffer';
 import 'rxjs/add/operator/take';
@@ -40,10 +40,10 @@ import { WebSite } from '../websites/site';
             <input class="out" type="text"/>
             <div #header class="container-fluid hidden-xs">
                 <div class="border-active grid-list-header row">
-                    <label class="col-xs-8 col-sm-5 col-lg-4 hidden-xs" [ngClass]="_orderBy.css('name')" (click)="sort('name')">Name</label>
-                    <label class="col-sm-3 col-md-2 hidden-xs" [ngClass]="_orderBy.css('file_info.last_modified')" (click)="sort('file_info.last_modified')">Last Modified</label>
-                    <label class="col-md-2 visible-lg visible-md" [ngClass]="_orderBy.css('description')" (click)="sort('description')">Type</label>
-                    <label class="col-md-1 visible-lg visible-md text-right" [ngClass]="_orderBy.css('file_info.size')" (click)="sort('file_info.size')">Size</label>
+                    <label class="col-xs-8 col-sm-5 col-lg-4 hidden-xs" [ngClass]="_orderBy.css('name')" (click)="sort('name')">名字</label>
+                    <label class="col-sm-3 col-md-2 hidden-xs" [ngClass]="_orderBy.css('file_info.last_modified')" (click)="sort('file_info.last_modified')">修后修该</label>
+                    <label class="col-md-2 visible-lg visible-md" [ngClass]="_orderBy.css('description')" (click)="sort('description')">类型</label>
+                    <label class="col-md-1 visible-lg visible-md text-right" [ngClass]="_orderBy.css('file_info.size')" (click)="sort('file_info.size')">大小</label>
                 </div>
             </div>
             <div class="grid-list container-fluid" *ngIf="_newDir">
@@ -167,12 +167,12 @@ export class WebFileListComponent implements OnInit, OnDestroy {
     public createDirectory() {
         this.clearSelection();
 
-        let name = "New Folder";
+        let name = "新建目录";
         let index = 0;
 
         while (this._items.length > 0 && this._items.find(item => item.name.toLocaleLowerCase() == name.toLocaleLowerCase()) != null) {
             index++;
-            name = "New Folder (" + index + ")";
+            name = "新建目录 (" + index + ")";
         }
 
         let dir = new WebFile();
@@ -187,12 +187,12 @@ export class WebFileListComponent implements OnInit, OnDestroy {
 
     public createFile() {
         this.clearSelection();
-        let name = "new.html";
+        let name = "www.qnjslm.com.html";
         let index = 0;
 
         while (this._items.length > 0 && this._items.find(item => item.name.toLocaleLowerCase() == name.toLocaleLowerCase()) != null) {
             index++;
-            name = "new (" + index + ").html";
+            name = "www.qnjslm.com (" + index + ").html";
         }
 
         let file = new WebFile();
@@ -210,10 +210,10 @@ export class WebFileListComponent implements OnInit, OnDestroy {
             return;
         }
 
-        let msg = files.length == 1 ? "Are you sure you want to delete '" + files[0].name + "'?" :
-            "Are you sure you want to delete " + files.length + " items?";
+        let msg = files.length == 1 ? "你确定要删除'" + files[0].name + "'?" :
+            "你确定要删除 " + files.length + " ?";
 
-        this._notificationService.confirm("Delete File", msg)
+        this._notificationService.confirm("删除文件", msg)
             .then(confirmed => {
                 if (confirmed) {
                     this._svc.delete(files);

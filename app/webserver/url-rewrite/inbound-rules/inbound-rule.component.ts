@@ -29,11 +29,11 @@ import { InboundRule, ActionTypeHelper } from '../url-rewrite';
                     </button>
                     <selector #selector [right]="true">
                         <ul>
-                            <li><button #menuButton class="edit" title="Edit" (click)="edit()">Edit</button></li>
-                            <li><button #menuButton class="up" title="Up" (click)="_service.moveInboundUp(rule)">Move Up</button></li>
-                            <li><button #menuButton class="down" title="Down" (click)="_service.moveInboundDown(rule)">Move Down</button></li>
-                            <li><button #menuButton class="copy" title="Copy" (click)="_service.copyInboundRule(rule)">Clone</button></li>
-                            <li><button #menuButton class="delete" title="Delete" (click)="delete()">Delete</button></li>
+                            <li><button #menuButton class="edit" title="编辑" (click)="edit()">Edit</button></li>
+                            <li><button #menuButton class="up" title="向上" (click)="_service.moveInboundUp(rule)">Move Up</button></li>
+                            <li><button #menuButton class="down" title="向下" (click)="_service.moveInboundDown(rule)">Move Down</button></li>
+                            <li><button #menuButton class="copy" title="复制" (click)="_service.copyInboundRule(rule)">Clone</button></li>
+                            <li><button #menuButton class="delete" title="删除" (click)="delete()">Delete</button></li>
                         </ul>
                     </selector>
                 </div>
@@ -66,7 +66,7 @@ export class InboundRuleComponent implements OnChanges {
     }
 
     private delete() {
-        this._notificationService.confirm("Delete Inbound Rule", "Are you sure you want to delete '" + this.rule.name + "'?")
+        this._notificationService.confirm("删除入站规则", "你确认要删除 '" + this.rule.name + "'?")
             .then(confirmed => confirmed && this._service.deleteInboundRule(this.rule));
     }
 

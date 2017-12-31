@@ -6,12 +6,12 @@ import { InboundRule, ServerVariableAssignment, MatchType, IIS_SERVER_VARIABLES 
     selector: 'inbound-rule-variables',
     template: `
         <div *ngIf="rule">
-            <button (click)="add()" class="create"><span>Add Server Variable</span></button>
+            <button (click)="add()" class="create"><span>添加服务器变量</span></button>
             <div class="container-fluid">
                 <div class="row hidden-xs border-active grid-list-header">
-                    <label class="col-sm-3 col-lg-2">Name</label>
-                    <label class="col-sm-3 col-lg-2">Value</label>
-                    <label class="col-sm-3 col-lg-2">Replace</label>
+                    <label class="col-sm-3 col-lg-2">名称</label>
+                    <label class="col-sm-3 col-lg-2">值</label>
+                    <label class="col-sm-3 col-lg-2">替换</label>
                 </div>
             </div>
 
@@ -73,8 +73,8 @@ export class InboundRuleVariablesComponent {
                     </button>
                     <selector #selector [right]="true">
                         <ul>
-                            <li><button #menuButton class="edit" title="Edit" (click)="edit()">Edit</button></li>
-                            <li><button #menuButton class="delete" title="Delete" (click)="delete()">Delete</button></li>
+                            <li><button #menuButton class="edit" title="编辑" (click)="edit()">Edit</button></li>
+                            <li><button #menuButton class="delete" title="删除" (click)="delete()">Delete</button></li>
                         </ul>
                     </selector>
                 </div>
@@ -115,23 +115,23 @@ export class InboundRuleVariableComponent {
     template: `
         <div *ngIf="variable" class="grid-item row background-editing">
             <div class="actions">
-                <button class="no-border ok" [disabled]="!isValid()" title="Ok" (click)="onOk()"></button>
-                <button class="no-border cancel" title="Cancel" (click)="onDiscard()"></button>
+                <button class="no-border ok" [disabled]="!isValid()" title="确认" (click)="onOk()"></button>
+                <button class="no-border cancel" title="取消" (click)="onDiscard()"></button>
             </div>
             <fieldset class="name">
-                <label>Name</label>
+                <label>名称</label>
                 <input type="text" required class="form-control" list="server-vars" [(ngModel)]="variable.name" />
                 <datalist id="server-vars">
                     <option *ngFor="let variable of _serverVariables" value="{{variable}}">
                 </datalist>
             </fieldset>
             <fieldset class="name">
-                <label>Value</label>
+                <label>值</label>
                 <input type="text" required class="form-control" [(ngModel)]="variable.value" />
             </fieldset>
             <fieldset>
-                <label>Replace</label>
-                <switch [(model)]="variable.replace">{{variable.replace ? 'Yes' : 'No'}}</switch>
+                <label>替换</label>
+                <switch [(model)]="variable.replace">{{variable.replace ? '启用' : '禁用'}}</switch>
             </fieldset>
         </div>
     `,

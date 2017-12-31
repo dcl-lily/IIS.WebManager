@@ -1,4 +1,4 @@
-
+﻿
 import {NgModule, Component, Input, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
@@ -26,16 +26,14 @@ import {ApiError} from '../error/api-error';
     template: `
         <div id="container">
             <div id="lockSymbol" class="background-warning">
-                <i class="fa fa-lock large left-icon"></i> Locked
+                <i class="fa fa-lock large left-icon"></i> 锁定
             </div>
             <p>
-                The feature has been locked at the parent level and is not available for editing.
-                To enable editing, change the override setting of the parent level to 'Allow'.
+                该功能已锁定在父级，无法进行编辑，若要启用编辑，请将父级的覆盖设置更改为“允许”。
             </p>
             <p class="color-error">
-                The feature's settings could not be loaded.
-                This happens when the feature is locked at the current configuration level and the feature's settings have been modified.
-                To fix this, manually remove any local changes to the feature or unlock the feature at the parent level.
+               无法加载功能的设置
+                当功能锁定在当前配置级别并修改了功能的设置时，就会发生这种情况要解决此问题，请手动删除对该特性的任何本地更改或在父级打开该功能
             </p>
         </div>
     `
@@ -48,7 +46,7 @@ export class SectionLockErrorComponent {
     template: `
         <div id="container">
             <p>
-                The feature '{{name}}' has not been installed.
+                '{{name}}' 没有安装.
             </p>
         </div>
     `

@@ -14,27 +14,27 @@ import { ServerSnapshot } from './server-snapshot';
             <div class="col-xs-4">
                 <div>
                     <label>
-                        Total Requests
+                        总共请求数
                     </label>
                     <tooltip>
-                        Total number of HTTP requests served since the web server started.
+                        重服务重启后一直累加的请求数.
                     </tooltip>
                 </div>
                 {{formatNumber(_snapshot.requests.total)}}
             </div>
             <div class="col-xs-4">
                 <label class="block">
-                    Requests / sec
+                    每秒请求数
                 </label>
                 {{formatNumber(_snapshot.requests.per_sec)}}
             </div>
             <div class="col-xs-4">
                 <div>
                     <label>
-                        Active Requests
+                        活动请求数
                     </label>
                     <tooltip>
-                        Total number of requests that are currently being processed.
+                        当前正在处理的请求总数.
                     </tooltip>
                 </div>
                 {{formatNumber(_snapshot.requests.active)}}
@@ -109,8 +109,8 @@ export class RequestsChart implements OnDestroy {
     @ViewChild('chart') private _rpsChart: BaseChartDirective;
 
     private _data: Array<any> = [
-        { data: this._rpsValues, label: 'Requests / sec' },
-        { data: this._activeRequestsValues, label: 'Active Requests' }
+        { data: this._rpsValues, label: '每秒请求数' },
+        { data: this._activeRequestsValues, label: '活跃请求数' }
     ];
 
     constructor(private _svc: MonitoringService) {

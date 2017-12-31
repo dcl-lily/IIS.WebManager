@@ -17,7 +17,7 @@ import { ProvidersSection, Provider, ProviderSetting } from '../url-rewrite';
                 (revert)="onRevert()" 
                 (modelChanged)="onModelChanged()"></override-mode>
             <div>
-                <button [class.background-active]="newProvider.opened" (click)="newProvider.toggle()">Create Provider <i class="fa fa-caret-down"></i></button>
+                <button [class.background-active]="newProvider.opened" (click)="newProvider.toggle()">创建供应商<i class="fa fa-caret-down"></i></button>
                 <selector #newProvider class="container-fluid create" (hide)="initializeNewProvider()">
                     <provider-edit [provider]="_newProvider" (save)="saveNew()" (cancel)="newProvider.close()"></provider-edit>
                 </selector>
@@ -26,8 +26,8 @@ import { ProvidersSection, Provider, ProviderSetting } from '../url-rewrite';
             <div>
                 <div class="container-fluid">
                     <div class="row hidden-xs border-active grid-list-header">
-                        <label class="col-xs-8 col-sm-5">Name</label>
-                        <label class="col-sm-5">Type</label>
+                        <label class="col-xs-8 col-sm-5">名称</label>
+                        <label class="col-sm-5">类型</label>
                     </div>
                 </div>
 
@@ -62,7 +62,7 @@ export class ProvidersComponent implements OnDestroy {
 
     private initializeNewProvider() {
         this._newProvider = new Provider();
-        let name = "New Provider";
+        let name = "新供应商";
         this._newProvider.name = name;
         this._newProvider.type = "";
         this._newProvider.settings = new Array<ProviderSetting>();

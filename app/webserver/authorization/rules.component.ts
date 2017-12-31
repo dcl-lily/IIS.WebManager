@@ -12,16 +12,16 @@ import { Authorization, AuthRule } from './authorization'
     template: `
         <div *ngIf="_rules">
 
-            <button [disabled]="_locked" [class.background-active]="newRule.opened" (click)="newRule.toggle()">Create Rule <i class="fa fa-caret-down"></i></button>
+            <button [disabled]="_locked" [class.background-active]="newRule.opened" (click)="newRule.toggle()">创建一个规则 <i class="fa fa-caret-down"></i></button>
             <selector #newRule class="container-fluid create" (hide)="initializeNewRule()">
                 <edit-rule *ngIf="newRule.opened" [rule]="_newRule" (save)="saveNew($event)" (cancel)="newRule.close()"></edit-rule>
             </selector>
 
             <div class="container-fluid">
                 <div class="row hidden-xs hidden-sm border-active grid-list-header" [hidden]="_rules.length == 0">
-                    <label class="col-md-2">Access Type</label>
-                    <label class="col-md-4">Users</label>
-                    <label class="col-sm-4">Http Methods</label>
+                    <label class="col-md-2">访问类型</label>
+                    <label class="col-md-4">用户</label>
+                    <label class="col-sm-4">请求模式</label>
                 </div>
             </div>
             <ul class="grid-list container-fluid">

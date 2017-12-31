@@ -17,15 +17,15 @@ import { WebServer } from './webserver';
                     <button title="Actions" (click)="_selector.toggle()" [class.background-active]="(_selector && _selector.opened) || false"><i class="fa fa-caret-down"></i></button>
                     <selector [right]="true">
                         <ul>
-                            <li><button class="refresh" title="Restart" (click)="restart()">Restart</button></li>
-                            <li><button class="start" title="Start" [attr.disabled]="model.status != 'stopped' || null" (click)="start()">Start</button></li>
-                            <li><button class="stop" title="Stop" [attr.disabled]="model.status != 'started' || null" (click)="stop()">Stop</button></li>
+                            <li><button class="refresh" title="重启" (click)="restart()">重启</button></li>
+                            <li><button class="start" title="启动" [attr.disabled]="model.status != 'stopped' || null" (click)="start()">启动</button></li>
+                            <li><button class="stop" title="停止" [attr.disabled]="model.status != 'started' || null" (click)="stop()">停止</button></li>
                         </ul>
                     </selector>
                 </div>
             </div>
             <div class="feature-title">
-                <h1 [ngClass]="model.status">Web Server</h1>
+                <h1 [ngClass]="model.status">IIS服务器</h1>
                 <span class="status" *ngIf="model.status.startsWith('stop')">{{model.status}}</span>
             </div>
         </div>

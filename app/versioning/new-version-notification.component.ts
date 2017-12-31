@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { NotificationService } from '../notification/notification.service';
 
 @Component({
@@ -20,7 +20,7 @@ import { NotificationService } from '../notification/notification.service';
     `],
     template: `
         <div>
-            <span>Version {{version}} is now available. <br/> <a [routerLink]="['/get']" (click)="onNavigate()">Click here</a> to get it.</span>
+            <span>可用版本版本 {{version}}. <br/> <a [routerLink]="['/get']" (click)="onNavigate()">点击这里</a> 获取.</span>
         </div>
     `
 })

@@ -1,4 +1,4 @@
-declare var GLOBAL_MODULES: any;
+﻿declare var GLOBAL_MODULES: any;
 
 import {Component, OnInit, Inject} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
@@ -20,12 +20,12 @@ import {WebAppsService} from './webapps.service';
 
         <div *ngIf="app" class="sidebar crumb" [class.nav]="_options.active">
             <ul class="crumbs">
-                <li><a [routerLink]="['/webserver']">Web Server</a></li>
-                <li><a [routerLink]="['/webserver/web-sites/']">Web Sites</a></li>
+                <li><a [routerLink]="['/webserver']">IIS服务器</a></li>
+                <li><a [routerLink]="['/webserver/web-sites/']">站点</a></li>
                 <li><a [routerLink]="['/webserver/websites/', app.website.id]">{{app.website.name}}</a></li>
             </ul>
             <vtabs [markLocation]="true" (activate)="_options.refresh()">
-                <item [name]="'General'" [ico]="'fa fa-wrench'">
+                <item [name]="'一般'" [ico]="'fa fa-wrench'">
                     <webapp-general [model]="app" (modelChanged)="onModelChanged()"></webapp-general>
                 </item>
                 <item *ngFor="let module of modules" [name]="module.name" [ico]="module.ico">

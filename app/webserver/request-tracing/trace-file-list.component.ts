@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Output, Input, EventEmitter, Inject, Injectable, ViewChild, ElementRef, ContentChildren, QueryList } from '@angular/core';
+﻿import { Component, OnInit, OnDestroy, Output, Input, EventEmitter, Inject, Injectable, ViewChild, ElementRef, ContentChildren, QueryList } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -26,12 +26,12 @@ import { RequestTracingService } from './request-tracing.service';
             <input class="out" type="text"/>
             <div #header class="container-fluid">
                 <div class="hidden-xs border-active grid-list-header row">
-                    <label class="col-xs-8 col-sm-3 col-lg-2" [ngClass]="_orderBy.css('file_info.name')" (click)="sort('file_info.name')">Name</label>
-                    <label class="col-sm-4 col-lg-3 hidden-xs" [ngClass]="_orderBy.css('url')" (click)="sort('url')">Url</label>
-                    <label class="col-md-1 visible-lg text-right" [ngClass]="_orderBy.css('method')" (click)="sort('method')">Method</label>
-                    <label class="col-md-1 visible-lg visible-md text-right" [ngClass]="_orderBy.css('status_code')" (click)="sort('status_code')">Status</label>
-                    <label class="col-md-1 visible-lg visible-md text-right" [ngClass]="_orderBy.css('time_taken')" (click)="sort('time_taken')">Duration</label>
-                    <label class="col-sm-3 col-md-2 hidden-xs" [ngClass]="_orderBy.css('date')" (click)="sort('date')">Date</label>
+                    <label class="col-xs-8 col-sm-3 col-lg-2" [ngClass]="_orderBy.css('file_info.name')" (click)="sort('file_info.name')">名称</label>
+                    <label class="col-sm-4 col-lg-3 hidden-xs" [ngClass]="_orderBy.css('url')" (click)="sort('url')">URL</label>
+                    <label class="col-md-1 visible-lg text-right" [ngClass]="_orderBy.css('method')" (click)="sort('method')">模式</label>
+                    <label class="col-md-1 visible-lg visible-md text-right" [ngClass]="_orderBy.css('status_code')" (click)="sort('status_code')">状态</label>
+                    <label class="col-md-1 visible-lg visible-md text-right" [ngClass]="_orderBy.css('time_taken')" (click)="sort('time_taken')">持续时间</label>
+                    <label class="col-sm-3 col-md-2 hidden-xs" [ngClass]="_orderBy.css('date')" (click)="sort('date')">日期</label>
                 </div>
             </div>
             <div *ngIf="_error && _error.message">
@@ -115,8 +115,8 @@ export class TraceFileListComponent implements OnInit, OnDestroy {
     }
 
     private onDelete() {
-        let msg = this._selected.length == 1 ? "Are you sure you want to delete '" + this._selected[0].file_info.name + "'?" :
-            "Are you sure you want to delete " + this._selected.length + " items?";
+        let msg = this._selected.length == 1 ? "你确认呀删除 '" + this._selected[0].file_info.name + "'?" :
+            "你确定要删除 " + this._selected.length + " ?";
 
         if (confirm(msg)) {
             this._service.delete(this._selected);

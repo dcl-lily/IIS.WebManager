@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
@@ -227,7 +227,7 @@ export class AuthenticationService {
                 this["_" + type + "Error"] = e;
 
                 this.setStatus(type, Status.Stopped);
-                this._notificationService.warn("Unable to turn on " + type + " authentication.");
+                this._notificationService.warn("不能打开认证信息 " + type + " .");
                 
                 throw e;
             });
@@ -245,7 +245,7 @@ export class AuthenticationService {
                 this._http.get("/webserver/authentication/" + type + "-authentication/" + id)
                     .then(auth => {
                         this["_" + type + "Auth"].next(auth);
-                        this._notificationService.warn("Turning off " + type + " authentication failed.");
+                        this._notificationService.warn("关闭 " + type + " 失败.");
                         this.setStatus(type, Status.Started);
                     });
             })

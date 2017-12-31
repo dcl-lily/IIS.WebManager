@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+﻿import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -18,7 +18,7 @@ import { Authorization, AuthRule } from './authorization'
                 [model]="_service.status == 'started' || _service.status == 'starting'" 
                 [disabled]="_service.status == 'starting' || _service.status == 'stopping'"
                 (modelChanged)="install(!s.model)">
-                    <span *ngIf="!isPending()">{{s.model ? "On" : "Off"}}</span>
+                    <span *ngIf="!isPending()">{{s.model ? "启用" : "禁用"}}</span>
                     <span *ngIf="isPending()" class="loading"></span>
         </switch>
         <span *ngIf="_service.status == 'stopped' && !_service.webserverScope">Authorization is off. Turn it on <a [routerLink]="['/webserver/authorization']">here</a></span>
@@ -88,7 +88,7 @@ export class AuthorizationComponent implements OnInit, OnDestroy {
             return this._service.install();
         }
         else {
-            this._notificationService.confirm("Turn Off Authorization", 'This will turn off "Authorization" for the entire web server.')
+            this._notificationService.confirm("关闭授权认证访问", '这件关闭站点的授权访问，站点将不可被访问.')
                 .then(result => {
                     if (result) {
                         this._service.uninstall();

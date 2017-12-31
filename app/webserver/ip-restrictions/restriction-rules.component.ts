@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ElementRef, ViewChildren, QueryList, OnInit, OnDestroy, OnChanges, SimpleChange } from '@angular/core';
+﻿import { Component, Input, Output, EventEmitter, ElementRef, ViewChildren, QueryList, OnInit, OnDestroy, OnChanges, SimpleChange } from '@angular/core';
 import { NgModel } from '@angular/forms';
 
 import { Subscription } from 'rxjs/Subscription';
@@ -12,62 +12,62 @@ import { RestrictionRule, IpRestrictions } from './ip-restrictions'
     template: `
         <div class="row grid-item" [class.background-editing]="_editing">
             <div class="actions">
-                <button class="no-border" title="Ok" *ngIf="_editing" [disabled]="!isValid() || null" (click)="onSave()">
+                <button class="no-border" title="确认" *ngIf="_editing" [disabled]="!isValid() || null" (click)="onSave()">
                     <i class="fa fa-check blue"></i>
                 </button>
-                <button enabled class="no-border" title="Cancel" *ngIf="_editing" (click)="onDiscard()">
+                <button enabled class="no-border" title="取消" *ngIf="_editing" (click)="onDiscard()">
                     <i class="fa fa-times red"></i>
                 </button>
-                <button enabled class="no-border" title="Edit" [class.inactive]="!_editable" *ngIf="!_editing" (click)="onEdit()">
+                <button enabled class="no-border" title="编辑" [class.inactive]="!_editable" *ngIf="!_editing" (click)="onEdit()">
                     <i class="fa fa-pencil blue"></i>
                 </button>
-                <button class="no-border" *ngIf="model.id" title="Delete" [class.inactive]="!_editable || _editing" (click)="onDelete()">
+                <button class="no-border" *ngIf="model.id" title="删除" [class.inactive]="!_editable || _editing" (click)="onDelete()">
                     <i class="fa fa-trash-o red"></i>
                 </button>
             </div>
             <div *ngIf="!_editing">
                 <fieldset class="col-xs-8 col-md-2">
-                    <label class="visible-xs visible-sm">Status</label>
+                    <label class="visible-xs visible-sm">状态</label>
                     <i class="fa fa-circle green hidden-xs hidden-sm" *ngIf="model.allowed"></i>
                     <i class="fa fa-ban red hidden-xs hidden-sm" *ngIf="!model.allowed"></i>
-                    <span>{{model.allowed ? "Allow" : "Deny"}}</span>
+                    <span>{{model.allowed ? "允许" : "拒绝"}}</span>
                 </fieldset>
                 <fieldset class="col-xs-12 col-md-3">
-                    <label class="visible-xs visible-sm">IP Address</label>
+                    <label class="visible-xs visible-sm">IP地址</label>
                     <span>{{model.ip_address}}</span>
                 </fieldset>
                 <fieldset class="col-xs-12 col-md-3">
-                    <label class="visible-xs visible-sm">Subnet Mask</label>
+                    <label class="visible-xs visible-sm">子网掩码</label>
                     <span>{{model.subnet_mask}}</span>
                 </fieldset>
                 <fieldset class="col-xs-12 col-md-2" *ngIf="enableDomainName && model.domain_name != ''">
-                    <label class="visible-xs visible-sm">Domain Name</label>
+                    <label class="visible-xs visible-sm">域名</label>
                     <span>{{model.domain_name}}</span>
                 </fieldset>
             </div>
             <div *ngIf="_editing" class="col-left">
                 <fieldset>
-                    <label>Status</label>
+                    <label>状态</label>
                     <enum [model]="model.allowed" (modelChange)="model.allowed=($event==='true')">
-                        <field name="Allow" value="true"></field>
-                        <field name="Deny" value="false"></field>
+                        <field name="允许" value="true"></field>
+                        <field name="拒绝" value="false"></field>
                     </enum>
                 </fieldset>
                 <fieldset>
-                    <label>IP Address</label>
+                    <label>IP地址</label>
                     <input class="form-control name" type="text" placeholder="Example: 192.168.100.1" [(ngModel)]="model.ip_address" required pattern="^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$" />
                 </fieldset>
                 <fieldset>
                     <div class="inline-block">
-                        <label class="block">Restrict by Subnet Mask</label>
-                        <switch #s [model]="model.subnet_mask!='255.255.255.255'" (modelChange)="onEnableSubnetMask($event)">{{s.model ? "Yes" : "No"}}</switch>
+                        <label class="block">使用子网掩码限制</label>
+                        <switch #s [model]="model.subnet_mask!='255.255.255.255'" (modelChange)="onEnableSubnetMask($event)">{{s.model ? "是" : "否"}}</switch>
                     </div>
                     <div class="inline-block no-label" *ngIf="s.model">
                         <input class="form-control name" placeholder="Example: 255.255.0.0" type="text" [(ngModel)]="model.subnet_mask" required />
                     </div>
                 </fieldset>
                 <fieldset *ngIf="enableDomainName">
-                    <label>Domain Name</label>
+                    <label>域名</label>
                     <input class="form-control name" type="text" [(ngModel)]="model.domain_name" />
                 </fieldset>
             </div>
@@ -160,7 +160,7 @@ export class RestrictionRuleComponent implements OnChanges, OnInit {
     }
 
     onDelete() {
-        if (confirm("Are you sure you want to delete this rule?\nIp Address: " + this.model.ip_address)) {
+        if (confirm("你确定要删除这个规则?\nIP地址: " + this.model.ip_address)) {
             this._service.deleteRule(this.model);
         }
     }
@@ -197,17 +197,17 @@ export class RestrictionRuleComponent implements OnChanges, OnInit {
     selector: 'restriction-rules',
     template: `
         <fieldset>
-            <label>Allow Unlisted</label>
-            <switch class="block" [(model)]="ipRestrictions.allow_unlisted" (modelChanged)="onModelChanged()">{{ipRestrictions.allow_unlisted ? "Yes" : "No"}}</switch>
+            <label>允许未注册</label>
+            <switch class="block" [(model)]="ipRestrictions.allow_unlisted" (modelChanged)="onModelChanged()">{{ipRestrictions.allow_unlisted ? "启用" : "禁用"}}</switch>
         </fieldset>
         <fieldset>
-            <button class="create" (click)="createRule()" [class.inactive]="_editing || _newRule"><i class="fa fa-plus blue"></i><span>Add</span></button>
+            <button class="create" (click)="createRule()" [class.inactive]="_editing || _newRule"><i class="fa fa-plus blue"></i><span>添加</span></button>
             <div class="container-fluid">
                 <div class="row hidden-xs hidden-sm border-active grid-list-header" [hidden]="rules.length == 0">
-                    <label class="col-md-2">Status</label>
-                    <label class="col-md-3">IP Address</label>
-                    <label class="col-md-3">Subnet Mask</label>
-                    <label class="col-md-2" *ngIf="ipRestrictions.enable_reverse_dns">Domain Name</label>
+                    <label class="col-md-2">状态</label>
+                    <label class="col-md-3">IP地址</label>
+                    <label class="col-md-3">子网掩码</label>
+                    <label class="col-md-2" *ngIf="ipRestrictions.enable_reverse_dns">域名</label>
                 </div>
             </div>
             <ul class="grid-list container-fluid">

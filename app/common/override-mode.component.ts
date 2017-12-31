@@ -1,4 +1,4 @@
-
+﻿
 import {NgModule, Component, ElementRef, Input, Output, EventEmitter} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
@@ -39,18 +39,18 @@ import {Module as Switch} from './switch.component';
             <!-- Override mode -->
             <button class="no-border" *ngIf="!metadata.is_locked" [class.active]="_focused" (click)="onClick()">
                 <span>{{metadata.override_mode_effective}}</span>
-                Override <i class="fa fa-caret-down"></i>
+                重写 <i class="fa fa-caret-down"></i>
             </button>
             <!-- Locked -->
             <button enabled class="no-border background-warning hover-warning" *ngIf="metadata.is_locked" [class.active]="_focused" (click)="onClick()">
-                <i class="fa fa-lock large left-icon"></i> Locked
+                <i class="fa fa-lock large left-icon"></i> 锁定
             </button>
             <div id="menu" class="background-normal" [ngClass]="menuClasses()" [hidden]="!_focused && !(metadata.is_locked && _entered)">
                 <!-- Override mode -->
                 <div *ngIf="!metadata.is_locked">
                     <fieldset>
                         <label>
-                            Permit changes at child level
+                            允许所有更改
                         </label>
                         <switch class="block" [model]="metadata.override_mode_effective" (modelChange)="updateData($event)" [on]="'allow'" [off]="'deny'">
                             <span>{{metadata.override_mode_effective}}</span>
@@ -58,15 +58,14 @@ import {Module as Switch} from './switch.component';
                     </fieldset>
                     <fieldset>
                         <button *ngIf="scope" class="no-border" [disabled]="!metadata.is_local" title="Undo local settings" (click)="onRevert()">
-                            <i class="fa fa-undo red"></i> Reset to inherited
+                            <i class="fa fa-undo red"></i> 重新设置继承
                         </button>
                     </fieldset>
                 </div>
                 <!-- Locked -->
                 <div *ngIf="metadata.is_locked">
                     <p>
-                        The feature has been locked at the parent level and is not available for editing.
-                        To enable editing, change the override setting of the parent level to 'Allow'.
+                        该功能已锁定在父级，无法进行编辑。若要启用编辑，请将父级的覆盖设置更改为“允许”
                     </p>
                 </div>
             </div>

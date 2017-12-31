@@ -1,4 +1,4 @@
-
+﻿
 declare var SETTINGS: any;
 
 import {Injectable, Optional} from '@angular/core';
@@ -91,7 +91,7 @@ export class VersionService {
         let bParts = b.split('.');
 
         if (aParts.length != bParts.length) {
-            throw "Invalid version format.";
+            throw "版本格式无效.";
         }
 
         for (let i = 0; i < aParts.length; i++) {
@@ -107,7 +107,7 @@ export class VersionService {
 
     private parseApiVersion(res: any) {
         const VERSION_PREFIX = "application/vnd.Microsoft.WebServer.Api.";
-        const couldntGetVersion = "Could not get API version.";
+        const couldntGetVersion = "无法获取API版本.";
 
         if (!res.headers.get("Content-Type")) {
             throw couldntGetVersion;

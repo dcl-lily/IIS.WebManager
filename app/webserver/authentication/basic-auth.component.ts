@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+﻿import { Component, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -17,23 +17,23 @@ import { NotificationService } from '../../notification/notification.service';
                 [model]="_service.basicStatus == 'started' || _service.basicStatus == 'starting'" 
                 [disabled]="_service.basicStatus == 'starting' || _service.basicStatus == 'stopping'"
                 (modelChanged)="install(!s.model)">
-                    <span *ngIf="!isPending()">{{s.model ? "On" : "Off"}}</span>
+                    <span *ngIf="!isPending()">{{s.model ? "启用" : "禁用"}}</span>
                     <span *ngIf="isPending()" class="loading"></span>
         </switch>
-        <span *ngIf="_service.basicStatus == 'stopped' && !_service.webserverScope">Basic Authentication is off. Turn it on <a [routerLink]="['/webserver/authentication']">here</a></span>
+        <span *ngIf="_service.basicStatus == 'stopped' && !_service.webserverScope">基础认证关闭. 开启请 <a [routerLink]="['/webserver/authentication']">点击这里</a></span>
         <override-mode class="pull-right" *ngIf="_model" [scope]="_model.scope" [metadata]="_model.metadata" (revert)="onRevert()" (modelChanged)="onModelChanged()"></override-mode>
         <div *ngIf="_model">
             <fieldset>
-                <label *ngIf="!_model.scope">Web Site Default</label>
-                <switch class="block" [disabled]="_locked" [(model)]="_model.enabled" (modelChanged)="onModelChanged()">{{_model.enabled ? "On" : "Off"}}</switch>
+                <label *ngIf="!_model.scope">默认站点</label>
+                <switch class="block" [disabled]="_locked" [(model)]="_model.enabled" (modelChanged)="onModelChanged()">{{_model.enabled ? "启用" : "禁用"}}</switch>
             </fieldset>
             <div class="clear" *ngIf="_model.enabled || !_model.scope">
                 <fieldset>
-                    <label>Default Logon Domain</label>
+                    <label>默认登陆域</label>
                     <input class="form-control path" type="text" [disabled]="_locked" [(ngModel)]="_model.default_logon_domain" throttle (modelChanged)="onModelChanged()" />
                 </fieldset>
                 <fieldset>
-                    <label>Realm</label>
+                    <label>范围</label>
                     <input class="form-control path" type="text" [disabled]="_locked" [(ngModel)]="_model.realm" throttle (modelChanged)="onModelChanged()" />
                 </fieldset>
             </div>
@@ -98,7 +98,7 @@ export class BasicAuthenticationComponent implements OnDestroy {
             this._service.installBasic(true);
         }
         else {
-            this._notificationService.confirm("Turn Off Basic Authentication", 'This will turn off "Basic Authentication" for the entire web server.')
+            this._notificationService.confirm("关闭基础认证", '这样会关闭整个服务器的基础认证')
                 .then(confirmed => {
                     if (confirmed) {
                         this._service.installBasic(false);

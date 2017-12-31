@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+﻿import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
@@ -20,10 +20,10 @@ import { RequestTracing, RequestTracingRule, Trace, EventSeverity, Verbosity } f
                 [model]="_service.status == 'started' || _service.status == 'starting'" 
                 [disabled]="_service.status == 'starting' || _service.status == 'stopping'"
                 (modelChanged)="install(!s.model)">
-                    <span *ngIf="!isPending()">{{s.model ? "On" : "Off"}}</span>
+                    <span *ngIf="!isPending()">{{s.model ? "启用" : "禁用"}}</span>
                     <span *ngIf="isPending()" class="loading"></span>
         </switch>
-        <span *ngIf="_service.status == 'stopped' && !_service.webserverScope">Request Tracing is off. Turn it on <a [routerLink]="['/webserver/request-tracing']">here</a></span>
+        <span *ngIf="_service.status == 'stopped' && !_service.webserverScope">跟踪请求已关闭.如需打开请点击<a [routerLink]="['/webserver/request-tracing']">这里</a></span>
         <override-mode class="pull-right"
             *ngIf="requestTracing"
             [scope]="requestTracing.scope"
@@ -33,32 +33,32 @@ import { RequestTracing, RequestTracingRule, Trace, EventSeverity, Verbosity } f
         <div *ngIf="requestTracing" [attr.disabled]="requestTracing.metadata.is_locked ? true : null">
             <section>
                 <fieldset *ngIf="scopeType() != 'webserver'" [disabled]="scopeType() != 'website' || null">
-                    <switch class="block" [(model)]="requestTracing.enabled" (modelChanged)="onModelChanged()">{{requestTracing.enabled ? "On" : "Off"}}</switch>
+                    <switch class="block" [(model)]="requestTracing.enabled" (modelChanged)="onModelChanged()">{{requestTracing.enabled ? "启用" : "禁用"}}</switch>
                 </fieldset>
             </section>
 
             <tabs *ngIf="requestTracing.enabled">
-                <tab [name]="'trace logs'" *ngIf="scopeType() != 'webserver' && hasFeature('traces')">
+                <tab [name]="'跟踪日志'" *ngIf="scopeType() != 'webserver' && hasFeature('traces')">
                     <trace-files></trace-files>
                 </tab>
-                <tab [name]="'settings'" *ngIf="scopeType() == 'website'">
+                <tab [name]="'设置'" *ngIf="scopeType() == 'website'">
                     <fieldset class="path">
-                        <label>Directory</label>
-                        <button title="Select Folder" [class.background-active]="fileSelector.isOpen()" class="right select" (click)="fileSelector.toggle()"></button>
+                        <label>目录</label>
+                        <button title="选择目录" [class.background-active]="fileSelector.isOpen()" class="right select" (click)="fileSelector.toggle()"></button>
                         <div class="fill">
                             <input type="text" class="form-control" [(ngModel)]="requestTracing.directory" (modelChanged)="onModelChanged()" throttle />
                         </div>
                         <server-file-selector #fileSelector [types]="['directory']" [defaultPath]="requestTracing.directory" (selected)="onSelectPath($event)"></server-file-selector>
                     </fieldset>
                     <fieldset>
-                        <label>Max Trace Files</label>
+                        <label>最大的跟踪文件</label>
                         <input class="form-control" type="number" [(ngModel)]="requestTracing.maximum_number_trace_files" (modelChanged)="onModelChanged()" throttle />
                     </fieldset>
                 </tab>
-                <tab [name]="'rules'" *ngIf="true">
+                <tab [name]="'规则'" *ngIf="true">
                     <rule-list></rule-list>
                 </tab>
-                <tab [name]="'providers'" *ngIf="scopeType() == 'webserver'">
+                <tab [name]="'供应商'" *ngIf="scopeType() == 'webserver'">
                     <provider-list></provider-list>
                 </tab>
             </tabs>
@@ -191,7 +191,7 @@ export class RequestTracingComponent implements OnInit, OnDestroy {
             return this._service.install();
         }
         else {
-            this._notificationService.confirm("Turn Off Request Tracing", 'This will turn off "Request Tracing" for the entire web server.')
+            this._notificationService.confirm("关闭请求跟踪", '这将关闭服务器的请求跟踪.')
                 .then(result => {
                     if (result) {
                         this._service.uninstall();

@@ -1,4 +1,4 @@
-
+﻿
 import {Injectable} from '@angular/core';
 import {Http, Headers, Response, Request, RequestOptions, RequestOptionsArgs, RequestMethod} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
@@ -205,7 +205,7 @@ export class HttpClient {
         if (httpError.status === 400) {
             if (apiError && apiError.title == "Invalid parameter") {
                 var parameterName = this.parseParameterName(apiError.name);
-                msg = "An invalid value was given for " + parameterName + ".";
+                msg = "一个无效的值 " + parameterName + ".";
                 if (apiError.detail) {
                     msg += "\n" + apiError.detail;
                 }
@@ -215,15 +215,15 @@ export class HttpClient {
             // TODO: Invalid token
             if (apiError && apiError.title == "Object is locked") {
                 apiError.type = ApiErrorType.SectionLocked;
-                msg = "The feature's settings could not be loaded. This happens when the feature is locked at the current configuration level and the feature's settings have been modified. To fix this, manually remove any local changes to the feature or unlock the feature at the parent level.";
+                msg = "无法加载功能的设置。当功能锁定在当前配置级别并修改了功能的设置时，就会发生这种情况。要解决此问题，请手动删除对该特性的任何本地更改或在父级打开该功能.";
             }
 
             if (apiError && apiError.title == "Forbidden" && apiError.name) {
                 if (apiError[apiError.name]) {
-                    msg = "Forbidden: '" + apiError[apiError.name] + "'";
+                    msg = "禁止: '" + apiError[apiError.name] + "'";
                 }
                 else {
-                    msg = "Forbidden: '" + apiError.name + "'";
+                    msg = "禁止: '" + apiError.name + "'";
                 }
 
                 if (apiError.detail) {
@@ -237,18 +237,18 @@ export class HttpClient {
                 msg = apiError.detail + "\n" + apiError.name;
             }
             else {
-                msg = "The resource could not be found";
+                msg = "没有找到IIS资源";
                 apiError.type = ApiErrorType.NotFound;
             }
         }
         if (httpError.status == 500) {
             // TODO: Invalid token
             if (apiError.detail == "Dism Error") {
-                msg = "An error occured enabling " + apiError.feature;
+                msg = "发生了一个错误 " + apiError.feature;
                 if (apiError.exit_code == 'B7') {
-                    msg += "\nThe specified image is currently being serviced by another DISM operation"
+                    msg += "\n指定的对象正在被使用"
                 }
-                msg += "\nError code: " + apiError.exit_code;
+                msg += "\n错误代码: " + apiError.exit_code;
             }
 
             else {

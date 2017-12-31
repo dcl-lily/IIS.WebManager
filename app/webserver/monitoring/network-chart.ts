@@ -13,23 +13,23 @@ import { ServerSnapshot } from './server-snapshot';
         <div class="row chart-info" *ngIf="_snapshot">
             <div class="col-xs-4">
                 <label class="block">
-                    Total Bytes Sent
+                    发送总字节数
                 </label>
                 {{formatMemory(_snapshot.network.total_bytes_sent)}}
             </div>
             <div class="col-xs-4">
                 <label class="block">
-                    Total Bytes Received
+                    接受总字节数
                 </label>
                 {{formatMemory(_snapshot.network.total_bytes_recv)}}
             </div>
             <div class="col-xs-4">
                 <div>
                     <label>
-                        Active Connections
+                        活跃连接数
                     </label>
                     <tooltip>
-                        Total number of current network connections that are open on the web server.
+                        Web服务器上当前打开的网络连接的总数.
                     </tooltip>
                 </div>
                 {{formatNumber(_snapshot.network.current_connections)}}
@@ -113,8 +113,8 @@ export class NetworkChart implements OnDestroy {
     @ViewChild('chart') private _networkChart: BaseChartDirective;
 
     private _data: Array<any> = [
-        { data: this._bytesSentSecValues, label: 'Bytes Sent / sec' },
-        { data: this._bytesRecvSecValues, label: 'Bytes Recv /sec' }
+        { data: this._bytesSentSecValues, label: '每秒发送' },
+        { data: this._bytesRecvSecValues, label: '每秒接收' }
     ];
 
     constructor(private _svc: MonitoringService) {

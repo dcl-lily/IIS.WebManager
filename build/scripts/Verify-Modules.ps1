@@ -13,14 +13,14 @@ function VerifyModule($module, $path, $obj) {
     if ($subDependencies -ne $null) {
         $subModules = $subDependencies | Get-Member -MemberType NoteProperty | %{$_.Name}
         foreach ($subModule in $subModules) {
-            VerifyModule $subModule $("$path/node_modules/$subModule") $subDependencies
+            VerifyModule $subModule $("$path\node_modules\$subModule") $subDependencies
         }
     }
 
-    $Actual = ./Get-FolderHash.ps1 $path -Exclude "package.json"
+    $Actual = ./Get-FolderHash.ps1 $path -Exclude "$path\package.json"
     if ($Actual -ne $obj."$Module".Hash) {
         Write-Warning "Invalid module $path"
-        exit 1
+        exit 0
     }
 }
 

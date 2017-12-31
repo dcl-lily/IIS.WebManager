@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, ViewChildren, QueryList } from '@angular/core';
+﻿import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, ViewChildren, QueryList } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -13,7 +13,7 @@ import { CertificatesService } from './certificates.service';
     template: `
         <loading *ngIf="!_items"></loading>
         <div class="toolbar">
-            <span *ngIf="_service.loading" class="loading">Retrieving certificates</span>
+            <span *ngIf="_service.loading" class="loading">获取证书</span>
             <button class="refresh" title="Refresh" (click)="refresh()"></button>
             <div *ngIf="_items" class="col-xs-8 col-sm-5 col-md-4 col-lg-3 actions filter hidden-xs">
                 <input type="search" class="form-control" [class.border-active]="_filter" [(ngModel)]="_filter" (ngModelChange)="filter($event)" [throttle]="300" />
@@ -22,11 +22,11 @@ import { CertificatesService } from './certificates.service';
         </div>
         <div *ngIf="_items" class="container-fluid">
             <div class="border-active grid-list-header row hidden-xs" [hidden]="_items.length == 0">
-                <label class="col-xs-12 col-sm-6 col-md-4 col-lg-3">Name</label>
-                <label class="col-xs-4 col-md-4 col-lg-3">Subject</label>
-                <label class="col-xs-2 col-lg-2 hidden-xs hidden-sm">Issued By</label>
-                <label class="col-lg-1 col-md-1 hidden-xs hidden-sm">Store</label>
-                <label class="col-lg-2 hidden-xs hidden-sm hidden-md">Valid To</label>
+                <label class="col-xs-12 col-sm-6 col-md-4 col-lg-3">名字</label>
+                <label class="col-xs-4 col-md-4 col-lg-3">主题</label>
+                <label class="col-xs-2 col-lg-2 hidden-xs hidden-sm">发行者</label>
+                <label class="col-lg-1 col-md-1 hidden-xs hidden-sm">存储位置</label>
+                <label class="col-lg-2 hidden-xs hidden-sm hidden-md">有效期</label>
             </div>
         </div>
         <virtual-list class="container-fluid grid-list"

@@ -8,22 +8,22 @@ import { InboundRule, Condition, ActionType, MatchType, ConditionMatchConstraint
     template: `
         <div>
             <tabs>
-                <tab [name]="'Settings'">
+                <tab [name]="'设置'">
                     <inbound-rule-settings [rule]="rule"></inbound-rule-settings>
                 </tab>
-                <tab [name]="'Action'">
+                <tab [name]="'动作'">
                     <inbound-rule-action [rule]="rule"></inbound-rule-action>
                 </tab>
-                <tab [name]="'Conditions'">
+                <tab [name]="'条件'">
                     <inbound-rule-conditions [rule]="rule"></inbound-rule-conditions>
                 </tab>
-                <tab [name]="'Server Variables'">
+                <tab [name]="'服务器变量'">
                     <inbound-rule-variables [rule]="rule"></inbound-rule-variables>
                 </tab>
             </tabs>
             <p class="pull-right">
-                <button [disabled]="!isValid()" class="ok" (click)="onOk()">OK</button>
-                <button (click)="onDiscard()" class="cancel">Cancel</button>
+                <button [disabled]="!isValid()" class="ok" (click)="onOk()">确认</button>
+                <button (click)="onDiscard()" class="cancel">取消</button>
             </p>
         </div>
     `,

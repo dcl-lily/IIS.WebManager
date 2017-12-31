@@ -1,4 +1,4 @@
-
+﻿
 import {Component, EventEmitter, Output, Inject} from '@angular/core';
 
 import {ApplicationPool, ApplicationPoolIdentity, ProcessModelIdentityType, PipelineMode} from './app-pool';
@@ -9,26 +9,26 @@ import {AppPoolsService} from './app-pools.service';
     selector: 'new-app-pool',
     template: `
         <fieldset>
-            <label>Name</label>
+            <label>名字</label>
             <input type="text" class="form-control name" [(ngModel)]="model.name" required />
         </fieldset>
         <section>
             <div class="collapse-heading collapsed" data-toggle="collapse" data-target="#settings">
-                <h2>Settings</h2>
+                <h2>设置</h2>
             </div>
             <div id="settings" class="collapse">
                 <fieldset>
                     <identity [(model)]="model.identity"></identity>
                 </fieldset>
                 <fieldset>
-                    <label>Pipeline</label>
+                    <label>管道</label>
                     <enum [(model)]="model.pipeline_mode">
-                        <field name="Integrated" value="integrated"></field>
-                        <field name="Classic" value="classic"></field>
+                        <field name="集成" value="Integrated"></field>
+                        <field name="典型" value="Classic"></field>
                     </enum>
                 </fieldset>
                 <fieldset>
-                    <label>.NET Framework</label>
+                    <label>.NET版本</label>
                     <enum  [(model)]="model.managed_runtime_version">
                         <field name="3.5" value="v2.0"></field>
                         <field name="4.x" value="v4.0"></field>
@@ -38,8 +38,8 @@ import {AppPoolsService} from './app-pools.service';
             </div>
         </section>
         <p class="pull-right">
-            <button class="ok" (click)="onSave()" [disabled]="!IsValid()">Create</button>
-            <button class="cancel" (click)="onCancel()">Cancel</button>
+            <button class="ok" (click)="onSave()" [disabled]="!IsValid()">创建</button>
+            <button class="cancel" (click)="onCancel()">取消</button>
         </p>
     `
 })

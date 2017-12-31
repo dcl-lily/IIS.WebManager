@@ -17,7 +17,7 @@ import { RewriteMapsSection, RewriteMap, RewriteMapping } from '../url-rewrite';
                 (revert)="onRevert()" 
                 (modelChanged)="onModelChanged()"></override-mode>
             <div>
-                <button [class.background-active]="newMap.opened" (click)="newMap.toggle()">Create Rewrite Map <i class="fa fa-caret-down"></i></button>
+                <button [class.background-active]="newMap.opened" (click)="newMap.toggle()">创建重写地图 <i class="fa fa-caret-down"></i></button>
                 <selector #newMap class="container-fluid create" (hide)="initializeNewRewriteMap()">
                     <rewrite-map-edit [map]="_newRewriteMap" (save)="saveNew()" (cancel)="newMap.close()"></rewrite-map-edit>
                 </selector>
@@ -26,8 +26,8 @@ import { RewriteMapsSection, RewriteMap, RewriteMapping } from '../url-rewrite';
             <div>
                 <div class="container-fluid">
                     <div class="row hidden-xs border-active grid-list-header">
-                        <label class="col-xs-6">Name</label>
-                        <label class="col-xs-2">Count</label>
+                        <label class="col-xs-6">名称</label>
+                        <label class="col-xs-2">计算</label>
                     </div>
                 </div>
 
@@ -62,7 +62,7 @@ export class RewriteMapsComponent implements OnDestroy {
 
     private initializeNewRewriteMap() {
         this._newRewriteMap = new RewriteMap();
-        let name = "New Rewrite Map";
+        let name = "新地图";
         this._newRewriteMap.name = name;
         this._newRewriteMap.default_value = "";
         this._newRewriteMap.ignore_case = true;

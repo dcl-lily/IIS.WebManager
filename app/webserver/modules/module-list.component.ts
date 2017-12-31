@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, OnInit, ViewChildren, QueryList} from '@angular/core';
+﻿import {Component, Input, Output, EventEmitter, OnInit, ViewChildren, QueryList} from '@angular/core';
 
 import {LocalModule, GlobalModule} from './modules'
 import {ModuleComponent} from './module.component'
@@ -7,14 +7,14 @@ import {ModuleComponent} from './module.component'
     selector: 'module-list',
     template: `
         <button class="create" (click)="create()" [class.inactive]="_creating">
-            <i title="New Module" class="fa fa-plus color-active"></i><span>Add</span>
+            <i title="New Module" class="fa fa-plus color-active"></i><span>添加</span>
         </button>
 
         <div class="container-fluid">
             <div class="row hidden-xs border-active grid-list-header">
-                <label class="col-xs-12 col-sm-3">Name</label>
-                <label class="col-sm-5 col-md-5 col-lg-6">Image/Type</label>
-                <label class="col-xs-12 col-sm-2">Status</label>
+                <label class="col-xs-12 col-sm-3">名字</label>
+                <label class="col-sm-5 col-md-5 col-lg-6">处理类型</label>
+                <label class="col-xs-12 col-sm-2">状态</label>
             </div>
         </div>
 

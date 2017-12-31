@@ -7,30 +7,30 @@ import { InboundRule, Condition, MatchType, IIS_SERVER_VARIABLES } from '../url-
     template: `
         <div *ngIf="rule">
             <fieldset>
-                <label>Match</label>
+                <label>匹配</label>
                 <enum [(model)]="rule.condition_match_constraints">
-                    <field name="All" value="match_all" title="All conditions must match for the rule to match"></field>
-                    <field name="Any" value="match_any" title="Atleast one condition must match for the rule to match"></field>
+                    <field name="所有" value="match_all" title="所有规则必须匹配"></field>
+                    <field name="任何" value="match_any" title="任何一个规则匹配"></field>
                 </enum>
             </fieldset>
             <fieldset>
                 <div>
-                    <label class="inline-block">Keep All Back References</label>
+                    <label class="inline-block">保留所有返回引用</label>
                     <tooltip>
-                        Specifies whether to keep back references for all matching conditions or only the last condition evaulated.
+                        指定是否保留引用所有匹配的条件或只有最后一个条件进行
                     </tooltip>
                 </div>
                 <switch [(model)]="rule.track_all_captures">
-                    {{rule.track_all_captures ? 'Yes' : 'No'}}
+                    {{rule.track_all_captures ? '启用' : '禁用'}}
                 </switch>
             </fieldset>
 
-            <button (click)="add()" class="create"><span>Add Condition</span></button>
+            <button (click)="add()" class="create"><span>添加条件</span></button>
             <div class="container-fluid">
                 <div class="row hidden-xs border-active grid-list-header">
-                    <label class="col-sm-3 col-lg-2">Server Variable</label>
-                    <label class="col-sm-3 col-lg-2">Match Type</label>
-                    <label class="col-sm-3">Pattern</label>
+                    <label class="col-sm-3 col-lg-2">服务器变量</label>
+                    <label class="col-sm-3 col-lg-2">匹配类型</label>
+                    <label class="col-sm-3">模式</label>
                 </div>
             </div>
 
@@ -87,20 +87,20 @@ export class InboundRuleConditionsComponent {
                 {{condition.input}}
             </div>
             <div class="col-sm-3 col-lg-2 valign">
-                {{condition.negate ? "Doesn't Match" : "Matches"}}
+                {{condition.negate ? "不匹配" : "匹配"}}
             </div>
             <div class="col-sm-3 valign">
                 {{condition.pattern}}
             </div>
             <div class="actions">
                 <div class="action-selector">
-                    <button title="More" (click)="selector.toggle()" (dblclick)="$event.preventDefault()" [class.background-active]="(selector && selector.opened) || false">
+                    <button title="更多" (click)="selector.toggle()" (dblclick)="$event.preventDefault()" [class.background-active]="(selector && selector.opened) || false">
                         <i class="fa fa-ellipsis-h"></i>
                     </button>
                     <selector #selector [right]="true">
                         <ul>
-                            <li><button #menuButton class="edit" title="Edit" (click)="edit()">Edit</button></li>
-                            <li><button #menuButton class="delete" title="Delete" (click)="delete()">Delete</button></li>
+                            <li><button #menuButton class="edit" title="编辑" (click)="edit()">编辑</button></li>
+                            <li><button #menuButton class="delete" title="删除" (click)="delete()">删除</button></li>
                         </ul>
                     </selector>
                 </div>
@@ -141,11 +141,11 @@ export class InboundRuleConditionComponent {
     template: `
         <div *ngIf="condition" class="grid-item row background-editing">
             <div class="actions">
-                <button class="no-border ok" [disabled]="!isValid()" title="Ok" (click)="onOk()"></button>
-                <button class="no-border cancel" title="Cancel" (click)="onDiscard()"></button>
+                <button class="no-border ok" [disabled]="!isValid()" title="确认" (click)="onOk()"></button>
+                <button class="no-border cancel" title="取消" (click)="onDiscard()"></button>
             </div>
             <fieldset class="name">
-                <label>Server Variable</label>
+                <label>服务器变量</label>
                 <input type="text" required class="form-control" list="server-vars" [(ngModel)]="condition.input" />
                 <datalist id="server-vars">
                     <option *ngFor="let variable of _serverVariables" value="{{'{' + variable + '}'}}">
@@ -153,9 +153,9 @@ export class InboundRuleConditionComponent {
             </fieldset>
             <fieldset class="name">
                 <div>
-                    <label class="inline-block">Pattern</label>
-                    <text-toggle onText="Matches" offText="Doesn't Match" [on]="false" [off]="true" [(model)]="condition.negate"></text-toggle>
-                    <text-toggle onText="Case Insensitive" offText="Case Sensitive" [(model)]="condition.ignore_case"></text-toggle>
+                    <label class="inline-block">模式</label>
+                    <text-toggle onText="匹配" offText="不匹配" [on]="false" [off]="true" [(model)]="condition.negate"></text-toggle>
+                    <text-toggle onText="不区分大小写" offText="区分大小写" [(model)]="condition.ignore_case"></text-toggle>
                 </div>
                 <input type="text" required class="form-control" [(ngModel)]="condition.pattern" />
             </fieldset>

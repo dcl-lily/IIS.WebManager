@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ViewChild, OnInit } from '@angular/core';
+﻿import { Component, Input, Output, EventEmitter, ViewChild, OnInit } from '@angular/core';
 
 import { Selector } from '../common/selector';
 
@@ -19,8 +19,8 @@ import { FilesComponent } from './files.component';
                     [defaultPath]="defaultPath"></file-viewer>
             </div>
             <p class="pull-right">
-                <button class="ok" [attr.disabled]="!canAccept() || null" (click)="accept()">OK</button>
-                <button class="cancel" (click)="cancel()">Cancel</button>
+                <button class="ok" [attr.disabled]="!canAccept() || null" (click)="accept()">确认</button>
+                <button class="cancel" (click)="cancel()">取消</button>
             </p>
         </selector>
     `,

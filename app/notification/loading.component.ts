@@ -10,7 +10,7 @@ import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
     template: `
         ﻿<div class="loader" [class.active]="_active">
             <div class="load-data">
-                <span class="loading">Loading</span>
+                <span class="loading">加载中....</span>
             </div>
         </div>
     `,

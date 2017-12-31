@@ -15,13 +15,13 @@ import { ProviderSetting } from '../url-rewrite';
             </div>
             <div class="actions">
                 <div class="action-selector">
-                    <button title="More" (click)="selector.toggle()" (dblclick)="$event.preventDefault()" [class.background-active]="(selector && selector.opened) || false">
+                    <button title="更多" (click)="selector.toggle()" (dblclick)="$event.preventDefault()" [class.background-active]="(selector && selector.opened) || false">
                         <i class="fa fa-ellipsis-h"></i>
                     </button>
                     <selector #selector [right]="true">
                         <ul>
-                            <li><button #menuButton class="edit" title="Edit" (click)="edit()">Edit</button></li>
-                            <li><button #menuButton class="delete" title="Delete" (click)="delete()">Delete</button></li>
+                            <li><button #menuButton class="edit" title="编辑" (click)="edit()">编辑</button></li>
+                            <li><button #menuButton class="delete" title="删除" (click)="delete()">删除</button></li>
                         </ul>
                     </selector>
                 </div>
@@ -72,15 +72,15 @@ export class SettingComponent implements OnChanges {
     template: `
         <div *ngIf="setting" class="grid-item row background-editing">
             <div class="actions">
-                <button class="no-border ok" [disabled]="!isValid()" title="Ok" (click)="onOk()"></button>
-                <button class="no-border cancel" title="Cancel" (click)="onDiscard()"></button>
+                <button class="no-border ok" [disabled]="!isValid()" title="确认" (click)="onOk()"></button>
+                <button class="no-border cancel" title="取消" (click)="onDiscard()"></button>
             </div>
             <fieldset>
-                <label>Name</label>
+                <label>名称</label>
                 <input type="text" required class="form-control name" [(ngModel)]="setting.name" />
             </fieldset>
             <fieldset>
-                <label>Value</label>
+                <label>值</label>
                 <input type="text" required class="form-control name" [(ngModel)]="setting.value" />
             </fieldset>
         </div>

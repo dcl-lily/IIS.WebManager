@@ -18,11 +18,11 @@ import { OutboundSection, OutboundRule, PatternSyntax, OutboundTags, ActionType,
                 (modelChanged)="onModelChanged()"></override-mode>
             <div>
                 <fieldset>
-                    <label>Rewrite Before Caching</label>
-                    <switch *ngIf="_settings.rewrite_before_cache !== undefined" [(model)]="_settings.rewrite_before_cache" (modelChanged)="onModelChanged()">{{_settings.rewrite_before_cache ? "On" : "Off"}}</switch>
+                    <label>重新缓存</label>
+                    <switch *ngIf="_settings.rewrite_before_cache !== undefined" [(model)]="_settings.rewrite_before_cache" (modelChanged)="onModelChanged()">{{_settings.rewrite_before_cache ? "启用" : "禁用"}}</switch>
                 </fieldset>
                 
-                <button class="create" [class.background-active]="newRule.opened" (click)="newRule.toggle()">Create Rule <i class="fa fa-caret-down"></i></button>
+                <button class="create" [class.background-active]="newRule.opened" (click)="newRule.toggle()">创建规则 <i class="fa fa-caret-down"></i></button>
                 <selector #newRule class="container-fluid create" (hide)="initializeNewRule()">
                     <outbound-rule-edit [rule]="_newRule" (save)="saveNew()" (cancel)="newRule.close()"></outbound-rule-edit>
                 </selector>
@@ -31,10 +31,10 @@ import { OutboundSection, OutboundRule, PatternSyntax, OutboundTags, ActionType,
             <div>
                 <div class="container-fluid">
                     <div class="row hidden-xs border-active grid-list-header">
-                        <label class="col-sm-3">Name</label>
-                        <label class="visible-lg col-lg-2">Action Type</label>
-                        <label class="col-sm-3 col-lg-2">Pattern</label>
-                        <label class="col-sm-4">Substitution Value</label>
+                        <label class="col-sm-3">名称</label>
+                        <label class="visible-lg col-lg-2">动作类型</label>
+                        <label class="col-sm-3 col-lg-2">模式</label>
+                        <label class="col-sm-4">替换值</label>
                     </div>
                 </div>
 
@@ -74,11 +74,11 @@ export class OutboundRulesComponent implements OnDestroy {
 
     private initializeNewRule() {
         this._newRule = new OutboundRule();
-        this._newRule.name = "New Rule";
+        this._newRule.name = "新规则";
 
         let i = 1;
         while (this._rules.find(r => r.name.toLocaleLowerCase() == this._newRule.name.toLocaleLowerCase())) {
-            this._newRule.name = "New Rule " + i++;
+            this._newRule.name = "新规则 " + i++;
         }
 
         this._newRule.pattern = "(.*)";

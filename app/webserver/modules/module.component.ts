@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
+﻿import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 
 import {LocalModule, GlobalModule} from './modules';
 
@@ -49,7 +49,7 @@ import {LocalModule, GlobalModule} from './modules';
             </div>
 
             <fieldset class="col-xs-8 col-sm-3">
-                <label class="hidden-xs editing">Name</label>
+                <label class="hidden-xs editing">名字</label>
                 <div [class.stopped]="!enabled" class="nowrap">
                     <i class="fa fa-circle green" *ngIf="enabled"></i>
                     <i class="fa fa-circle-o stopped" *ngIf="!enabled"></i>
@@ -57,7 +57,7 @@ import {LocalModule, GlobalModule} from './modules';
                 </div>
             </fieldset>
             <fieldset class="nowrap col-xs-8 col-sm-4 col-md-4 col-lg-5">
-                <label *ngIf="_isEditing" class="hidden-xs block">{{module.type ? "Type" : "Image"}}</label>
+                <label *ngIf="_isEditing" class="hidden-xs block">{{module.type ? "类型" : "处理文件"}}</label>
                 <span class="visible-xs-inline-block"></span>
                 <span [class.stopped]="!enabled" class="always visible-xs-inline supporting">{{displayImage_Type}}</span>
                 <span [class.stopped]="!enabled" class="always hidden-xs">{{displayImage_Type}}</span>
@@ -66,13 +66,13 @@ import {LocalModule, GlobalModule} from './modules';
                 </div>
             </fieldset>
             <fieldset class="col-xs-8 col-sm-3 col-md-3 col-lg-2">
-                <label class="editing"><span class="visible-xs-inline-block"></span>Status</label>
+                <label class="editing"><span class="visible-xs-inline-block"></span>状态</label>
                 <div [hidden]="!_isEditing">
                     <span class="visible-xs-inline-block"></span>
-                    <switch [(model)]="enabled">{{enabled ? 'Enabled' : 'Disabled'}}</switch>
+                    <switch [(model)]="enabled">{{enabled ? '启用' : '禁用'}}</switch>
                 </div>
                 <span *ngIf="!_isEditing" class="visible-xs-inline-block"></span>
-                <span *ngIf="!_isEditing" [class.stopped]="!enabled" [class.green]="enabled">{{enabled ? 'Enabled' : 'Disabled'}}</span>
+                <span *ngIf="!_isEditing" [class.stopped]="!enabled" [class.green]="enabled">{{enabled ? '启用' : '禁用'}}</span>
             </fieldset>
 
         </div>

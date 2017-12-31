@@ -1,4 +1,4 @@
-
+﻿
 import {Component, Input, Output, EventEmitter, ViewChild, Optional, Injector, OnInit, OnChanges, SimpleChange} from '@angular/core';
 
 import {DateTime} from '../../common/primitives';
@@ -19,7 +19,7 @@ import {WebSitesService} from './websites.service';
             </div>
             <div class="selector-wrapper" *ngIf="model.length > 0">
                 <button class="no-border" [class.visible-xs]="model.length == 1 && !small" [class.background-active]="navigator.opened" (click)="openNavigator($event)">
-                    <span [class.visible-xs]="!small" class="browse">Browse </span>
+                    <span [class.visible-xs]="!small" class="browse">浏览 </span>
                     <span class="hidden-xs" *ngIf="!small"></span>
                 </button>
                 <div class="selector" [class.right-align]="right" [class.left-align]="left">

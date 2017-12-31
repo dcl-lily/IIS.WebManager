@@ -6,29 +6,29 @@ import {ClientCache} from './static-content'
     selector: 'client-cache',
     template: `
         <fieldset>
-            <label>E-Tag</label>
-            <switch class="block" [disabled]="locked" [(model)]="model.set_e_tag" (modelChanged)="onModelChanged()">{{model.set_e_tag ? "On" : "Off"}}</switch>
+            <label>E标签</label>
+            <switch class="block" [disabled]="locked" [(model)]="model.set_e_tag" (modelChanged)="onModelChanged()">{{model.set_e_tag ? "启用" : "禁用"}}</switch>
         </fieldset>
         <fieldset>
-            <label>Cache-Control</label>
+            <label>缓存控制</label>
             <enum [disabled]="locked" [(model)]="model.control_mode" (modelChanged)="onModelChanged()">
-                <field name="Not Set" value="no_control"></field>
-                <field name="Disabled" value="disable_cache"></field>
-                <field name="Max-Age" value="use_max_age"></field>
-                <field name="Expires" value="use_expires"></field>
+                <field name="不设置" value="no_control"></field>
+                <field name="禁用" value="disable_cache"></field>
+                <field name="最大" value="use_max_age"></field>
+                <field name="有效期" value="use_expires"></field>
             </enum>
         </fieldset>
         <fieldset [hidden]="model.control_mode !== 'use_max_age'">
-            <label>Max Age <span class="units"> (minutes)</span></label>
+            <label>最大 <span class="units"> (分钟)</span></label>
             <input class="form-control" type="number" [disabled]="locked" [(ngModel)]="model.max_age" (modelChanged)="onModelChanged()" throttle />
         </fieldset>
         <fieldset [hidden]="model.control_mode !== 'use_expires'">
-            <label>Expiration Date</label>
+            <label>有效期时间</label>
             <input class="form-control path" type="text" [disabled]="locked" [(ngModel)]="model.http_expires" (modelChanged)="onModelChanged()" throttle />
         </fieldset>
         <fieldset class="inline-block pull-left">
-            <label>Custom Cache-Control</label>
-            <switch [(model)]="_useCustom" (modelChanged)="onCustom()">{{_useCustom ? "On" : "Off"}}</switch>
+            <label>自定义缓存控制</label>
+            <switch [(model)]="_useCustom" (modelChanged)="onCustom()">{{_useCustom ? "启用" : "禁用"}}</switch>
         </fieldset>
         <fieldset *ngIf="_useCustom" class="fill">
             <label>&nbsp;</label>

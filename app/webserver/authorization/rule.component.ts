@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChange } from '@angular/core';
+﻿import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChange } from '@angular/core';
 
 import { NotificationService } from '../../notification/notification.service';
 import { AuthRule, AccessType } from './authorization'
@@ -10,30 +10,30 @@ import { AuthorizationService } from './authorization.service';
         <div *ngIf="rule" class="row grid-item" [class.background-selected]="_editing" (dblclick)="edit()">
             <div class="actions">
                 <div class="action-selector">
-                    <button title="More" (click)="selector.toggle()" (dblclick)="$event.preventDefault()" [class.background-active]="(selector && selector.opened) || _editing || false">
+                    <button title="更多" (click)="selector.toggle()" (dblclick)="$event.preventDefault()" [class.background-active]="(selector && selector.opened) || _editing || false">
                         <i class="fa fa-ellipsis-h"></i>
                     </button>
                     <selector #selector [right]="true">
                         <ul>
-                            <li><button #menuButton class="edit" title="Edit" [disabled]="locked" (click)="edit()">Edit</button></li>
-                            <li><button #menuButton class="delete" title="Delete" [disabled]="locked" (click)="delete()">Delete</button></li>
+                            <li><button #menuButton class="edit" title="编辑" [disabled]="locked" (click)="edit()">编辑</button></li>
+                            <li><button #menuButton class="delete" title="删除" [disabled]="locked" (click)="delete()">删除</button></li>
                         </ul>
                     </selector>
                 </div>
             </div>
             <fieldset class="col-xs-8 col-sm-8 col-md-2">
-                <label class="visible-xs visible-sm">Access Type</label>
+                <label class="visible-xs visible-sm">访问类型</label>
                 <i class="fa fa-circle green hidden-xs hidden-sm" *ngIf="rule.access_type == 'allow'"></i>
                 <i class="fa fa-ban red hidden-xs hidden-sm" *ngIf="rule.access_type == 'deny'"></i>
                 <span class="capitalize">{{rule.access_type}}</span>
             </fieldset> 
             <fieldset class="col-xs-12 col-sm-12 col-md-4">
-                <label class="visible-xs visible-sm">Users</label>
+                <label class="visible-xs visible-sm">用户</label>
                 <span>{{targetName()}}</span>
             </fieldset>
             <fieldset class="col-xs-12 col-sm-12 col-md-4">
-                <label class="visible-xs visible-sm">Http Methods</label>
-                <span>{{_allVerbs ? "All" : rule.verbs}}</span>
+                <label class="visible-xs visible-sm">访问方法</label>
+                <span>{{_allVerbs ? "所有" : rule.verbs}}</span>
             </fieldset>
         </div>
         <selector #editSelector [opened]="true" *ngIf="_editing" class="container-fluid" (hide)="discard()">
@@ -99,7 +99,7 @@ export class RuleComponent implements OnInit, OnChanges {
     }
 
     private delete() {
-        this._notificationService.confirm("Delete Rule", "Are you sure you want to delete this authorization rule?")
+        this._notificationService.confirm("删除规则", "你确认要删除这个认证规则吗?")
             .then(confirmed => confirmed && this._service.deleteRule(this.rule));
     }
 
@@ -116,10 +116,10 @@ export class RuleComponent implements OnInit, OnChanges {
 
     private targetName() {
         if (this.rule.users == "*") {
-            return "All";
+            return "所有";
         }
         else if (this.rule.users == "?") {
-            return "Anonymous";
+            return "匿名";
         }
         else if (this.rule.roles) {
             return this.rule.roles;

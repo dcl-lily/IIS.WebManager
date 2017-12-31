@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { ApiConnection } from '../connect/api-connection';
 
 import { DynamicComponentArgs } from '../common/dynamic.component';
@@ -112,14 +112,14 @@ export class NotificationService {
     }
 
     public remoteServerCantBeReached(conn: ApiConnection) {
-        this.warn("'" + (conn.displayName || conn.hostname()) + "' could not be reached at: " + conn.url);
+        this.warn("'" + (conn.displayName || conn.hostname()) + "' 不能连接: " + conn.url);
     }
 
     public unauthorized() {
-        this.warn("Unauthorized");
+        this.warn("非法");
     }
 
     public invalidAccessToken() {
-        this.warn("Invalid access token");
+        this.warn("无效的Token");
     }
 }

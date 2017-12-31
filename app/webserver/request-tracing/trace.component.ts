@@ -1,4 +1,4 @@
-
+﻿
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {Provider, Trace} from './request-tracing';
 
@@ -7,20 +7,20 @@ import {Provider, Trace} from './request-tracing';
     template: `
         <div *ngIf="model">
             <fieldset class="inline-block pull-left">
-                <label>Verbosity</label>
+                <label>信息显示</label>
                 <div>
                     <select id="s" class="form-control" [(ngModel)]="model.verbosity">
-                        <option value="general">General</option>
-                        <option value="criticalerror">Critical Error</option>
-                        <option value="error">Error</option>
-                        <option value="warning">Warning</option>
-                        <option value="information">Information</option>
-                        <option value="verbose">Verbose</option>
+                        <option value="general">基础</option>
+                        <option value="criticalerror">关键性错误</option>
+                        <option value="error">错误</option>
+                        <option value="warning">警告</option>
+                        <option value="information">信息</option>
+                        <option value="verbose">调试</option>
                     </select>
                 </div>
             </fieldset>
             <fieldset class="inline-block" *ngIf="getKeys(model.allowed_areas).length > 0">
-                <label>Areas</label>
+                <label>区域</label>
                 <ul>
                     <li *ngFor="let area of getKeys(model.allowed_areas)">                        
                         <checkbox2 [(model)]="model.allowed_areas[area]"><span>{{area}}</span></checkbox2>

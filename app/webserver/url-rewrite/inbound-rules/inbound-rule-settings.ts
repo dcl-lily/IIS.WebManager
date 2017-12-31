@@ -8,38 +8,38 @@ import { InboundRule, IIS_SERVER_VARIABLES } from '../url-rewrite';
         <div class="row" *ngIf="rule">
             <div class="col-xs-12 col-lg-6">
                 <fieldset>
-                    <label>Name</label>
+                    <label>名称</label>
                     <input type="text" class="form-control" required [(ngModel)]="rule.name" />
                 </fieldset>
                 <fieldset>
                     <div>
-                        <label class="inline-block">Url Pattern</label>
+                        <label class="inline-block">Url模式</label>
                         <tooltip>
-                            This pattern is compared to the URL of the incoming request to determine if the rule matches.
+                            将此模式与传入请求的URL进行比较，以确定规则是否匹配。
                             <a href="https://docs.microsoft.com/en-us/iis/extensions/url-rewrite-module/url-rewrite-module-configuration-reference" class="link"></a>
                         </tooltip>
-                        <text-toggle onText="Match" offText="No Match" [on]="false" [off]="true" [(model)]="rule.negate" (modelChanged)="testRegex()"></text-toggle>
-                        <text-toggle onText="Case Insensitive" offText="Case Sensitive" [(model)]="rule.ignore_case" (modelChanged)="testRegex()"></text-toggle>
+                        <text-toggle onText="匹配" offText="不匹配" [on]="false" [off]="true" [(model)]="rule.negate" (modelChanged)="testRegex()"></text-toggle>
+                        <text-toggle onText="不区分大小写" offText="区分大小写" [(model)]="rule.ignore_case" (modelChanged)="testRegex()"></text-toggle>
                     </div>
                     <input type="text" class="form-control" required [(ngModel)]="rule.pattern" (modelChanged)="testRegex()" />
                 </fieldset>
                 <fieldset>
-                    <label class="inline-block">Test Url</label>
+                    <label class="inline-block">测试URL</label>
                     <tooltip>
-                        This field can be used to test the matching behavior of the Url Pattern.
+                        该字段可用于测试Url模式的匹配行为.
                     </tooltip>
-                    <span class="units" *ngIf="_testUrl && !_isMatching">(Doesn't Match)</span>
+                    <span class="units" *ngIf="_testUrl && !_isMatching">(不匹配)</span>
                     <input type="text" class="form-control" [(ngModel)]="_testUrl" (modelChanged)="testRegex()" />
                 </fieldset>
                 <fieldset *ngIf="rule.action.type == 'rewrite' || rule.action.type == 'redirect'">
                     <div>
-                        <label class="inline-block">Substitution Url</label>
+                        <label class="inline-block">替换URL</label>
                         <tooltip>
-                            This is the substitution string to use when rewriting the request URL. The substitution URL can include back-references to conditions and the URL pattern as well as server variables.
+                            这是在重写请求URL时使用的替换字符串。替换URL可以包括对条件和URL模式以及服务器变量的回引用。
                             <a href="https://docs.microsoft.com/en-us/iis/extensions/url-rewrite-module/url-rewrite-module-configuration-reference" class="link"></a>
                         </tooltip>
                     </div>
-                    <button class="right input" (click)="macros.toggle()" [class.background-active]="(macros && macros.opened) || false">Macros</button>
+                    <button class="right input" (click)="macros.toggle()" [class.background-active]="(macros && macros.opened) || false">宏</button>
                     <div class="fill">
                         <input type="text" required [title]="_result" class="form-control" [(ngModel)]="rule.action.url" (modelChanged)="testRegex()" />
                     </div>
@@ -57,7 +57,7 @@ import { InboundRule, IIS_SERVER_VARIABLES } from '../url-rewrite';
                             </table>
                         </div>
                         <p class="pull-right">
-                            <button [attr.disabled]="_selected == -1 || null" (click)="addSelected()">Insert</button>
+                            <button [attr.disabled]="_selected == -1 || null" (click)="addSelected()">插入</button>
                         </p>
                     </selector>
                 </fieldset>

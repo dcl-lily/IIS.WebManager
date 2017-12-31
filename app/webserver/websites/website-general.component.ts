@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ViewChildren, QueryList, ViewChild } from '@angular/core';
+﻿import { Component, Input, Output, EventEmitter, ViewChildren, QueryList, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgModel } from '@angular/forms';
 
@@ -17,40 +17,40 @@ import { AppPoolsService } from '../app-pools/app-pools.service';
     selector: 'website-general',
     template: `
         <tabs>
-            <tab [name]="'Settings'">
+            <tab [name]="'设置'">
                 <fieldset>
-                    <label>Name</label>
+                    <label>名称</label>
                     <input class="form-control name" type="text" [(ngModel)]="site.name" throttle (modelChanged)="onModelChanged()" required/>
                 </fieldset>
                 <fieldset class="path">
-                    <label>Physical Path</label>
-                    <button title="Select Folder" [class.background-active]="fileSelector.isOpen()" class="right select" (click)="fileSelector.toggle()"></button>
+                    <label>物理路径</label>
+                    <button title="选择目录" [class.background-active]="fileSelector.isOpen()" class="right select" (click)="fileSelector.toggle()"></button>
                     <div class="fill">
                         <input type="text" class="form-control" [(ngModel)]="site.physical_path" (modelChanged)="onModelChanged()" throttle required />
                     </div>
                     <server-file-selector #fileSelector [types]="['directory']" [defaultPath]="site.physical_path" (selected)="onSelectPath($event)"></server-file-selector>
                 </fieldset>
                 <fieldset>
-                    <label>Auto Start</label>
-                    <switch class="block" [(model)]="site.server_auto_start" (modelChanged)="onModelChanged()">{{site.server_auto_start ? "On" : "Off"}}</switch>
+                    <label>自动启动</label>
+                    <switch class="block" [(model)]="site.server_auto_start" (modelChanged)="onModelChanged()">{{site.server_auto_start ? "启用" : "禁用"}}</switch>
                 </fieldset>
                 <fieldset class="inline-block">
-                    <label>Custom Protocols</label>
-                    <switch class="block" [(model)]="custom_protocols" (modelChange)="useCustomProtocols($event)">{{custom_protocols ? "On" : "Off"}}</switch>
+                    <label>自定义协议</label>
+                    <switch class="block" [(model)]="custom_protocols" (modelChange)="useCustomProtocols($event)">{{custom_protocols ? "启用" : "禁用"}}</switch>
                 </fieldset>
                 <fieldset class="inline-block" *ngIf="custom_protocols">
-                    <label>Protocols</label>
+                    <label>协议</label>
                     <input class="form-control" type="text" [(ngModel)]="site.enabled_protocols" (modelChanged)="onModelChanged()" required throttle />
                 </fieldset>
             </tab>
-            <tab [name]="'Bindings'">
+            <tab [name]="'绑定'">
                 <binding-list *ngIf="site.bindings" [(model)]="site.bindings" (modelChange)="onModelChanged()"></binding-list>
             </tab>
-            <tab [name]="'Limits'">
+            <tab [name]="'限制'">
                 <limits [model]="site.limits" (modelChanged)="onModelChanged()"></limits>
             </tab>
-            <tab [name]="'Application Pool'">
-                <button [class.background-active]="poolSelect.opened" (click)="selectAppPool()">Change Application Pool <i class="fa fa-caret-down"></i></button>
+            <tab [name]="'应用池'">
+                <button [class.background-active]="poolSelect.opened" (click)="selectAppPool()">改变应用池 <i class="fa fa-caret-down"></i></button>
                 <selector #poolSelect class="container-fluid create">
                     <app-pools #appPools [actions]="'view'" [lazy]="true" (itemSelected)="onAppPoolSelected($event)"></app-pools>
                 </selector>

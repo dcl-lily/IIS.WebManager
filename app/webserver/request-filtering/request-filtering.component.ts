@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+﻿import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -18,52 +18,52 @@ import { RequestFilteringSettings, RequestFilteringChildType, RequestFiltering }
                 [model]="_service.status == 'started' || _service.status == 'starting'" 
                 [disabled]="_service.status == 'starting' || _service.status == 'stopping'"
                 (modelChanged)="install(!s.model)">
-                    <span *ngIf="!isPending()">{{s.model ? "On" : "Off"}}</span>
+                    <span *ngIf="!isPending()">{{s.model ? "启用" : "禁用"}}</span>
                     <span *ngIf="isPending()" class="loading"></span>
         </switch>
-        <span *ngIf="_service.status == 'stopped' && !_service.webserverScope">Request Filtering is off. Turn it on <a [routerLink]="['/webserver/request-filtering']">here</a></span>
+        <span *ngIf="_service.status == 'stopped' && !_service.webserverScope">请求过滤已禁用. 如需开启请点击<a [routerLink]="['/webserver/request-filtering']">这里</a></span>
         <div *ngIf="settings">
             <tabs>
-                <tab [name]="'Settings'">
+                <tab [name]="'基本设置'">
                     <div class="row">
                         <div class="col-xs-7 col-md-4 col-lg-3">
                             <fieldset>
-                                <label>Allow Unlisted File Extensions</label>
-                                <switch class="block" [disabled]="_locked" [(model)]="settings.allow_unlisted_file_extensions" (modelChanged)="onFeatureChanged()">{{settings.allow_unlisted_file_extensions ? "Yes" : "No"}}</switch>
+                                <label>允许未列出的文件扩展名 </label>
+                                <switch class="block" [disabled]="_locked" [(model)]="settings.allow_unlisted_file_extensions" (modelChanged)="onFeatureChanged()">{{settings.allow_unlisted_file_extensions ? "启用" : "禁用"}}</switch>
                             </fieldset>
                             <fieldset>
-                                <label>Allow Unlisted Verbs</label>
-                                <switch class="block" [disabled]="_locked" [(model)]="settings.allow_unlisted_verbs" (modelChanged)="onFeatureChanged()">{{settings.allow_unlisted_verbs ? "Yes" : "No"}}</switch>
+                                <label>允许未列出的变量</label>
+                                <switch class="block" [disabled]="_locked" [(model)]="settings.allow_unlisted_verbs" (modelChanged)="onFeatureChanged()">{{settings.allow_unlisted_verbs ? "启用" : "禁用"}}</switch>
                             </fieldset>
                             <fieldset>
-                                <label>Allow High Bit Characters</label>
-                                <switch class="block" [disabled]="_locked" [(model)]="settings.allow_high_bit_characters" (modelChanged)="onFeatureChanged()">{{settings.allow_high_bit_characters ? "Yes" : "No"}}</switch>
+                                <label>允许高位字符</label>
+                                <switch class="block" [disabled]="_locked" [(model)]="settings.allow_high_bit_characters" (modelChanged)="onFeatureChanged()">{{settings.allow_high_bit_characters ? "启用" : "禁用"}}</switch>
                             </fieldset>
                             <fieldset>
-                                <label>Allow Double Escaping</label>
-                                <switch class="block" [disabled]="_locked" [(model)]="settings.allow_double_escaping" (modelChanged)="onFeatureChanged()">{{settings.allow_double_escaping ? "Yes" : "No"}}</switch>
+                                <label>允许双转义</label>
+                                <switch class="block" [disabled]="_locked" [(model)]="settings.allow_double_escaping" (modelChanged)="onFeatureChanged()">{{settings.allow_double_escaping ? "启用" : "禁用"}}</switch>
                             </fieldset>
                         </div>
                         <div class="col-xs-7 col-md-4">
                             <fieldset>
-                                <label>Max Content Length <span class="units">(bytes)</span></label>
+                                <label>内容的允许最大长度<span class="units">(字节)</span></label>
                                 <input class="form-control" [disabled]="_locked" [(ngModel)]="settings.max_content_length" (modelChanged)="onFeatureChanged()" type="number" throttle />
                             </fieldset>
                             <fieldset>
-                                <label>Max Url Length <span class="units">(bytes)</span></label>
+                                <label>传入URL的允许最大长度<span class="units">(字节)</span></label>
                                 <input class="form-control" [disabled]="_locked" [(ngModel)]="settings.max_url_length" (modelChanged)="onFeatureChanged()" type="number" throttle />
                             </fieldset>
                             <fieldset>
-                                <label>Max Query String Length <span class="units">(bytes)</span></label>
+                                <label>查询字符串的允许最大长度 <span class="units">(字节)</span></label>
                                 <input class="form-control" [disabled]="_locked" [(ngModel)]="settings.max_query_string_length" (modelChanged)="onFeatureChanged()" type="number" throttle />
                             </fieldset>
                         </div>
                     </div>
                 </tab>
-                <tab [name]="'Rules'">
+                <tab [name]="'规则'">
                     <rules [locked]="_locked"></rules>
                 </tab>
-                <tab [name]="'File Extensions'">
+                <tab [name]="'文件扩展名'">
                     <file-extensions [locked]="_locked"></file-extensions>
                 </tab>
             </tabs>

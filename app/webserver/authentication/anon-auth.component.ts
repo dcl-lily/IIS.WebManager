@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnDestroy } from '@angular/core';
+﻿import { Component, Input, Output, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -13,16 +13,16 @@ import { AuthenticationService } from './authentication.service';
         <div *ngIf="_model">
             <override-mode class="pull-right" [metadata]="_model.metadata" (revert)="onRevert()" (modelChanged)="onModelChanged()"></override-mode>
             <fieldset>
-                <label *ngIf="!_model.scope">Web Site Default</label>
-                <switch class="block" [disabled]="_locked" [(model)]="_model.enabled" (modelChanged)="onModelChanged()">{{_model.enabled ? "On" : "Off"}}</switch>
+                <label *ngIf="!_model.scope">默认站点</label>
+                <switch class="block" [disabled]="_locked" [(model)]="_model.enabled" (modelChanged)="onModelChanged()">{{_model.enabled ? "启用" : "禁用"}}</switch>
             </fieldset>
             <div class="clear" *ngIf="_model.enabled || !_model.scope">
                 <fieldset>
-                    <label>User</label>
+                    <label>用户名</label>
                     <input class="form-control path" type="text" [disabled]="_locked" [(ngModel)]="_model.user" throttle (modelChanged)="onModelChanged()" />
                 </fieldset>
                 <fieldset>
-                    <label>Password</label>
+                    <label>密码</label>
                     <input class="form-control path" type="text" [disabled]="_locked" [(ngModel)]="_model.password" throttle (modelChanged)="onModelChanged()" />
                 </fieldset>  
             </div>  

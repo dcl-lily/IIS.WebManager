@@ -14,10 +14,10 @@ import { ServerSnapshot } from './server-snapshot';
             <div class="col-xs-4">
                 <div>
                     <label>
-                        Available
+                        可用内存
                     </label>
                     <tooltip>
-                        The amount of memory available for the web server to begin using.
+                        Web服务器开始使用的内存量.
                     </tooltip>
                 </div>
                 {{humanizeMemory(_snapshot.memory.installed - _snapshot.memory.system_in_use)}}
@@ -91,8 +91,8 @@ export class MemoryChart implements OnDestroy {
     @ViewChild('chart') private _memChart: BaseChartDirective;
 
     private _data: Array<any> = [
-        { data: this._serverMemValues, label: 'Web Server Usage' },
-        { data: this._systemMemValues, label: 'Total Usage' }
+        { data: this._serverMemValues, label: '网站使用' },
+        { data: this._systemMemValues, label: '总共使用' }
     ];
 
     constructor(private _svc: MonitoringService) {

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+﻿import { Component, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -11,23 +11,23 @@ import { ApiConnection } from './api-connection';
     template: `
     <div class="center">
         <div *ngIf='!_connecting'>
-            <h1 [class.advanced]="_connectionType == 'advanced'">Connect</h1>
-            <p *ngIf="_connectionType == 'simple'">to Local Server</p>
+            <h1 [class.advanced]="_connectionType == 'advanced'">连接</h1>
+            <p *ngIf="_connectionType == 'simple'">到本地服务器</p>
             <fieldset *ngIf="_connectionType == 'advanced'">
-                <label class="inline-block">Server Url</label>
+                <label class="inline-block">服务器URL地址</label>
                 <tooltip>
-                        The URL of the server to connect to. The default port for the IIS Administration API is 55539.
+                        需要管理的IIS服务器URL地址,默认是端口是55539.
                 </tooltip>
                 <input type="text" placeholder="ex. contoso.com" class="form-control" #urlField [ngModel]="_conn.url" (ngModelChange)="setUrl($event)" required throttle/>
             </fieldset>
             <fieldset *ngIf="_connectionType == 'advanced'">
-                <label>Display Name</label>
+                <label>显示名字</label>
                 <input type="text" class="form-control" [(ngModel)]="_conn.displayName"/>
             </fieldset>
             <fieldset>
-                <label class="inline-block">Access Token</label>
+                <label class="inline-block">访问的Token</label>
                 <tooltip>
-                    An access token is an auto generated value that is used to connect to the IIS Administration API. Only Administrators can create these tokens. <a class="link" title="More Information" href="https://docs.microsoft.com/en-us/IIS-Administration/management-portal/connecting#acquiring-an-access-token"></a>
+                    访问Token是连接IIS服务器的一把密钥. <a class="link" title="获取参考" href="https://www.qnjslm.com/ITHelp/629.html"></a>
                 </tooltip>
                 <input type="text" autocomplete="off" #tokenField
                     class="form-control"
@@ -36,23 +36,22 @@ import { ApiConnection } from './api-connection';
                     [attr.placeholder]="!_conn.accessToken ? null : '******************************'" 
                     [attr.required]="!_conn.accessToken || null"/>
             </fieldset>
-            <p class="tokenLink">Don't have an access token? <a [attr.disabled]="!tokenLink() ? true : null" (click)="gotoAccessToken($event)" [attr.href]="tokenLink()">Get access token</a></p>
+            <p class="tokenLink">没有访问Token? <a [attr.disabled]="!tokenLink() ? true : null" (click)="gotoAccessToken($event)" [attr.href]="tokenLink()">快速获取Token</a></p>
             <fieldset class="rememberMe">
-                <checkbox2 [(model)]="_conn.persist"><b>Keep me connected from now on</b></checkbox2>
+                <checkbox2 [(model)]="_conn.persist"><b>是否保存持续连接</b></checkbox2>
                 <tooltip>
-                    Your Access Token and Connection will be stored locally.<br/>
-                    Use only if your device is trusted!
+                    请在你信任的主机上进行持续连接，Token会保存在这台机器上.<br/>
                 </tooltip>
             </fieldset>
             <fieldset>
-                <button class="active right" (click)="connect()">Connect</button>
+                <button class="active right" (click)="connect()">连接</button>
             </fieldset>
 
             <div class="advanced" *ngIf="_connectionType == 'simple'">
-                <button (click)="onAdvanced()">Remote Server or Manual Setup<i class="fa fa-arrow-right"></i></button>
+                <button (click)="onAdvanced()">手动设置远程服务器<i class="fa fa-arrow-right"></i></button>
             </div>
             <div class="simple" *ngIf="_connectionType == 'advanced' && !_disableSimple">
-                <button (click)="onSimple()">Local Server Setup<i class="fa fa-arrow-right"></i></button>
+                <button (click)="onSimple()">设置本地服务器<i class="fa fa-arrow-right"></i></button>
             </div>
         </div>
 
@@ -64,7 +63,7 @@ import { ApiConnection } from './api-connection';
         </div>
     </div>
     <div class="get hidden-xs" *ngIf='!_connecting'>
-        <a class="bttn bordered" [routerLink]="['/get']"><small>Get Microsoft IIS Administration</small></a>
+        <a class="bttn bordered" [routerLink]="['/get']"><small>获取IIS管理工具</small></a>
     </div>
     `,
     styles: [`

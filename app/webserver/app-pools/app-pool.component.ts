@@ -1,4 +1,4 @@
-declare var GLOBAL_MODULES: any;
+﻿declare var GLOBAL_MODULES: any;
 
 import {Component, OnInit, Inject} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -20,10 +20,10 @@ import {AppPoolsService} from './app-pools.service';
         <div *ngIf="pool" class="sidebar crumb" [class.nav]="_options.active">
             <ul class="crumbs">
                 <li><a [routerLink]="['/webserver']">Web Server</a></li>
-                <li><a [routerLink]="['/webserver/application-pools']">Application Pools</a></li>
+                <li><a [routerLink]="['/webserver/application-pools']">资源池</a></li>
             </ul>
             <vtabs [markLocation]="true" (activate)="_options.refresh()">
-                <item [name]="'General'" [ico]="'fa fa-wrench'">
+                <item [name]="'常规'" [ico]="'fa fa-wrench'">
                     <app-pool-general [pool]="pool" (modelChanged)="onModelChanged()"></app-pool-general>
                 </item>
                 <item *ngFor="let module of modules" [name]="module.name" [ico]="module.ico">

@@ -18,11 +18,11 @@ import { InboundSection, InboundRule, PatternSyntax, ActionType, ConditionMatchC
                 (modelChanged)="onModelChanged()"></override-mode>
             <div>
                 <fieldset>
-                    <label>Original Url Encoding</label>
-                    <switch *ngIf="_settings.use_original_url_encoding !== undefined" [(model)]="_settings.use_original_url_encoding" (modelChanged)="onModelChanged()">{{_settings.use_original_url_encoding ? "Yes" : "No"}}</switch>
+                    <label>原始Url编码</label>
+                    <switch *ngIf="_settings.use_original_url_encoding !== undefined" [(model)]="_settings.use_original_url_encoding" (modelChanged)="onModelChanged()">{{_settings.use_original_url_encoding ? "启用" : "禁用"}}</switch>
                 </fieldset>
                 
-                <button class="create" [class.background-active]="newRule.opened" (click)="newRule.toggle()">Create Rule <i class="fa fa-caret-down"></i></button>
+                <button class="create" [class.background-active]="newRule.opened" (click)="newRule.toggle()">创建规则 <i class="fa fa-caret-down"></i></button>
                 <selector #newRule class="container-fluid create" (hide)="initializeNewRule()">
                     <inbound-rule-edit [rule]="_newRule" (save)="saveNew($event)" (cancel)="newRule.close()"></inbound-rule-edit>
                 </selector>
@@ -31,10 +31,10 @@ import { InboundSection, InboundRule, PatternSyntax, ActionType, ConditionMatchC
             <div>
                 <div class="container-fluid">
                     <div class="row hidden-xs border-active grid-list-header">
-                        <label class="col-sm-3">Name</label>
-                        <label class="visible-lg col-lg-2">Action Type</label>
-                        <label class="col-sm-3 col-lg-2">Url Pattern</label>
-                        <label class="col-sm-4">Substitution Url</label>
+                        <label class="col-sm-3">名称</label>
+                        <label class="visible-lg col-lg-2">动作类型</label>
+                        <label class="col-sm-3 col-lg-2">URL形式</label>
+                        <label class="col-sm-4">替换Url</label>
                     </div>
                 </div>
 
@@ -74,11 +74,11 @@ export class InboundRulesComponent implements OnDestroy {
 
     private initializeNewRule() {
         this._newRule = new InboundRule();
-        this._newRule.name = "New Rule";
+        this._newRule.name = "新规则";
 
         let i = 1;
         while (this._rules.find(r => r.name.toLocaleLowerCase() == this._newRule.name.toLocaleLowerCase())) {
-            this._newRule.name = "New Rule " + i++;
+            this._newRule.name = "新规则 " + i++;
         }
 
         this._newRule.pattern = "(.*)";

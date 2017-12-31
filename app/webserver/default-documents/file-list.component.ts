@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, SimpleChange, Input, Output, EventEmitter } from '@angular/core';
+﻿import { Component, OnInit, OnDestroy, SimpleChange, Input, Output, EventEmitter } from '@angular/core';
 
 import { DiffUtil } from '../../utils/diff';
 import { OrderBy } from '../../common/sort.pipe';
@@ -11,16 +11,16 @@ import { DefaultDocumentsService } from './default-documents.service';
     template: `        
         <div *ngIf="model" class="grid-item row" [class.background-editing]="_editing">
             <div class="actions">
-                <button class="no-border no-editing" [class.inactive]="readonly" title="Edit" (click)="onEdit()">
+                <button class="no-border no-editing" [class.inactive]="readonly" title="编辑" (click)="onEdit()">
                     <i class="fa fa-pencil color-active"></i>
                 </button>
-                <button class="no-border editing" [disabled]="!isValid(file)" title="Ok" (click)="onOk()">
+                <button class="no-border editing" [disabled]="!isValid(file)" title="确认" (click)="onOk()">
                     <i class="fa fa-check color-active"></i>
                 </button>
-                <button class="no-border editing" title="Cancel" (click)="onCancel()">
+                <button class="no-border editing" title="取消" (click)="onCancel()">
                     <i class="fa fa-times red"></i>
                 </button>
-                <button class="no-border" title="Delete" [class.inactive]="readonly" (click)="onDelete()">
+                <button class="no-border" title="删除" [class.inactive]="readonly" (click)="onDelete()">
                     <i class="fa fa-trash-o red"></i>
                 </button>
             </div>
@@ -138,11 +138,11 @@ export class FileListItem {
     selector: 'files',
     template: `
         <div>
-            <button class="create" (click)="add()" [class.inactive]="_editing"><i class="fa fa-plus color-active"></i><span>Add</span></button>
+            <button class="create" (click)="add()" [class.inactive]="_editing"><i class="fa fa-plus color-active"></i><span>添加</span></button>
             <div *ngIf="_files">
                 <div class="col-sm-6 col-lg-4">
                     <div class="row hidden-xs border-active grid-list-header" [hidden]="_files.length < 1">
-                        <label [ngClass]="_orderBy.css('name')" (click)="_orderBy.sort('name')">File Name</label>
+                        <label [ngClass]="_orderBy.css('name')" (click)="_orderBy.sort('name')">文件名称</label>
                     </div>
                     <div class="grid-list">
                         <file *ngIf="_newFile" [model]="_newFile" (close)="close()"></file>

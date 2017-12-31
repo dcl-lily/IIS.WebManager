@@ -8,32 +8,32 @@ import { OutboundRule, OutboundMatchType, OutboundTags, IIS_SERVER_VARIABLES } f
         <div *ngIf="rule">
             <fieldset>
                 <div>
-                    <label class="inline-block">Active</label>
+                    <label class="inline-block">动作</label>
                     <tooltip>
-                        An inactive outbound rule will not perform any rewriting of the response.
+                        一个不活动的出站规则不会执行任何对响应的重写
                     </tooltip>
                 </div>
-                <switch [(model)]="rule.enabled">{{rule.enabled ? "Yes": "No"}}</switch>
+                <switch [(model)]="rule.enabled">{{rule.enabled ? "启用": "禁用"}}</switch>
             </fieldset>
 
             <fieldset>
-                <label class="inline-block">Match</label>
+                <label class="inline-block">匹配</label>
                 <tooltip>
-                    An outbound rule can operate on the response body content or the content of an HTTP header (via server variable).
-                    <a class="link" href="https://docs.microsoft.com/en-us/iis/extensions/url-rewrite-module/creating-outbound-rules-for-url-rewrite-module#create-an-outbound-rewrite-rule"></a>
+                    出站规则可以操作响应主体内容或HTTP消息头的内容(通过服务器变量)
+                    <a class="link" href="https://docs.microsoft.com/en-us/iis/extensions/url-rewrite-module/creating-outbound-rules-for-url-rewrite-module#create-an-outbound-rewrite-rule">更多</a>
                 </tooltip>
                 <enum [(model)]="rule.match_type" (modelChanged)="onMatchType()">
-                    <field name="Response" value="response"></field>
-                    <field name="Server Variable" value="server_variable"></field>
+                    <field name="响应" value="response"></field>
+                    <field name="服务器变量" value="server_variable"></field>
                 </enum>
             </fieldset>
 
             <fieldset class="flags" *ngIf="rule.match_type == 'response'">
                 <div>
-                    <label class="inline-block">Filter By</label>
+                    <label class="inline-block">过滤条件</label>
                     <tooltip>
-                        Tag filters are used to scope the pattern matching to a certain HTML elements only, instead of evaluating the entire response against the rule's pattern.
-                        <a class="link" href="https://docs.microsoft.com/en-us/iis/extensions/url-rewrite-module/creating-outbound-rules-for-url-rewrite-module#create-an-outbound-rewrite-rule"></a>
+                        标签过滤器用于将模式匹配到特定的HTML元素，而不是根据规则的模式对整个响应进行评估
+                        <a class="link" href="https://docs.microsoft.com/en-us/iis/extensions/url-rewrite-module/creating-outbound-rules-for-url-rewrite-module#create-an-outbound-rewrite-rule">更多</a>
                     </tooltip>
                 </div>
                 <div class="inline-block">
@@ -54,10 +54,10 @@ import { OutboundRule, OutboundMatchType, OutboundTags, IIS_SERVER_VARIABLES } f
             </fieldset>
 
             <fieldset *ngIf="rule.match_type == 'server_variable'">
-                <label class="inline-block">Server Variable</label>
+                <label class="inline-block">服务器变量</label>
                 <tooltip>
-                    Server variables can be used to rewrite HTTP headers.
-                    <a class="link" href="https://docs.microsoft.com/en-us/iis/extensions/url-rewrite-module/modifying-http-response-headers#creating-an-outbound-rule-to-modify-the-http-response-header"></a>
+                     服务器变量可以用来重写HTTP头信息。
+                    <a class="link" href="https://docs.microsoft.com/en-us/iis/extensions/url-rewrite-module/modifying-http-response-headers#creating-an-outbound-rule-to-modify-the-http-response-header">更多</a>
                 </tooltip>
                 <input type="text" required class="form-control name" list="server-vars" [(ngModel)]="rule.server_variable" />
                 <datalist id="server-vars">

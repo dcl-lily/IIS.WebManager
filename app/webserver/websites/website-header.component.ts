@@ -1,4 +1,4 @@
-import { Component, Input, Inject, ViewChild } from '@angular/core';
+﻿import { Component, Input, Inject, ViewChild } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
 
 import { NotificationService } from '../../notification/notification.service';
@@ -16,10 +16,10 @@ import { WebSite } from './site';
                     <button title="Actions" (click)="_selector.toggle()" [class.background-active]="(_selector && _selector.opened) || false"><i class="fa fa-caret-down"></i></button>
                     <selector [right]="true">
                         <ul>
-                            <li><a class="bttn link" title="Browse" [attr.title]="url" [attr.href]="url" target="_blank">Browse</a></li>
-                            <li><button class="start" title="Start" [attr.disabled]="site.status == 'started' ? true : null" (click)="onStart()">Start</button></li>
-                            <li><button class="stop" title="Stop" [attr.disabled]="site.status == 'stopped' ? true : null" (click)="onStop()">Stop</button></li>
-                            <li><button class="delete" title="Delete" (click)="onDelete()">Delete</button></li>
+                            <li><a class="bttn link" title="浏览" [attr.title]="url" [attr.href]="url" target="_blank">浏览</a></li>
+                            <li><button class="start" title="启动" [attr.disabled]="site.status == 'started' ? true : null" (click)="onStart()">启动</button></li>
+                            <li><button class="stop" title="停止" [attr.disabled]="site.status == 'stopped' ? true : null" (click)="onStop()">停止</button></li>
+                            <li><button class="delete" title="删除" (click)="onDelete()">删除</button></li>
                         </ul>
                     </selector>
                 </div>
@@ -66,7 +66,7 @@ export class WebSiteHeaderComponent {
     }
 
     onDelete() {
-        this._notificationService.confirm("Delete Web Site", "Are you sure you would like to delete '" + this.site.name + "'?")
+        this._notificationService.confirm("删除站点", "你确认要删除站点 '" + this.site.name + "'?")
             .then(confirmed => {
                 if (confirmed) {
                     this._service.delete(this.site)

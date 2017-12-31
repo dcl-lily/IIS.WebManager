@@ -8,23 +8,23 @@ import { Location } from './location';
     template: `
         <div>
             <fieldset class="name">
-                <label>Alias</label>
+                <label>别名</label>
                 <input [(ngModel)]="model.alias" class="form-control" type="text" autofocus>
             </fieldset>
             <fieldset class="path">
-                <label>Physical Path</label>
+                <label>物理路径</label>
                 <input [(ngModel)]="model.path" class="form-control" type="text">
             </fieldset>
             <fieldset>
-                <label>Permissions</label>
+                <label>权限</label>
                 <div class="flags">
-                    <checkbox2 [(model)]="_read">Read</checkbox2>
-                    <checkbox2 [(model)]="_write">Write</checkbox2>
+                    <checkbox2 [(model)]="_read">读</checkbox2>
+                    <checkbox2 [(model)]="_write">写</checkbox2>
                 </div>
             </fieldset>
             <p class="pull-right">
-                <button class="ok" (click)="onOk()">{{model.id ? 'OK' : 'Create'}}</button>
-                <button class="cancel" (click)="cancel.next()">Cancel</button>
+                <button class="ok" (click)="onOk()">{{model.id ? '确认' : '创建'}}</button>
+                <button class="cancel" (click)="cancel.next()">取消</button>
             </p>
         </div>
     `

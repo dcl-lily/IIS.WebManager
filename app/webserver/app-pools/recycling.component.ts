@@ -1,4 +1,4 @@
-
+﻿
 import {Component, Input, Output, EventEmitter, OnInit, ViewChild} from '@angular/core';
 import {NgModel} from '@angular/forms';
 
@@ -13,13 +13,13 @@ import {StringListComponent} from '../../common/string-list.component';
     template: `
         <div *ngIf="model">
             <fieldset class='inline-block'>
-                <label>Schedule</label>
+                <label>计划</label>
                 <switch class="block" [model]="model.length > 0" (modelChange)="enable($event)">
-                    {{model.length > 0 ? "On" : "Off"}}
+                    {{model.length > 0 ? "是" : "否"}}
                 </switch>
             </fieldset>
             <fieldset class='inline-block add' *ngIf='model.length > 0'>
-                <button (click)="addTime()"><i class="fa fa-plus color-active"></i>Add Time</button>
+                <button (click)="addTime()"><i class="fa fa-plus color-active"></i>添加时间</button>
             </fieldset>
             <string-list #times="stringList" [(model)]="model" (modelChanged)="onModelChanged($event)" [validator]="validator" [title]="'HH:MM'"></string-list>
         </div>
@@ -75,35 +75,35 @@ export class DailyScheduleComponent {
         <div class='col-sm-7 col-lg-4'>
             <div>
                 <fieldset>
-                    <label>Overlapped Recycle</label>
+                    <label>循环回收</label>
                     <switch class="block" [model]="!model.disable_overlapped_recycle" (modelChange)="model.disable_overlapped_recycle = !$event" (modelChanged)="onModelChanged()">
-                        {{model.disable_overlapped_recycle ? "Off" : "On"}}
+                        {{model.disable_overlapped_recycle ? "关闭" : "启用"}}
                     </switch>
                 </fieldset>
                 <fieldset>
-                    <label>Config Change</label>
+                    <label>配置变更</label>
                     <switch class="block" [model]="!model.disable_recycle_on_config_change" (modelChange)="model.disable_recycle_on_config_change = !$event" (modelChanged)="onModelChanged()">
-                        {{model.disable_recycle_on_config_change ? "Off" : "On"}}
+                        {{model.disable_recycle_on_config_change ? "关闭" : "启用"}}
                     </switch>
                 </fieldset>
             </div>
             <div>
                 <fieldset class='inline-block'>
-                    <label>Private Memory</label>
+                    <label>独占内存</label>
                     <switch class="block" [model]="model.periodic_restart.private_memory > 0" (modelChange)="onPrivateMemory($event)">
-                        {{model.periodic_restart.private_memory > 0 ? "On" : "Off"}}
+                        {{model.periodic_restart.private_memory > 0 ? "启用" : "关闭"}}
                     </switch>
                 </fieldset>
                 <fieldset class='inline-block' *ngIf='model.periodic_restart.private_memory > 0'>
-                    <label>Memory Limit <span class="units">(KB)</span></label>
+                    <label>内存限制<span class="units">(KB)</span></label>
                     <input class="form-control" type="number" [(ngModel)]="model.periodic_restart.private_memory" throttle (modelChanged)="onModelChanged()" />
                 </fieldset>
             </div>    
             <div>
                 <fieldset class='inline-block'>
-                    <label>Virtual Memory</label>
+                    <label>虚拟内存</label>
                     <switch class="block" [model]="model.periodic_restart.virtual_memory > 0" (modelChange)="onVirtualMemory($event)">
-                        {{model.periodic_restart.virtual_memory > 0 ? "On" : "Off"}}
+                        {{model.periodic_restart.virtual_memory > 0 ? "启用" : "关闭"}}
                     </switch>
                 </fieldset>
                 <fieldset class='inline-block' *ngIf='model.periodic_restart.virtual_memory > 0'>
@@ -113,25 +113,25 @@ export class DailyScheduleComponent {
             </div>    
             <div>
                 <fieldset class='inline-block'>
-                    <label>Request Limit</label>
+                    <label>请求限制</label>
                     <switch class="block" [model]="model.periodic_restart.request_limit > 0" (modelChange)="onRequestLimit($event)">
-                        {{model.periodic_restart.request_limit > 0 ? "On" : "Off"}}
+                        {{model.periodic_restart.request_limit > 0 ? "启用" : "关闭"}}
                     </switch>
                 </fieldset>
                 <fieldset class='inline-block' *ngIf='model.periodic_restart.request_limit > 0'>
-                    <label>Total Requests</label>
+                    <label>总共请求</label>
                     <input class="form-control" type="number" [(ngModel)]="model.periodic_restart.request_limit" throttle (modelChanged)="onModelChanged()" />
                 </fieldset>
             </div>
             <div>
                 <fieldset class='inline-block'>
-                    <label>Periodically</label>
+                    <label>定期</label>
                     <switch class="block" [model]="timeIntervalEnabled()" (modelChange)="onTimeInterval($event)">
-                        {{timeIntervalEnabled() ? "On" : "Off"}}
+                        {{timeIntervalEnabled() ? "启用" : "关闭"}}
                     </switch>
                 </fieldset>
                 <fieldset class='inline-block' *ngIf='timeIntervalEnabled()'>
-                    <label>Time Interval <span class="units">(min)</span></label>
+                    <label>时间间隔<span class="units">(min)</span></label>
                     <input class="form-control" type="number" [(ngModel)]="model.periodic_restart.time_interval" throttle (modelChanged)="onModelChanged()" />
                 </fieldset>
             </div>
@@ -142,16 +142,16 @@ export class DailyScheduleComponent {
 
         <div class="col-sm-5">
             <fieldset>
-                <label>Log Events</label>
+                <label>日志文件</label>
                 <div class="flags">
-                    <checkbox2 [(model)]="model.log_events.time" (modelChanged)="onModelChanged()">Time</checkbox2>
-                    <checkbox2 [(model)]="model.log_events.requests" (modelChanged)="onModelChanged()">Requests</checkbox2>
-                    <checkbox2 [(model)]="model.log_events.schedule" (modelChanged)="onModelChanged()">Schedule</checkbox2>
-                    <checkbox2 [(model)]="model.log_events.memory" (modelChanged)="onModelChanged()">Memory</checkbox2>
-                    <checkbox2 [(model)]="model.log_events.isapi_unhealthy" (modelChanged)="onModelChanged()">Isapi Unhealthy</checkbox2>
-                    <checkbox2 [(model)]="model.log_events.on_demand" (modelChanged)="onModelChanged()">On Demand</checkbox2>
-                    <checkbox2 [(model)]="model.log_events.config_change" (modelChanged)="onModelChanged()">Config Change</checkbox2>
-                    <checkbox2 [(model)]="model.log_events.private_memory" (modelChanged)="onModelChanged()">Private Memory</checkbox2>
+                    <checkbox2 [(model)]="model.log_events.time" (modelChanged)="onModelChanged()">时间</checkbox2>
+                    <checkbox2 [(model)]="model.log_events.requests" (modelChanged)="onModelChanged()">请求</checkbox2>
+                    <checkbox2 [(model)]="model.log_events.schedule" (modelChanged)="onModelChanged()">计划</checkbox2>
+                    <checkbox2 [(model)]="model.log_events.memory" (modelChanged)="onModelChanged()">内存</checkbox2>
+                    <checkbox2 [(model)]="model.log_events.isapi_unhealthy" (modelChanged)="onModelChanged()">不健康Isapi</checkbox2>
+                    <checkbox2 [(model)]="model.log_events.on_demand" (modelChanged)="onModelChanged()">需求</checkbox2>
+                    <checkbox2 [(model)]="model.log_events.config_change" (modelChanged)="onModelChanged()">配置变更</checkbox2>
+                    <checkbox2 [(model)]="model.log_events.private_memory" (modelChanged)="onModelChanged()">独占内存</checkbox2>
                 </div>
             </fieldset>
         </div>

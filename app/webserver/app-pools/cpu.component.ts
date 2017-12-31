@@ -1,4 +1,4 @@
-
+﻿
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {Cpu, ProcessorAction} from './app-pool';
 
@@ -7,15 +7,15 @@ import {Cpu, ProcessorAction} from './app-pool';
     selector: 'cpu',
     template: `            
         <fieldset>
-            <label>CPU Limit</label>
+            <label>CPU限制</label>
             <switch class="block" [model]="model.limit != 0" (modelChange)="onLimitCpu($event)">
-                {{model.limit != 0 ? "On" : "Off"}}
+                {{model.limit != 0 ? "启用" : "停用"}}
             </switch>
         </fieldset>
 
         <div *ngIf="model.limit != 0">
             <fieldset class='inline-block'>
-                <label>% CPU Utilization</label>
+                <label>CPU利用率%</label>
                 <input class="form-control" type="number" [ngModel]="model.limit / 1000" (ngModelChange)="onCpuLimit($event)" min="1" max="100" step="any" required throttle />
             </fieldset>
             <fieldset class='inline-block' *ngIf="!isThrottled()">
@@ -26,40 +26,40 @@ import {Cpu, ProcessorAction} from './app-pool';
 
         <div *ngIf="model.limit != 0">
             <fieldset class='inline-block'>
-                <label>Throttle CPU</label>
+                <label>CPU节能</label>
                 <switch class="block" [model]="isThrottled()" (modelChange)="onThrottled($event)">
-                    {{isThrottled() ? "On" : "Off"}}
+                    {{isThrottled() ? "启用" : "停止"}}
                 </switch>
             </fieldset>
 
             <fieldset class='inline-block' *ngIf='isThrottled()'>
-                <label>Under Load Only</label>
+                <label>在负载</label>
                 <switch class="block" [model]="model.action == 'ThrottleUnderLoad'" (modelChange)="onThrottleUnderLoad($event)">
-                    {{model.action == 'ThrottleUnderLoad' ? "On" : "Off"}}
+                    {{model.action == 'ThrottleUnderLoad' ? "启用" : "停用"}}
                 </switch>
             </fieldset>
 
             <fieldset>
-                <label>Kill Worker Process</label>
+                <label>杀掉W3WP进程</label>
                 <switch class="block" [model]="model.action == 'KillW3wp'" (modelChange)="onKillProcess($event)">
-                    {{model.action == 'KillW3wp' ? "On" : "Off"}}
+                    {{model.action == 'KillW3wp' ? "是" : "否"}}
                 </switch>
             </fieldset>
         </div>
 
         <fieldset class='inline-block'>
-            <label>CPU Affinity</label>
+            <label>CPU亲和力</label>
             <switch class="block" [(model)]="model.processor_affinity_enabled" (modelChanged)="onModelChanged()">
-                {{model.processor_affinity_enabled ? "On" : "Off"}}
+                {{model.processor_affinity_enabled ? "是" : "否"}}
             </switch>
         </fieldset>
         <div *ngIf="model.processor_affinity_enabled" class='inline-block'>
             <fieldset class='inline-block'>
-                <label>Affinity Mask 32bit</label>
+                <label>32位亲和力</label>
                 <input class="form-control" type="text" [(ngModel)]="model.processor_affinity_mask32" (modelChanged)="onModelChanged()" required pattern="0[xX][0-9a-fA-F]+" throttle />
             </fieldset>
             <fieldset class='inline-block'>
-                <label>Affinity Mask 64bit</label>
+                <label>64位亲和力</label>
                 <input class="form-control" type="text" [(ngModel)]="model.processor_affinity_mask64" (modelChanged)="onModelChanged()" required pattern="0[xX][0-9a-fA-F]+" throttle />
             </fieldset>
         </div>

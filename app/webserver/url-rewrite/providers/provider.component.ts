@@ -17,14 +17,14 @@ import { Provider } from '../url-rewrite';
             </div>
             <div class="actions">
                 <div class="action-selector">
-                    <button title="More" (click)="selector.toggle()" (dblclick)="$event.preventDefault()" [class.background-active]="(selector && selector.opened) || _editing || false">
+                    <button title="更多" (click)="selector.toggle()" (dblclick)="$event.preventDefault()" [class.background-active]="(selector && selector.opened) || _editing || false">
                         <i class="fa fa-ellipsis-h"></i>
                     </button>
                     <selector #selector [right]="true">
                         <ul>
-                            <li><button #menuButton class="edit" title="Edit" (click)="edit()">Edit</button></li>
-                            <li><button #menuButton class="delete" title="Delete" (click)="delete()">Delete</button></li>
-                            <li><button #menuButton class="copy" title="Copy" (click)="copy()">Clone</button></li>
+                            <li><button #menuButton class="edit" title="编辑" (click)="edit()">编辑</button></li>
+                            <li><button #menuButton class="delete" title="删除" (click)="delete()">删除</button></li>
+                            <li><button #menuButton class="copy" title="复制" (click)="copy()">复制</button></li>
                         </ul>
                     </selector>
                 </div>
@@ -56,7 +56,7 @@ export class ProviderComponent implements OnChanges {
     }
 
     private delete() {
-        this._notificationService.confirm("Delete Provider", "Are you sure you want to delete '" + this.provider.name + "'?")
+        this._notificationService.confirm("删除供应商", "你确认要删除 '" + this.provider.name + "'?")
             .then(confirmed => confirmed && this._service.deleteProvider(this.provider));
     }
 

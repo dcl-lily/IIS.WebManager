@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+﻿import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -18,42 +18,42 @@ import { NotificationService } from '../../notification/notification.service';
                 [model]="_service.status == 'started' || _service.status == 'starting'" 
                 [disabled]="_service.status == 'starting' || _service.status == 'stopping'"
                 (modelChanged)="install(!s.model)">
-                    <span *ngIf="!isPending()">{{s.model ? "On" : "Off"}}</span>
+                    <span *ngIf="!isPending()">{{s.model ? "启用" : "禁用"}}</span>
                     <span *ngIf="isPending()" class="loading"></span>
         </switch>
-        <span *ngIf="_service.status == 'stopped' && !_service.webserverScope">Response Compression is off. Turn it on <a [routerLink]="['/webserver/response-compression']">here</a></span>
+        <span *ngIf="_service.status == 'stopped' && !_service.webserverScope">压缩关闭. 如需启用请 <a [routerLink]="['/webserver/response-compression']">点击这里</a></span>
         <override-mode class="pull-right" *ngIf="model" [scope]="model.scope" (revert)="onRevert()" [metadata]="model.metadata" (modelChanged)="onModelChanged()"></override-mode>
         <div *ngIf="model">
             <fieldset>
-                <label>Dynamic Compression</label>
-                <switch class="block" [disabled]="_locked" [(model)]="model.do_dynamic_compression" (modelChanged)="onModelChanged()">{{model.do_dynamic_compression ? "On" : "Off"}}</switch>
+                <label>动态资源压缩</label>
+                <switch class="block" [disabled]="_locked" [(model)]="model.do_dynamic_compression" (modelChanged)="onModelChanged()">{{model.do_dynamic_compression ? "启用" : "禁用"}}</switch>
             </fieldset>
             <fieldset>
-                <label>Static Compression</label>
-                <switch class="block" [disabled]="_locked" [(model)]="model.do_static_compression" (modelChanged)="onModelChanged()">{{model.do_static_compression ? "On" : "Off"}}</switch>
+                <label>静态资源压缩</label>
+                <switch class="block" [disabled]="_locked" [(model)]="model.do_static_compression" (modelChanged)="onModelChanged()">{{model.do_static_compression ? "启用" : "禁用"}}</switch>
             </fieldset>
 
             <!-- Settings only visible at Web Server level -->
             <div *ngIf="!model.scope">
                 <fieldset class="path">
-                    <label>Directory</label>
-                    <button title="Select Directory" [class.background-active]="fileSelector.isOpen()" class="right select" (click)="fileSelector.toggle()"></button>
+                    <label>目录</label>
+                    <button title="选择目录" [class.background-active]="fileSelector.isOpen()" class="right select" (click)="fileSelector.toggle()"></button>
                     <div class="fill">
                         <input type="text" class="form-control" [(ngModel)]="model.directory" (modelChanged)="onModelChanged()" throttle required />
                     </div>
                     <server-file-selector #fileSelector [types]="['directory']" [defaultPath]="model.directory" (selected)="onSelectPath($event)"></server-file-selector>
                 </fieldset>
                 <fieldset class="inline-block">
-                    <label>Limit Storage</label>
-                    <switch class="block" [model]="model.do_disk_space_limitting" (modelChange)="onSpaceLimit($event)">{{model.do_disk_space_limitting ? "Yes" : "No"}}</switch>
+                    <label>限制存储</label>
+                    <switch class="block" [model]="model.do_disk_space_limitting" (modelChange)="onSpaceLimit($event)">{{model.do_disk_space_limitting ? "限制" : "不限制"}}</switch>
                 </fieldset>
                 <div *ngIf="model.do_disk_space_limitting" class="inline-block">
                     <fieldset class="inline-block">
-                        <label>Storage Quota<span class="units"> (MB)</span></label>
+                        <label>存储限制<span class="units"> (MB)</span></label>
                         <input class="form-control" type="number" [(ngModel)]="model.max_disk_space_usage" (modelChanged)="onModelChanged()" min="1" required throttle />
                     </fieldset>
                     <fieldset class="inline-block">
-                        <label>Min File Size<span class="units"> (Bytes)</span></label>
+                        <label>最小文件大小<span class="units"> (Bytes)</span></label>
                         <input class="form-control" type="number" [(ngModel)]="model.min_file_size" (modelChanged)="onModelChanged()" min="1" required throttle />
                     </fieldset>
                 </div>
@@ -133,7 +133,7 @@ export class CompressionComponent implements OnInit, OnDestroy {
             return this._service.install();
         }
         else {
-            this._notificationService.confirm("Turn Off Response Compression", 'This will turn off "Response Compression" for the entire web server.')
+            this._notificationService.confirm("关闭资源压缩", '这将关闭服务器整个的资源压缩.')
                 .then(confirmed => {
                     if (confirmed) {
                         this._service.uninstall();

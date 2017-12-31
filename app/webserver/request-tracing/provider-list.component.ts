@@ -1,4 +1,4 @@
-
+﻿
 import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 import {DiffUtil} from '../../utils/diff';
 
@@ -10,10 +10,10 @@ import {RequestTracingService} from './request-tracing.service';
     selector: 'provider-list',
     template: `
         <div *ngIf="_providers">
-            <button class="create" (click)="create()" [class.inactive]="_editing"><i class="fa fa-plus color-active"></i><span>Create Provider</span></button>
+            <button class="create" (click)="create()" [class.inactive]="_editing"><i class="fa fa-plus color-active"></i><span>创建供应商</span></button>
             <div class="container-fluid">
                 <div class="hidden-xs border-active grid-list-header row" [hidden]="_providers.length < 1">
-                    <label [ngClass]="css('name')" (click)="sort('name')">Name</label>
+                    <label [ngClass]="css('name')" (click)="sort('name')">名称</label>
                 </div>
                 <div class="grid-list">
                     <provider *ngIf="_newProvider" [model]="_newProvider" (close)="close()"></provider>

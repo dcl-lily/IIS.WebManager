@@ -1,4 +1,4 @@
-
+﻿
 import { Component, Input, Output, OnInit } from '@angular/core';
 import { Int32 } from '../../common/primitives';
 import { DiffUtil } from '../../utils/diff';
@@ -11,13 +11,13 @@ import { RequestTracingService } from './request-tracing.service';
     selector: 'rule-list',
     template: `
         <div *ngIf="_rules">
-            <button class="create" (click)="create()" [class.inactive]="_editing"><i class="fa fa-plus color-active"></i><span>Create Rule</span></button>
+            <button class="create" (click)="create()" [class.inactive]="_editing"><i class="fa fa-plus color-active"></i><span>创建规则</span></button>
             <div class="container-fluid">
                 <div class="hidden-xs border-active grid-list-header row" *ngIf="_rules.length > 0">
-                    <label class="col-xs-12 col-sm-4 col-md-3" [ngClass]="css('path')" (click)="sort('path')">Path</label>
-                    <label class="hidden-xs col-sm-3 col-md-3 col-lg-2">Status Code</label>
-                    <label class="hidden-xs hidden-sm col-md-3 col-lg-2" [ngClass]="css('min_request_execution_time')" (click)="sort('min_request_execution_time')">Request Time (s)</label>
-                    <label class="hidden-xs hidden-sm hidden-md col-lg-2" [ngClass]="css('event_severity')" (click)="sort('event_severity')">Event Severity</label>
+                    <label class="col-xs-12 col-sm-4 col-md-3" [ngClass]="css('path')" (click)="sort('path')">路径</label>
+                    <label class="hidden-xs col-sm-3 col-md-3 col-lg-2">状态代码</label>
+                    <label class="hidden-xs hidden-sm col-md-3 col-lg-2" [ngClass]="css('min_request_execution_time')" (click)="sort('min_request_execution_time')">请求时间(秒)</label>
+                    <label class="hidden-xs hidden-sm hidden-md col-lg-2" [ngClass]="css('event_severity')" (click)="sort('event_severity')">时间严重程度</label>
                 </div>
                 <div class="grid-list">
                     <rule *ngIf="_newRule" [model]="_newRule" (close)="close()"></rule>

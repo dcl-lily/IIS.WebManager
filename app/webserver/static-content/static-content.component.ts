@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+﻿import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -18,10 +18,10 @@ import { NotificationService } from '../../notification/notification.service';
                 [model]="_service.status == 'started' || _service.status == 'starting'" 
                 [disabled]="_service.status == 'starting' || _service.status == 'stopping'"
                 (modelChanged)="install(!s.model)">
-                    <span *ngIf="!isPending()">{{s.model ? "On" : "Off"}}</span>
+                    <span *ngIf="!isPending()">{{s.model ? "启用" : "禁用"}}</span>
                     <span *ngIf="isPending()" class="loading"></span>
         </switch>
-        <span *ngIf="_service.status == 'stopped' && !_service.webserverScope">Static Content is off. Turn it on <a [routerLink]="['/webserver/static-content']">here</a></span>
+        <span *ngIf="_service.status == 'stopped' && !_service.webserverScope">静态内容已关闭. 如需开启请点击 <a [routerLink]="['/webserver/static-content']">这里</a></span>
         <div *ngIf="staticContent">
             <client-cache [model]="staticContent.client_cache" [locked]="_locked" (modelChange)="onModelChanged()"></client-cache>
         </div>
@@ -86,7 +86,7 @@ export class StaticContentComponent implements OnInit, OnDestroy {
             return this._service.install();
         }
         else {
-            this._notificationService.confirm("Turn Off Static Content", 'This will turn off "Static Content" for the entire web server.')
+            this._notificationService.confirm("关闭静态类容", '这将关闭服务器的金泰类容.')
                 .then(result => {
                     if (result) {
                         this._service.uninstall();

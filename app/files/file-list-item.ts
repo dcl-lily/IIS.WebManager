@@ -1,4 +1,4 @@
-import { Component, Input, Output, Inject, ViewChild, EventEmitter } from '@angular/core';
+﻿import { Component, Input, Output, Inject, ViewChild, EventEmitter } from '@angular/core';
 
 import { NotificationService } from '../notification/notification.service';
 import { Humanizer } from '../common/primitives';
@@ -39,16 +39,16 @@ import { ApiFile, ApiFileType } from './file';
             </div>
             <div class="actions">
                 <div class="action-selector">
-                    <button title="More" (click)="selector.toggle()" (dblclick)="prevent($event)" [class.background-active]="(selector && selector.opened) || false">
+                    <button title="更多" (click)="selector.toggle()" (dblclick)="prevent($event)" [class.background-active]="(selector && selector.opened) || false">
                         <i class="fa fa-ellipsis-h"></i>
                     </button>
                     <selector #selector [right]="true">
                         <ul>
-                            <li><button *ngIf="!isRoot" #menuButton class="edit" title="Rename" (click)="onRename($event)">Rename</button></li>
-                            <li><button *ngIf="isRoot" #menuButton class="edit" title="Edit" (click)="onEdit($event)">Edit</button></li>
-                            <li><button class="download" #menuButton title="Download" *ngIf="model.type=='file'" (click)="onDownload($event)">Download</button></li>
-                            <li><button *ngIf="!isRoot" #menuButton class="delete" title="Delete" (click)="onDelete($event)">Delete</button></li>
-                            <li><button *ngIf="isRoot" #menuButton class="delete" title="Delete" (click)="onDelete($event)">Remove</button></li>
+                            <li><button *ngIf="!isRoot" #menuButton class="edit" title="重命名" (click)="onRename($event)">重命名</button></li>
+                            <li><button *ngIf="isRoot" #menuButton class="edit" title="编辑" (click)="onEdit($event)">编辑</button></li>
+                            <li><button class="download" #menuButton title="下载" *ngIf="model.type=='file'" (click)="onDownload($event)">下载</button></li>
+                            <li><button *ngIf="!isRoot" #menuButton class="delete" title="删除" (click)="onDelete($event)">删除</button></li>
+                            <li><button *ngIf="isRoot" #menuButton class="delete" title="删除" (click)="onDelete($event)">移除</button></li>
                         </ul>
                     </selector>
                 </div>
@@ -157,10 +157,10 @@ export class FileComponent {
     private onDelete(e: Event) {
         e.preventDefault();
 
-        let title = this.model.isLocation ? "Remove Root Folder" : "Delete File";
+        let title = this.model.isLocation ? "删除根目录" : "删除文件";
 
-        let msg = this.model.isLocation ? "Are you sure you want to remove the root folder '" + this.model.name + "'?" :
-            "Are you sure you want to delete '" + this.model.name + "'?";
+        let msg = this.model.isLocation ? "你确定要删除根文件夹嘛 '" + this.model.name + "'?" :
+            "你确认要删除'" + this.model.name + "'?";
 
         this._notificationService.confirm(title, msg)
             .then(confirmed => {

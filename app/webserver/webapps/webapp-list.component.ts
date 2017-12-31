@@ -1,4 +1,4 @@
-
+﻿
 import {Component, OnInit, Input, Output, EventEmitter, Inject} from '@angular/core';
 
 import {WebApp} from './webapp'
@@ -14,7 +14,7 @@ import {ApplicationPool} from '../app-pools/app-pool';
 @Component({
     template: `
         <div *ngIf="website">
-            <button [class.background-active]="newWebApp.opened" (click)="newWebApp.toggle()">Create Web Application <i class="fa fa-caret-down"></i></button>
+            <button [class.background-active]="newWebApp.opened" (click)="newWebApp.toggle()">创建应用 <i class="fa fa-caret-down"></i></button>
             <selector #newWebApp class="container-fluid">
                 <new-webapp [website]="website" (created)="newWebApp.close()" (cancel)="newWebApp.close()"></new-webapp>
             </selector>

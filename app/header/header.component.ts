@@ -1,4 +1,4 @@
-import { Component, OnDestroy, Optional } from '@angular/core';
+﻿import { Component, OnDestroy, Optional } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
 import { LoadingService } from '../notification/loading.service';
 import { OptionsService } from '../main/options.service';
@@ -8,9 +8,9 @@ import { Angulartics2GoogleAnalytics } from 'angulartics2/src/providers/angulart
     selector: 'header',
     template: `
         <div class="nav background-active">
-            <button class="fa fa-bars nav-item nav-options hover-primary2" [attr.title]="this._options.active ? 'Hide Sidebar' : 'Show Sidebar'" (click)="this._options.toggle()" [class.background-primary2]="this._options.active"></button>
+            <button class="fa fa-bars nav-item nav-options hover-primary2" [attr.title]="this._options.active ? '隐藏侧边栏' : '启用侧边栏'" (click)="this._options.toggle()" [class.background-primary2]="this._options.active"></button>
             <a [routerLink]="['/']" title="Home" class="nav-brand nav-item background-active hover-primary2 nav-height">
-                <span class="v-center hidden-xs">Microsoft IIS</span>
+                <span class="v-center hidden-xs">微软IIS</span>
                 <span class="v-center visible-xs">IIS</span>
             </a>
             <div class="separator"></div>
@@ -21,7 +21,7 @@ import { Angulartics2GoogleAnalytics } from 'angulartics2/src/providers/angulart
             
             <div class="abs-right background-active">
                 <notification-indicator></notification-indicator>
-                <div class="hover-primary2 hidden-sm hidden-xs nav-button" title="Provide Feedback" *ngIf="_window.usabilla_live" (click)="provideFeedback()">
+                <div class="hover-primary2 hidden-sm hidden-xs nav-button" title="提供反馈" *ngIf="_window.usabilla_live" (click)="provideFeedback()">
                     <i class="fa fa-comment-o"></i>
                 </div>
                 <settings></settings>

@@ -15,16 +15,16 @@ import { Selector } from '../common/selector';
         <selector #settingsMenu class="color-normal" [right]="true">
             <ul>
                 <li class="hover-editing">
-                    <a class="color-normal server" [routerLink]="['/settings/servers']" (click)="_settingsMenu.close()">Add or Remove Servers</a>
+                    <a class="color-normal server" [routerLink]="['/settings/servers']" (click)="_settingsMenu.close()">添加或者删除服务器</a>
                 </li>
                 <li class="hover-editing">
-                    <a class="color-normal download" [routerLink]="['/get']" (click)="_settingsMenu.close()">Download Microsoft IIS Administration</a>
+                    <a class="color-normal download" [routerLink]="['/get']" (click)="_settingsMenu.close()">下载IIS管理软件</a>
                 </li>
                 <li *ngIf="_window.usabilla_live" class="hover-editing">
-                    <button class="no-border hover-editing hover-color-normal comment" (click)="provideFeedback()">Provide Feedback</button>
+                    <button class="no-border hover-editing hover-color-normal comment" (click)="provideFeedback()">提供反馈</button>
                 </li>
                 <li class="hover-editing">
-                    <a class="color-normal dev" href="https://github.com/microsoft/iis.administration" target="_blank">Developers</a>
+                    <a class="color-normal dev" href="https://github.com/dcl-lily/IIS.WebManager.Chinese" target="_blank">项目源码</a>
                 </li>
             </ul>
         </selector>
@@ -107,7 +107,7 @@ export class SettingsMenuComponent implements OnDestroy {
         if (this._angulartics2GoogleAnalytics) {
             this._angulartics2GoogleAnalytics.eventTrack('OpenFeedback', {
                 category: 'Feedback',
-                label: 'Feedback from the settings menu'
+                label: '来自菜单设置的反馈'
             });
         }
 

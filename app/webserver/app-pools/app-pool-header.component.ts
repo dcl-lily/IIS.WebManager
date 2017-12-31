@@ -1,4 +1,4 @@
-import { Component, Input, Inject, ViewChild } from '@angular/core';
+﻿import { Component, Input, Inject, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Selector } from '../../common/selector';
@@ -15,10 +15,10 @@ import { AppPoolsService } from './app-pools.service';
                     <button title="Actions" (click)="_selector.toggle()" [class.background-active]="(_selector && _selector.opened) || false"><i class="fa fa-caret-down"></i></button>
                     <selector [right]="true">
                         <ul>
-                            <li><button class="refresh" title="Recycle" [attr.disabled]="pool.status != 'started' ? true : null" (click)="onRecycle()">Recycle</button></li>
-                            <li><button class="start" title="Start" [attr.disabled]="pool.status != 'stopped' ? true : null" (click)="onStart()">Start</button></li>
-                            <li><button class="stop" title="Stop" [attr.disabled]="pool.status != 'started' ? true : null" (click)="onStop()">Stop</button></li>
-                            <li><button class="delete" title="Delete" (click)="onDelete()">Delete</button></li>
+                            <li><button class="refresh" title="Recycle" [attr.disabled]="pool.status != 'started' ? true : null" (click)="onRecycle()">回收</button></li>
+                            <li><button class="start" title="Start" [attr.disabled]="pool.status != 'stopped' ? true : null" (click)="onStart()">开始</button></li>
+                            <li><button class="stop" title="Stop" [attr.disabled]="pool.status != 'started' ? true : null" (click)="onStop()">停止</button></li>
+                            <li><button class="delete" title="Delete" (click)="onDelete()">删除</button></li>
                         </ul>
                     </selector>
                 </div>
@@ -63,7 +63,7 @@ export class AppPoolHeaderComponent {
     }
 
     onDelete() {
-        if (confirm("Are you sure you would like to delete this application pool?\nName: " + this.pool.name)) {
+        if (confirm("您确定要删除此应用程序池吗？ ?\n应用池名: " + this.pool.name)) {
             this._service.delete(this.pool)
                 .then(() => {
                     this._router.navigate(["/WebServer"]);

@@ -9,43 +9,43 @@ import { DiffUtil } from '../../utils/diff';
     selector: 'app-pool-details',
     template: `
         <fieldset>
-            <label>Name</label>
+            <label>名称</label>
             <span class="name">{{model.name}}</span>
             <span class="status" *ngIf="!started">({{model.status}})</span>
             <div class="actions">
                 <div class="selector-wrapper">
-                    <button title="Actions" (click)="openSelector()" [class.background-active]="(_selector && _selector.opened) || false"><i class="fa fa-caret-down"></i></button>
+                    <button title="动作" (click)="openSelector()" [class.background-active]="(_selector && _selector.opened) || false"><i class="fa fa-caret-down"></i></button>
                     <selector [right]="true">
                         <ul>
-                            <li><a class="bttn edit" title="Edit" [routerLink]="['/webserver/app-pools', model.id]">Edit</a></li>
-                            <li><button class="refresh" title="Recycle" [attr.disabled]="!started || null" (click)="onRecycle()">Recycle</button></li>
-                            <li><button class="start" title="Start" [attr.disabled]="model.status != 'stopped' ? true : null" (click)="onStart()">Start</button></li>
-                            <li><button class="stop" title="Stop" [attr.disabled]="!started || null" (click)="onStop()">Stop</button></li>
+                            <li><a class="bttn edit" title="编辑" [routerLink]="['/webserver/app-pools', model.id]">编辑</a></li>
+                            <li><button class="refresh" title="回收" [attr.disabled]="!started || null" (click)="onRecycle()">回收</button></li>
+                            <li><button class="start" title="启动" [attr.disabled]="model.status != 'stopped' ? true : null" (click)="onStart()">启动</button></li>
+                            <li><button class="stop" title="停止" [attr.disabled]="!started || null" (click)="onStop()">停止</button></li>
                         </ul>
                     </selector>
                 </div>
             </div>
         </fieldset>
         <fieldset *ngIf="_svc">
-            <label>Auto Start</label>
-            <switch class="block" [(model)]="model.auto_start" (modelChanged)="onModelChanged()">{{model.auto_start ? "On" : "Off"}}</switch>
+            <label>自动启动</label>
+            <switch class="block" [(model)]="model.auto_start" (modelChanged)="onModelChanged()">{{model.auto_start ? "启用" : "禁用"}}</switch>
         </fieldset>
         <fieldset *ngIf="_svc">
             <identity [model]="model.identity" [useUserProfile]="false" (modelChanged)="onModelChanged()"></identity>
         </fieldset>
         <fieldset *ngIf="_svc">
-            <label>Pipeline</label>
+            <label>路径</label>
             <enum [(model)]="model.pipeline_mode" (modelChanged)="onModelChanged()">
-                <field name="Integrated" value="integrated"></field>
-                <field name="Classic" value="classic"></field>
+                <field name="整合" value="integrated"></field>
+                <field name="经典" value="classic"></field>
             </enum>
         </fieldset>
         <fieldset *ngIf="_svc">
-            <label>.NET Framework</label>
+            <label>.NET版本</label>
             <enum [(model)]="model.managed_runtime_version" (modelChanged)="onModelChanged()">
                 <field name="3.5" value="v2.0"></field>
                 <field name="4.x" value="v4.0"></field>
-                <field name="None" value=""></field>
+                <field name="无" value=""></field>
             </enum>
         </fieldset>
     `,

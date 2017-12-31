@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnInit, OnDestroy, EventEmitter, ViewChildren, ViewChild, QueryList, OnChanges, SimpleChange, ElementRef } from '@angular/core';
+﻿import { Component, Input, Output, OnInit, OnDestroy, EventEmitter, ViewChildren, ViewChild, QueryList, OnChanges, SimpleChange, ElementRef } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -13,22 +13,22 @@ import { RequestFilteringService } from './request-filtering.service';
     template: `
         <div *ngIf="model" class="grid-item row" [class.background-editing]="_editing">
             <div class="actions">
-                <button class="no-border no-editing" [class.inactive]="!_editable" title="Edit" (click)="onEdit()">
+                <button class="no-border no-editing" [class.inactive]="!_editable" title="编辑" (click)="onEdit()">
                     <i class="fa fa-pencil color-active"></i>
                 </button>
-                <button class="no-border editing" [disabled]="!isValid() || locked" title="Ok" (click)="onSave()">
+                <button class="no-border editing" [disabled]="!isValid() || locked" title="确认" (click)="onSave()">
                     <i class="fa fa-check color-active"></i>
                 </button>
-                <button class="no-border editing" title="Cancel" (click)="onDiscard()">
+                <button class="no-border editing" title="取消" (click)="onDiscard()">
                     <i class="fa fa-times red"></i>
                 </button>
-                <button class="no-border" *ngIf="model.id" [disabled]="locked" title="Delete" [class.inactive]="!_editable" (click)="onDelete()">
+                <button class="no-border" *ngIf="model.id" [disabled]="locked" title="删除" [class.inactive]="!_editable" (click)="onDelete()">
                     <i class="fa fa-trash-o red"></i>
                 </button>
             </div>
 
             <fieldset class="col-xs-8 col-sm-3" *ngIf="!_editing">
-                <label class="visible-xs">Name</label>
+                <label class="visible-xs">名字</label>
                 <span>{{model.name}}</span>
                 <div>
                     <br class="visible-xs" />
@@ -36,12 +36,12 @@ import { RequestFilteringService } from './request-filtering.service';
             </fieldset>
 
             <fieldset class="col-xs-8 col-md-9 col-lg-10" *ngIf="_editing">
-                <label class="block">Name</label>
+                <label class="block">名字</label>
                 <input class="form-control" type="text" [disabled]="locked" [(ngModel)]="model.name" throttle required />
             </fieldset>
 
             <fieldset class="col-xs-8 col-sm-5 col-md-6" *ngIf="!_editing">
-                <label class="visible-xs">Denied Values</label>
+                <label class="visible-xs">拒绝值</label>
                 <span>{{model.deny_strings.join(', ')}}</span>
             </fieldset>
     
@@ -50,19 +50,19 @@ import { RequestFilteringService } from './request-filtering.service';
                     <div class="col-lg-4 col-md-5 col-xs-12">
 
                         <fieldset>
-                            <label>Scan Url</label>
-                            <switch class="block" [disabled]="locked" [(model)]="model.scan_url">{{model.scan_url ? "Yes" : "No"}}</switch>
+                            <label>扫描URL地址</label>
+                            <switch class="block" [disabled]="locked" [(model)]="model.scan_url">{{model.scan_url ? "启用" : "禁用"}}</switch>
                         </fieldset>
                         <fieldset>
-                            <label>Scan Query String</label>
-                            <switch class="block" [disabled]="locked" [(model)]="model.scan_query_string">{{model.scan_query_string ? "Yes" : "No"}}</switch>
+                            <label>扫描查询字符串</label>
+                            <switch class="block" [disabled]="locked" [(model)]="model.scan_query_string">{{model.scan_query_string ? "启用" : "禁用"}}</switch>
                         </fieldset>
 
                         <fieldset [class.has-list]="_displayHeaders">
-                            <label class="block">Scan Headers</label>
+                            <label class="block">扫描头部信息</label>
                             <div>
-                                <switch [disabled]="locked" [(model)]="_displayHeaders">{{_displayHeaders ? "Yes" : "No"}}</switch>
-                                <button class="background-normal pull-right" *ngIf="_displayHeaders" (click)="addHeader()"><i class="fa fa-plus color-active"></i><span>Add</span></button>
+                                <switch [disabled]="locked" [(model)]="_displayHeaders">{{_displayHeaders ? "启用" : "禁用"}}</switch>
+                                <button class="background-normal pull-right" *ngIf="_displayHeaders" (click)="addHeader()"><i class="fa fa-plus color-active"></i><span>添加</span></button>
                             </div>
                         </fieldset>
                         <fieldset *ngIf="_displayHeaders">
@@ -70,10 +70,10 @@ import { RequestFilteringService } from './request-filtering.service';
                         </fieldset>
 
                         <fieldset [class.has-list]="_displayFileExtensions">
-                            <label class="block">Filter by File Extension</label>
+                            <label class="block">通过文件扩展名过滤</label>
                             <div>
-                                <switch [disabled]="locked" [(model)]="_displayFileExtensions">{{_displayFileExtensions ? "Yes" : "No"}}</switch>
-                                <button class="background-normal pull-right" *ngIf="_displayFileExtensions" (click)="addFileExtension()"><i class="fa fa-plus color-active"></i><span>Add</span></button>
+                                <switch [disabled]="locked" [(model)]="_displayFileExtensions">{{_displayFileExtensions ? "启用" : "禁用"}}</switch>
+                                <button class="background-normal pull-right" *ngIf="_displayFileExtensions" (click)="addFileExtension()"><i class="fa fa-plus color-active"></i><span>添加</span></button>
                             </div>
                         </fieldset>
                         <fieldset *ngIf="_displayFileExtensions">
@@ -83,12 +83,12 @@ import { RequestFilteringService } from './request-filtering.service';
                     </div>
                     <div class="col-lg-6 col-md-7 col-xs-12">
                         <fieldset class="inline-block has-list">
-                            <label class="block">Denied Values</label>
+                            <label class="block">拒绝值</label>
                         </fieldset>
-                        <button class="background-normal pull-right" *ngIf="denyStringsVisible()" (click)="addDenyString()"><i class="fa fa-plus color-active"></i><span>Add</span></button>
+                        <button class="background-normal pull-right" *ngIf="denyStringsVisible()" (click)="addDenyString()"><i class="fa fa-plus color-active"></i><span>添加</span></button>
                         <fieldset>
                             <string-list #ds="stringList" [(model)]="model.deny_strings"></string-list>
-                            <button class="add background-normal" *ngIf="ds.list.length == 0" (click)="addDenyString()"><i class="fa fa-plus color-active"></i><span>Add</span></button>
+                            <button class="add background-normal" *ngIf="ds.list.length == 0" (click)="addDenyString()"><i class="fa fa-plus color-active"></i><span>添加</span></button>
                         </fieldset>
                     </div>
                 </div>
@@ -162,7 +162,7 @@ export class RuleComponent implements OnInit, OnChanges {
     }
 
     onDelete() {
-        if (confirm("Are you sure you want to delete this rule?\nName: " + this.model.name)) {
+        if (confirm("你确认要删除这个规则?\n: " + this.model.name)) {
             this._service.deleteFilteringRule(this.model);
         }
     }
@@ -260,12 +260,12 @@ export class RuleComponent implements OnInit, OnChanges {
     selector: 'rules',
     template: `
         <div *ngIf="rules">
-            <button class="create" (click)="onAdd()" [disabled]="locked" [class.inactive]="_editing"><i class="fa fa-plus color-active"></i><span>Add</span></button>
+            <button class="create" (click)="onAdd()" [disabled]="locked" [class.inactive]="_editing"><i class="fa fa-plus color-active"></i><span>添加</span></button>
 
             <div class="container-fluid" [hidden]="!rules || rules.length < 1">
                 <div class="row hidden-xs border-active grid-list-header">
-                    <label class="col-sm-3">Name</label>
-                    <label class="col-sm-5 col-md-6">Denied Values</label>
+                    <label class="col-sm-3">名字</label>
+                    <label class="col-sm-5 col-md-6">拒绝值</label>
                 </div>
             </div>
 

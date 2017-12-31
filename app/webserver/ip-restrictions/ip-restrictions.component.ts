@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+﻿import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -17,23 +17,23 @@ import { NotificationService } from '../../notification/notification.service';
                 [model]="_service.status == 'started' || _service.status == 'starting'" 
                 [disabled]="_service.status == 'starting' || _service.status == 'stopping'"
                 (modelChanged)="install(!s.model)">
-                    <span *ngIf="!isPending()">{{s.model ? "On" : "Off"}}</span>
+                    <span *ngIf="!isPending()">{{s.model ? "启用" : "禁用"}}</span>
                     <span *ngIf="isPending()" class="loading"></span>
         </switch>
-        <span *ngIf="_service.status == 'stopped' && !_service.webserverScope">IP Restrictions are off. Turn them on <a [routerLink]="['/webserver/ip-restrictions']">here</a></span>
+        <span *ngIf="_service.status == 'stopped' && !_service.webserverScope">IP限制以及关闭. 如果需要启用请点击<a [routerLink]="['/webserver/ip-restrictions']">这里</a></span>
         <override-mode class="pull-right" *ngIf="ipRestrictions" [scope]="ipRestrictions.scope" [metadata]="ipRestrictions.metadata" (revert)="onRevert()" (modelChanged)="onModelChanged()"></override-mode>
         <div *ngIf="ipRestrictions" [attr.disabled]="_locked || null">
             <fieldset>
-                <label *ngIf="!ipRestrictions.scope">Web Site Default</label>
-                <switch class="block" [(model)]="enabled" #s [auto]="false" (modelChanged)="onEnabledChanging(!s.model)">{{enabled ? "On" : "Off"}}</switch>
+                <label *ngIf="!ipRestrictions.scope">默认站点</label>
+                <switch class="block" [(model)]="enabled" #s [auto]="false" (modelChanged)="onEnabledChanging(!s.model)">{{enabled ? "启用" : "禁用"}}</switch>
             </fieldset>
             <div *ngIf="enabled || !ipRestrictions.scope">
                 <tabs>
-                    <tab [name]="'General'">
+                    <tab [name]="'一般策略'">
                             <ip-addresses [model]="ipRestrictions" (modelChanged)="onModelChanged()"></ip-addresses>
                             <dynamic-restrictions *ngIf="ipRestrictions && ipRestrictions.deny_by_request_rate" [model]="ipRestrictions" (modelChange)="onModelChanged()"></dynamic-restrictions>
                     </tab>
-                    <tab [name]="'IP/Domain Rules'">
+                    <tab [name]="'IP地址/域名策略'">
                             <restriction-rules [ipRestrictions]="ipRestrictions" (modelChange)="onModelChanged()"></restriction-rules>
                     </tab>
                 </tabs>
@@ -81,7 +81,7 @@ export class IpRestrictionsComponent implements OnInit, OnDestroy {
 
     onEnabledChanging(val: boolean) {
         if (!val) {
-            this._notificationService.confirm("Disable IP Restrictions", "CAUTION: All rules will be deleted when IP Restrictions is turned off.")
+            this._notificationService.confirm("禁用IP限制", "警告：当IP限制关闭时，所有规则将被删除.")
                 .then(confirmed => {
                     if (confirmed) {
                         this.ipRestrictions.enabled = false;

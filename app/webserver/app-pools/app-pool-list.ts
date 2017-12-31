@@ -1,4 +1,4 @@
-import { Component, Input, Output, Inject, EventEmitter, ViewChild } from '@angular/core';
+﻿import { Component, Input, Output, Inject, EventEmitter, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Selector } from '../../common/selector';
@@ -36,11 +36,11 @@ import { ApplicationPool, ProcessModelIdentityType } from './app-pool';
                 </button>
                 <selector [right]="true">
                     <ul>
-                        <li><button class="edit" title="Edit" *ngIf="allow('edit')" (click)="onEdit($event)">Edit</button></li>
-                        <li><button class="refresh" title="Recycle" *ngIf="allow('recycle')" [attr.disabled]="!started() || null" (click)="onRecycle($event)">Recycle</button></li>
-                        <li><button class="start" title="Start" *ngIf="allow('start')" [attr.disabled]="model.status != 'stopped' ? true : null" (click)="onStart($event)">Start</button></li>
-                        <li><button class="stop" *ngIf="allow('stop')" title="Stop" [attr.disabled]="!started() || null" (click)="onStop($event)">Stop</button></li>
-                        <li><button class="delete" *ngIf="allow('delete')" title="Delete" (click)="onDelete($event)">Delete</button></li>
+                        <li><button class="edit" title="Edit" *ngIf="allow('edit')" (click)="onEdit($event)">编辑</button></li>
+                        <li><button class="refresh" title="Recycle" *ngIf="allow('recycle')" [attr.disabled]="!started() || null" (click)="onRecycle($event)">回收</button></li>
+                        <li><button class="start" title="Start" *ngIf="allow('start')" [attr.disabled]="model.status != 'stopped' ? true : null" (click)="onStart($event)">开始</button></li>
+                        <li><button class="stop" *ngIf="allow('stop')" title="Stop" [attr.disabled]="!started() || null" (click)="onStop($event)">停止</button></li>
+                        <li><button class="delete" *ngIf="allow('delete')" title="Delete" (click)="onDelete($event)">删除</button></li>
                     </ul>
                 </selector>
             </div>
@@ -110,7 +110,7 @@ export class AppPoolItem {
         e.stopPropagation();
         this._selector.close();
 
-        this._notificationService.confirm("Delete Application Pool", "Are you sure you want to delete Application Pool '" + this.model.name + "'")
+        this._notificationService.confirm("删除应用池", "你确定要删除这个应用池吗'" + this.model.name + "'")
             .then(confirmed => confirmed && this._service.delete(this.model));
     }
 
@@ -145,13 +145,13 @@ export class AppPoolItem {
 
         switch (this.model.identity.identity_type) {
             case ProcessModelIdentityType.LocalSystem:
-                return "Local System";
+                return "本地系统";
             case ProcessModelIdentityType.LocalService:
-                return "Local Service";
+                return "本地服务";
             case ProcessModelIdentityType.NetworkService:
-                return "Network Service";
+                return "网络服务";
             case ProcessModelIdentityType.ApplicationPoolIdentity:
-                return "AppPool Identity";
+                return "资源池身份";
             case ProcessModelIdentityType.SpecificUser:
                 return this.model.identity.username;
             default:
@@ -198,11 +198,11 @@ export class AppPoolItem {
     template: `
         <div class="container-fluid">
             <div class="hidden-xs border-active grid-list-header row" [hidden]="model.length == 0">
-                <label class="col-xs-7 col-sm-4 col-md-3" [ngClass]="_orderBy.css('name')" (click)="_orderBy.sort('name')">Name</label>
-                <label class="col-xs-3 col-md-2" [ngClass]="_orderBy.css('status')" (click)="_orderBy.sort('status')">Status</label>
-                <label class="col-md-2 hidden-sm" [ngClass]="_orderBy.css('pipeline_mode')" (click)="_orderBy.sort('pipeline_mode')">Pipeline</label>
-                <label class="col-md-2" [ngClass]="_orderBy.css('managed_runtime_version')" (click)="_orderBy.sort('managed_runtime_version')">.NET Framework</label>
-                <label class="col-lg-2 visible-lg">Identity</label>
+                <label class="col-xs-7 col-sm-4 col-md-3" [ngClass]="_orderBy.css('name')" (click)="_orderBy.sort('name')">名字</label>
+                <label class="col-xs-3 col-md-2" [ngClass]="_orderBy.css('status')" (click)="_orderBy.sort('status')">状态</label>
+                <label class="col-md-2 hidden-sm" [ngClass]="_orderBy.css('pipeline_mode')" (click)="_orderBy.sort('pipeline_mode')">管道</label>
+                <label class="col-md-2" [ngClass]="_orderBy.css('managed_runtime_version')" (click)="_orderBy.sort('managed_runtime_version')">.NET版本</label>
+                <label class="col-lg-2 visible-lg">身份认证</label>
             </div>
             
             <ul class="grid-list">

@@ -7,11 +7,11 @@ import {WebServer} from './webserver';
     selector: 'webserver-general',
     template: `
         <fieldset>
-            <label>Name</label>
+            <label>名称</label>
             <span class="form-control">{{model.name}}</span>
         </fieldset>
         <fieldset>
-            <label>Version</label>
+            <label>版本</label>
             <span class="form-control">{{model.version}}</span>
         </fieldset>
     `

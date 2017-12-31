@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+﻿import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -18,41 +18,41 @@ import { NotificationService } from '../../notification/notification.service';
                 [model]="_service.status == 'started' || _service.status == 'starting'" 
                 [disabled]="_service.status == 'starting' || _service.status == 'stopping'"
                 (modelChanged)="install(!s.model)">
-                    <span *ngIf="!isPending()">{{s.model ? "On" : "Off"}}</span>
+                    <span *ngIf="!isPending()">{{s.model ? "启用" : "禁用"}}</span>
                     <span *ngIf="isPending()" class="loading"></span>
         </switch>
-        <span *ngIf="_service.status == 'stopped' && !_service.webserverScope">Logging is off. Turn it on <a [routerLink]="['/webserver/logging']">here</a></span>
+        <span *ngIf="_service.status == 'stopped' && !_service.webserverScope">日志以及关闭. 如需启用请点击 <a [routerLink]="['/webserver/logging']">这里</a></span>
         <override-mode class="pull-right" *ngIf="logging" [scope]="logging.scope" [metadata]="logging.metadata" (revert)="onRevert()" (modelChanged)="onModelChanged()"></override-mode>
         <div *ngIf="logging">
             <fieldset class="collect">
-                <label>Collect Logs</label>
-                <switch class="block" [(model)]="logging.enabled" (modelChanged)="onModelChanged()">{{logging.enabled ? "On" : "Off"}}</switch>
+                <label>搜集日志</label>
+                <switch class="block" [(model)]="logging.enabled" (modelChanged)="onModelChanged()">{{logging.enabled ? "启用" : "禁用"}}</switch>
             </fieldset>
             <tabs [hidden]="!logging.enabled && logging.scope">
                 <tab *ngIf="this.logging.scope && logging.log_per_site" [name]="'Logs'">
                     <log-files></log-files>
                 </tab>
-                <tab *ngIf="'true'" [name]="'Settings'">
+                <tab *ngIf="'true'" [name]="'设置'">
                     <fieldset class="path">
-                        <label>Directory</label>
-                        <button title="Select Folder" [class.background-active]="fileSelector.isOpen()" class="right select" (click)="fileSelector.toggle()"></button>
+                        <label>目录</label>
+                        <button title="选择目录" [class.background-active]="fileSelector.isOpen()" class="right select" (click)="fileSelector.toggle()"></button>
                         <div class="fill">
                             <input [disabled]="!logging.log_per_site && logging.website" type="text" class="form-control" [(ngModel)]="logging.directory" throttle (modelChanged)="onModelChanged()" throttle required />
                         </div>
                         <server-file-selector #fileSelector [types]="['directory']" [defaultPath]="logging.directory" (selected)="onSelectPath($event)"></server-file-selector>
                     </fieldset>
                     <fieldset *ngIf="!logging.website">
-                        <label>Separate Log per Web Site</label>
-                        <switch class="block" [(model)]="logging.log_per_site" (modelChanged)="onModelChanged()">{{logging.log_per_site ? "On" : "Off"}}</switch>
+                        <label>每个网站的单独日志</label>
+                        <switch class="block" [(model)]="logging.log_per_site" (modelChanged)="onModelChanged()">{{logging.log_per_site ? "启用" : "禁用"}}</switch>
                     </fieldset>
                     <fieldset>
                         <format [model]="logging" (modelChange)="onModelChanged()"></format>
                     </fieldset>
                 </tab>
-                <tab *ngIf="logging.log_per_site || !logging.website" [name]="'Rollover'">
+                <tab *ngIf="logging.log_per_site || !logging.website" [name]="'截断'">
                     <rollover [model]="logging.rollover" (modelChange)="onModelChanged()"></rollover>
                 </tab>
-                <tab *ngIf="logging.log_fields" [name]="'Log Fields'">
+                <tab *ngIf="logging.log_fields" [name]="'日志文件'">
                     <logfields [model]="logging.log_fields" (modelChange)="onModelChanged()"></logfields>
                     <br />
                     <customfields *ngIf="logging.custom_log_fields" [(model)]="logging.custom_log_fields" (modelChange)="onModelChanged()"></customfields>
@@ -131,7 +131,7 @@ export class LoggingComponent implements OnInit, OnDestroy {
             return this._service.install();
         }
         else {
-            this._notificationService.confirm("Turn Off Logging", 'This will turn off "Logging" for the entire web server.')
+            this._notificationService.confirm("关闭日志记录", '这将禁用服务器日志记录功能.')
                 .then(confirmed => {
                     if (confirmed) {
                         this._service.uninstall();

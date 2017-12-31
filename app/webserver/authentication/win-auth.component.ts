@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnDestroy } from '@angular/core';
+﻿import { Component, Input, Output, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -17,20 +17,20 @@ import { NotificationService } from '../../notification/notification.service';
                 [model]="_service.windowsStatus == 'started' || _service.windowsStatus == 'starting'" 
                 [disabled]="_service.windowsStatus == 'starting' || _service.windowsStatus == 'stopping'"
                 (modelChanged)="install(!s.model)">
-                    <span *ngIf="!isPending()">{{s.model ? "On" : "Off"}}</span>
+                    <span *ngIf="!isPending()">{{s.model ? "启用" : "禁用"}}</span>
                     <span *ngIf="isPending()" class="loading"></span>
         </switch>
-        <span *ngIf="_service.windowsStatus == 'stopped' && !_service.webserverScope">Windows Authentication is off. Turn it on <a [routerLink]="['/webserver/authentication']">here</a></span>
+        <span *ngIf="_service.windowsStatus == 'stopped' && !_service.webserverScope">wndows身份认证关闭. 如需要打开请 <a [routerLink]="['/webserver/authentication']">点击这里</a></span>
         <override-mode class="pull-right" *ngIf="_model" [scope]="_model.scope" [metadata]="_model.metadata" (revert)="onRevert()" (modelChanged)="onModelChanged()"></override-mode>
         <div *ngIf="_model">
             <fieldset>
-                <label *ngIf="!_model.scope">Web Site Default</label>
-                <switch class="block" [disabled]="_locked" [(model)]="_model.enabled" (modelChanged)="onModelChanged()">{{_model.enabled ? "On" : "Off"}}</switch>
+                <label *ngIf="!_model.scope">默认站点</label>
+                <switch class="block" [disabled]="_locked" [(model)]="_model.enabled" (modelChanged)="onModelChanged()">{{_model.enabled ? "启用" : "禁用"}}</switch>
             </fieldset>
             <div class="clear" *ngIf="_model.enabled || !_model.scope">
                 <fieldset>
-                    <label>Use Kernel Mode</label>
-                    <switch class="block" [disabled]="_locked" [(model)]="_model.use_kernel_mode" (modelChanged)="onModelChanged()">{{_model.use_kernel_mode ? "On" : "Off"}}</switch>
+                    <label>使用模式</label>
+                    <switch class="block" [disabled]="_locked" [(model)]="_model.use_kernel_mode" (modelChanged)="onModelChanged()">{{_model.use_kernel_mode ? "启用" : "禁用"}}</switch>
                 </fieldset>
                 <ul>
                     <li *ngFor="let provider of _model.providers; let i = index;">
@@ -99,7 +99,7 @@ export class WindowsAuthenticationComponent implements OnDestroy {
             this._service.installWindows(true);
         }
         else {
-            this._notificationService.confirm("Turn Off Windows Authentication", 'This will turn off "Windows Authentication" for the entire web server.')
+            this._notificationService.confirm("关闭Windows身份认证", '这样将关闭整个服务器的Windows身份认证')
                 .then(confirmed => {
                     if (confirmed) {
                         this._service.installWindows(false);

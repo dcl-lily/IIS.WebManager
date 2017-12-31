@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnInit, OnDestroy, EventEmitter, QueryList, ViewChildren, OnChanges, SimpleChange, ElementRef } from '@angular/core';
+﻿import { Component, Input, Output, OnInit, OnDestroy, EventEmitter, QueryList, ViewChildren, OnChanges, SimpleChange, ElementRef } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -13,23 +13,23 @@ import { RequestFilteringService } from './request-filtering.service';
         <div *ngIf="model" class="grid-item row" [class.background-editing]="_editing">
 
             <div class="actions">
-                <button class="no-border" *ngIf="!_editing" [class.inactive]="!_editable" title="Edit" (click)="onEdit()">
+                <button class="no-border" *ngIf="!_editing" [class.inactive]="!_editable" title="编辑" (click)="onEdit()">
                     <i class="fa fa-pencil color-active"></i>
                 </button>
-                <button class="no-border" *ngIf="_editing" [disabled]="!isValid() || locked" title="Ok" (click)="onSave()">
+                <button class="no-border" *ngIf="_editing" [disabled]="!isValid() || locked" title="确认" (click)="onSave()">
                     <i class="fa fa-check color-active"></i>
                 </button>
-                <button class="no-border" title="Cancel" *ngIf="_editing" (click)="onDiscard()">
+                <button class="no-border" title="取消" *ngIf="_editing" (click)="onDiscard()">
                     <i class="fa fa-times red"></i>
                 </button>
-                <button class="no-border" *ngIf="model.id" [disabled]="locked" title="Delete" [class.inactive]="!_editable" (click)="onDelete()">
+                <button class="no-border" *ngIf="model.id" [disabled]="locked" title="删除" [class.inactive]="!_editable" (click)="onDelete()">
                     <i class="fa fa-trash-o red"></i>
                 </button>
             </div>
 
             <fieldset class="col-xs-8 col-sm-4">
-                <label class="visible-xs">Extension</label>
-                <label class="hidden-xs" [hidden]="!_editing">Extension</label>
+                <label class="visible-xs">扩展名</label>
+                <label class="hidden-xs" [hidden]="!_editing">扩展名</label>
                 <i class="fa fa-circle green hidden-xs" *ngIf="model.allow && !_editing"></i>
                 <i class="fa fa-ban red hidden-xs" *ngIf="!model.allow && !_editing"></i>
                 <input class="form-control" *ngIf="_editing" type="text" [disabled]="locked" [(ngModel)]="model.extension" throttle required />
@@ -40,10 +40,10 @@ import { RequestFilteringService } from './request-filtering.service';
             </fieldset>
 
             <fieldset class="col-xs-12 col-sm-4">
-                <label class="visible-xs">Allowed</label>
-                <label class="hidden-xs" [hidden]="!_editing">Allowed</label>
-                <span *ngIf="!_editing">{{model.allow ? "Allow" : "Deny"}}</span>
-                <switch class="block" *ngIf="_editing" [disabled]="locked" [(model)]="model.allow">{{model.allow ? "Allow" : "Deny"}}</switch>
+                <label class="visible-xs">允许</label>
+                <label class="hidden-xs" [hidden]="!_editing">允许</label>
+                <span *ngIf="!_editing">{{model.allow ? "允许" : "拒绝"}}</span>
+                <switch class="block" *ngIf="_editing" [disabled]="locked" [(model)]="model.allow">{{model.allow ? "允许" : "拒绝"}}</switch>
             </fieldset>
 
         </div>
@@ -103,7 +103,7 @@ export class FileExtensionComponent implements OnInit, OnChanges {
     }
 
     private onDelete() {
-        if (confirm("Are you sure you want to delete this extension?\nExtension: " + this.model.extension)) {
+        if (confirm("您确定要删除此扩展名吗?\n " + this.model.extension)) {
             this._service.deleteFileExtension(this.model);
         }
     }
@@ -160,12 +160,12 @@ export class FileExtensionComponent implements OnInit, OnChanges {
     selector: 'file-extensions',
     template: `
         <div *ngIf="extensions">
-            <button class="create" (click)="onAdd()" [disabled]="locked" [class.inactive]="_editing"><i class="fa fa-plus color-active"></i><span>Add</span></button>
+            <button class="create" (click)="onAdd()" [disabled]="locked" [class.inactive]="_editing"><i class="fa fa-plus color-active"></i><span>添加</span></button>
 
             <div class="container-fluid" [hidden]="!extensions || extensions.length < 1">
                 <div class="row hidden-xs border-active grid-list-header">
-                    <label class="col-xs-12 col-sm-4">Extension</label>
-                    <label class="col-xs-12 col-sm-4">Action</label>
+                    <label class="col-xs-12 col-sm-4">扩展名</label>
+                    <label class="col-xs-12 col-sm-4">动作</label>
                 </div>
             </div>
 

@@ -1,4 +1,4 @@
-import { NgModule, Component, OnInit, OnDestroy, ViewChild, ElementRef, Input, Output, EventEmitter, Inject } from '@angular/core';
+﻿import { NgModule, Component, OnInit, OnDestroy, ViewChild, ElementRef, Input, Output, EventEmitter, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Observable } from "rxjs/Observable";
@@ -16,7 +16,7 @@ export class Drop {
     selector: 'navigation',
     template: `
         <div>
-            <button class="no-border pull-left color-active" title="Go Up" (click)="onClickUp($event)"><i class="fa fa-level-up"></i></button>
+            <button class="no-border pull-left color-active" title="返回上一层" (click)="onClickUp($event)"><i class="fa fa-level-up"></i></button>
             <div class="fill">
                 <ul *ngIf="_crumbs.length > 0" [hidden]="_typing" class="nav border-color" (click)="onClickAddress($event)">
                     <li *ngFor="let item of _crumbs; let i = index;" 

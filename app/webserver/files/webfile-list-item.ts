@@ -1,4 +1,4 @@
-import { Component, Input, Output, Inject, ViewChild, EventEmitter } from '@angular/core';
+﻿import { Component, Input, Output, Inject, ViewChild, EventEmitter } from '@angular/core';
 
 import { Selector } from '../../common/selector';
 import { NotificationService } from '../../notification/notification.service';
@@ -40,14 +40,14 @@ import { WebFileType, WebFile } from './webfile';
             </div>
             <div class="actions">
                 <div class="selector-wrapper">
-                    <button title="More" *ngIf="!model.isVirtual" (click)="openSelector($event)" (dblclick)="prevent($event)" [class.background-active]="(selector && selector.opened) || false">
+                    <button title="更多" *ngIf="!model.isVirtual" (click)="openSelector($event)" (dblclick)="prevent($event)" [class.background-active]="(selector && selector.opened) || false">
                         <i class="fa fa-ellipsis-h"></i>
                     </button>
                     <selector [right]="true">
                         <ul>
-                            <li><button class="edit" title="Rename" *ngIf="model.type!='vdir' && model.file_info" (click)="onRename($event)">Rename</button></li>
-                            <li><button class="download" title="Download" *ngIf="model.type=='file' && model.file_info" (click)="onDownload($event)">Download</button></li>
-                            <li><button class="delete" title="Delete" *ngIf="model.type!='vdir'" (click)="onDelete($event)">Delete</button></li>
+                            <li><button class="edit" title="Rename" *ngIf="model.type!='vdir' && model.file_info" (click)="onRename($event)">重命名</button></li>
+                            <li><button class="download" title="Download" *ngIf="model.type=='file' && model.file_info" (click)="onDownload($event)">下载</button></li>
+                            <li><button class="delete" title="Delete" *ngIf="model.type!='vdir'" (click)="onDelete($event)">删除</button></li>
                         </ul>
                     </selector>
                 </div>
@@ -169,7 +169,7 @@ export class WebFileComponent {
         e.preventDefault();
         this.selector.close();
 
-        this._notificationService.confirm("Delete File", "Are you sure you want to delete " + this.model.name)
+        this._notificationService.confirm("删除文件", "你确定要删除 " + this.model.name)
             .then(confirmed => {
                 if (confirmed) {
                     this._service.delete([this.model]);

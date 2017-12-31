@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnDestroy } from '@angular/core';
+﻿import { Component, Input, Output, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -17,18 +17,18 @@ import { NotificationService } from '../../notification/notification.service';
                 [model]="_service.digestStatus == 'started' || _service.digestStatus == 'starting'" 
                 [disabled]="_service.digestStatus == 'starting' || _service.digestStatus == 'stopping'"
                 (modelChanged)="install(!s.model)">
-                    <span *ngIf="!isPending()">{{s.model ? "On" : "Off"}}</span>
+                    <span *ngIf="!isPending()">{{s.model ? "启用" : "禁用"}}</span>
                     <span *ngIf="isPending()" class="loading"></span>
         </switch>
-        <span *ngIf="_service.digestStatus == 'stopped' && !_service.webserverScope">Digest Authentication is off. Turn it on <a [routerLink]="['/webserver/authentication']">here</a></span>
+        <span *ngIf="_service.digestStatus == 'stopped' && !_service.webserverScope">摘要身份认证关闭. 如需开启请<a [routerLink]="['/webserver/authentication']">点击这里</a></span>
         <override-mode class="pull-right" *ngIf="_model" [scope]="_model.scope" [metadata]="_model.metadata" (revert)="onRevert()" (modelChanged)="onModelChanged()"></override-mode>
         <div *ngIf="_model">
             <fieldset>
-                <label *ngIf="!_model.scope">Web Site Default</label>
-                <switch class="block" [disabled]="_locked" [(model)]="_model.enabled" (modelChanged)="onModelChanged()">{{_model.enabled ? "On" : "Off"}}</switch>
+                <label *ngIf="!_model.scope">默认站点</label>
+                <switch class="block" [disabled]="_locked" [(model)]="_model.enabled" (modelChanged)="onModelChanged()">{{_model.enabled ? "启用" : "禁用"}}</switch>
             </fieldset>
             <fieldset class="clear" *ngIf="_model.enabled || !_model.scope">
-                <label>Realm</label>
+                <label>范围</label>
                 <input class="form-control path" type="text" [disabled]="_locked" [(ngModel)]="_model.realm" throttle (modelChanged)="onModelChanged()" />
             </fieldset>
         </div>
@@ -92,7 +92,7 @@ export class DigestAuthenticationComponent implements OnDestroy {
             this._service.installDigest(true);
         }
         else {
-            this._notificationService.confirm("Turn Off Digest Authentication", 'This will turn off "Digest Authentication" for the entire web server.')
+            this._notificationService.confirm("关闭摘要身份认证", '这将关闭整个服务器的摘要身份认证')
                 .then(confirmed => {
                     if (confirmed) {
                         this._service.installDigest(false);

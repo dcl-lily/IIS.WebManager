@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+﻿import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -16,11 +16,11 @@ import { OptionsService } from '../../main/options.service';
         <website-header *ngIf="site" [site]="site" class="crumb-content" [class.sidebar-nav-content]="_options.active"></website-header>
         <div *ngIf="site" class="sidebar crumb" [class.nav]="_options.active">
             <ul class="crumbs">
-                <li><a [routerLink]="['/webserver']">Web Server</a></li>
-                <li><a [routerLink]="['/webserver/web-sites']">Web Sites</a></li>
+                <li><a [routerLink]="['/webserver']">IIS服务器</a></li>
+                <li><a [routerLink]="['/webserver/web-sites']">站点</a></li>
             </ul>
             <vtabs [markLocation]="true" (activate)="_options.refresh()">
-                <item [name]="'General'" [ico]="'fa fa-wrench'">
+                <item [name]="'基础信息'" [ico]="'fa fa-wrench'">
                     <website-general [site]="site" (modelChanged)="onModelChanged()"></website-general>
                 </item>
                 <item *ngFor="let module of modules" [name]="module.name" [ico]="module.ico">

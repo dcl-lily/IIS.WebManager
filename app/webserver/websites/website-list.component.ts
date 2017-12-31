@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, Inject } from '@angular/core';
+﻿import { Component, OnInit, Input, Output, EventEmitter, Inject } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import { Status } from '../../common/status';
@@ -14,13 +14,13 @@ import { ApplicationPool } from '../app-pools/app-pool';
         <loading *ngIf="!_sites && !lazy && !_service.error"></loading>
         <div *ngIf="_service.installStatus == 'stopped'" class="not-installed">
             <p>
-                Web Server (IIS) is not installed on the machine
+                服务器上没有安装IIS
                 <br/>
-                <a href="https://docs.microsoft.com/en-us/iis/install/installing-iis-85/installing-iis-85-on-windows-server-2012-r2" >Learn more</a>
+                <a href="https://docs.microsoft.com/en-us/iis/install/installing-iis-85/installing-iis-85-on-windows-server-2012-r2" >安装查看这里</a>
             </p>
         </div>
         <div *ngIf="!appPool && _service.installStatus != 'stopped'">
-            <button [class.background-active]="newWebSite.opened" (click)="newWebSite.toggle()">Create Web Site <i class="fa fa-caret-down"></i></button>
+            <button [class.background-active]="newWebSite.opened" (click)="newWebSite.toggle()">创建WEB站点 <i class="fa fa-caret-down"></i></button>
             <selector #newWebSite class="container-fluid">
                 <new-website (created)="newWebSite.close()" (cancel)="newWebSite.close()"></new-website>
             </selector>

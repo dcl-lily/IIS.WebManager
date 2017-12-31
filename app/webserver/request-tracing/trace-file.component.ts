@@ -1,4 +1,4 @@
-import { Component, Input, Inject, ViewChild } from '@angular/core';
+﻿import { Component, Input, Inject, ViewChild } from '@angular/core';
 
 import { Selector } from '../../common/selector';
 import { Humanizer } from '../../common/primitives';
@@ -37,8 +37,8 @@ import { FilesService } from '../../files/files.service';
                     </button>
                     <selector [right]="true">
                         <ul>
-                            <li><button title="Download" class="download" *ngIf="model.file_info.type=='file'" (click)="onDownload($event)">Download</button></li>
-                            <li><button class="delete" *ngIf="model && model.file_info.name.endsWith('.xml')" click="onDelete($event)">Delete</button></li>
+                            <li><button title="Download" class="download" *ngIf="model.file_info.type=='file'" (click)="onDownload($event)">下载</button></li>
+                            <li><button class="delete" *ngIf="model && model.file_info.name.endsWith('.xml')" click="onDelete($event)">删除</button></li>
                         </ul>
                     </selector>
                 </div>

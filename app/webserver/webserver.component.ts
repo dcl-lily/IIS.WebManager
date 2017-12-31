@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+﻿import { Component, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ModuleUtil } from '../utils/Module';
@@ -14,9 +14,9 @@ import { WebServerService } from './webserver.service';
     template: `
         <div *ngIf="_service.installStatus == 'stopped'" class="not-installed">
             <p>
-                Web Server (IIS) is not installed on the machine
+                IIS在服务器上没有安装
                 <br/>
-                <a href="https://docs.microsoft.com/en-us/iis/install/installing-iis-85/installing-iis-85-on-windows-server-2012-r2" >Learn more</a>
+                安装IIS请点击<a href="https://docs.microsoft.com/en-us/iis/install/installing-iis-85/installing-iis-85-on-windows-server-2012-r2" >这里</a>
             </p>
         </div>
         <div *ngIf="webServer">
@@ -24,7 +24,7 @@ import { WebServerService } from './webserver.service';
             <webserver-header [model]="webServer" class="crumb-content" [class.sidebar-nav-content]="_options.active"></webserver-header>
             <div class="sidebar crumb" [class.nav]="_options.active">
                 <vtabs *ngIf="webServer" [markLocation]="true" (activate)="_options.refresh()">
-                    <item [name]="'General'" [ico]="'fa fa-wrench'">
+                    <item [name]="'一般信息'" [ico]="'fa fa-wrench'">
                         <webserver-general [model]="webServer"></webserver-general>
                     </item>
                     <item *ngFor="let module of modules" [name]="module.name" [ico]="module.ico">
@@ -70,7 +70,7 @@ export class WebServerComponent {
             let index = this.modules.findIndex(m => m.name.toLocaleLowerCase() == "application pools") + 1;
 
             this.modules.splice(index, 0, {
-                name: "Files",
+                name: "文件",
                 ico: "fa fa-files-o",
                 component_name: "FilesComponent",
                 module: "app/files/files.module#FilesModule",

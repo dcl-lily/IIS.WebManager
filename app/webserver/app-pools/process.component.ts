@@ -1,4 +1,4 @@
-
+﻿
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 
 import {ApplicationPool, ProcessModel, ProcessOrphaning} from './app-pool';
@@ -9,7 +9,7 @@ import {ApplicationPool, ProcessModel, ProcessOrphaning} from './app-pool';
     selector: 'process-model',
     template: `
         <fieldset>
-            <label>Process Bitness</label>
+            <label>进程位数</label>
             <enum [(model)]="model.enable_32bit_win64" (modelChanged)="onModelChanged()">
                 <field name="32 bit" value="true"></field>
                 <field name="64 bit" value="false"></field>
@@ -23,7 +23,7 @@ import {ApplicationPool, ProcessModel, ProcessOrphaning} from './app-pool';
                 </switch>
             </fieldset>
             <fieldset class="inline-block" *ngIf="model.process_model.max_processes > 1">
-                <label>Max Processes</label>
+                <label>最大进程</label>
                 <div class="validation-container">
                     <input class="form-control" type="number" [(ngModel)]="model.process_model.max_processes" throttle (modelChanged)="onModelChanged()" />
                 </div>
@@ -31,13 +31,13 @@ import {ApplicationPool, ProcessModel, ProcessOrphaning} from './app-pool';
         </div>
         <div>
             <fieldset class="inline-block">
-                <label>Idle Timeout <span class="units">(min)</span></label>
+                <label>超时时间<span class="units">(min)</span></label>
                 <div class="validation-container">
                     <input class="form-control" type="number" [(ngModel)]="model.process_model.idle_timeout" throttle (modelChanged)="onModelChanged()" />
                 </div>
             </fieldset>
             <fieldset class="inline-block" *ngIf='model.process_model.idle_timeout_action'>
-                <label>Idle Action</label>
+                <label>活跃时间</label>
                 <enum [(model)]="model.process_model.idle_timeout_action" (modelChanged)="onModelChanged()">
                     <field name="Terminate" value="Terminate"></field>
                     <field name="Suspend" value="Suspend"></field>
@@ -45,33 +45,33 @@ import {ApplicationPool, ProcessModel, ProcessOrphaning} from './app-pool';
             </fieldset>
         </div>
         <fieldset>
-            <label>Startup Timeout <span class="units">(s)</span></label>
+            <label>启用时间 <span class="units">(s)</span></label>
             <div class="validation-container">
                 <input class="form-control" type="number" [(ngModel)]="model.process_model.startup_time_limit" throttle (modelChanged)="onModelChanged()" />
             </div>
         </fieldset>
         <fieldset>
-            <label>Shutdown Timeout <span class="units">(s)</span></label>
+            <label>停止时间<span class="units">(s)</span></label>
             <div class="validation-container">
                 <input class="form-control" type="number" [(ngModel)]="model.process_model.shutdown_time_limit" throttle (modelChanged)="onModelChanged()" />
             </div>
         </fieldset>
         <div>
             <fieldset class="inline-block">
-                <label>Health Monitoring</label>
+                <label>健康监控</label>
                 <switch class="block" [(model)]="model.process_model.pinging_enabled" (modelChanged)="onModelChanged()">
-                    {{model.process_model.pinging_enabled ? "On" : "Off"}}
+                    {{model.process_model.pinging_enabled ? "启用" : "禁用"}}
                 </switch>
             </fieldset>
             <div *ngIf="model.process_model.pinging_enabled" class="inline-block">
                 <fieldset class="inline-block">
-                    <label>Ping Interval <span class="units">(s)</span></label>
+                    <label>Ping检查监控<span class="units">(s)</span></label>
                     <div class="validation-container">
                         <input class="form-control" type="number" [(ngModel)]="model.process_model.ping_interval" throttle (modelChanged)="onModelChanged()" />
                     </div>
                 </fieldset>
                 <fieldset class="inline-block">
-                    <label>Max Response Time <span class="units">(s)</span></label>
+                    <label>最大的相应时间<span class="units">(s)</span></label>
                     <div class="validation-container">
                         <input class="form-control" type="number" [(ngModel)]="model.process_model.ping_response_time" throttle (modelChanged)="onModelChanged()" />
                     </div>
@@ -108,18 +108,18 @@ export class ProcessModelComponent {
     selector: 'process-orphaning',
     template: `            
         <fieldset>
-            <label>Process Orphaning</label>
+            <label>独立进程</label>
             <switch class="block" [(model)]="model.enabled" (modelChanged)="onModelChanged()">
-                {{model.enabled ? "On" : "Off"}}
+                {{model.enabled ? "启用" : "停用"}}
             </switch>
         </fieldset>
         <div *ngIf="model.enabled">
             <fieldset>
-                <label>Action Path</label>
+                <label>启用路径</label>
                 <input class="form-control path" type="text" [(ngModel)]="model.orphan_action_exe" throttle (modelChanged)="onModelChanged()" />
             </fieldset>
             <fieldset>
-                <label>Action Parameters</label>
+                <label>启用参数</label>
                 <input class="form-control path" type="text" [(ngModel)]="model.orphan_action_params" throttle (modelChanged)="onModelChanged()" />
             </fieldset>
         </div>

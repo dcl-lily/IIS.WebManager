@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
+﻿import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 
 import {LocalModule, GlobalModule, ModuleType} from './modules';
 
@@ -8,33 +8,33 @@ import {LocalModule, GlobalModule, ModuleType} from './modules';
         <div class="grid-item background-editing row">
             <div class="actions">
                 <button class="no-border" [disabled]="!isValid()" (click)="onSave()">
-                    <i class="fa fa-check color-active" title="Save"></i>
+                    <i class="fa fa-check color-active" title="保存"></i>
                 </button>
                 <button class="no-border" (click)="onCancel()">
-                    <i class="fa fa-times red" title="Cancel"></i>
+                    <i class="fa fa-times red" title="取消"></i>
                 </button>
             </div>
             <fieldset class="col-xs-8" *ngIf="isServerSetting">
                 <enum [(model)]="moduleType">
-                    <field name="Managed" value="managed"></field>
-                    <field name="Native" value="native"></field>
+                    <field name="管理" value="managed"></field>
+                    <field name="本地" value="native"></field>
                 </enum>
             </fieldset>
             <div class="col-xs-12" *ngIf="isServerSetting"></div>
             <fieldset class="col-sm-4 col-md-5" *ngIf="moduleType != 'native'">
-                <label>Name</label>
+                <label>名字</label>
                 <input class="form-control" type="text" [(ngModel)]="newManagedModule.name" throttle required />
             </fieldset>
             <fieldset class="col-sm-5" *ngIf="moduleType != 'native'">
-                <label>Type</label>
+                <label>类型</label>
                 <input class="form-control" type="text" [(ngModel)]="newManagedModule.type" throttle required />
             </fieldset>
             <fieldset class="col-sm-4 col-md-5" *ngIf="moduleType == 'native'">
-                <label>Name</label>
+                <label>名字</label>
                 <input class="form-control" type="text" [(ngModel)]="newNativeModule.name" throttle required />
             </fieldset>
             <fieldset class="col-sm-5" *ngIf="moduleType == 'native'">
-                <label>Image</label>
+                <label>处理文件</label>
                 <input class="form-control" type="text" [(ngModel)]="newNativeModule.image" throttle required />
             </fieldset>
         </div>

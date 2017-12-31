@@ -1,4 +1,4 @@
-
+﻿
 import { Component, Input, Output, EventEmitter, ElementRef, OnInit } from '@angular/core';
 import { Int32 } from '../../common/primitives';
 import { DiffUtil } from '../../utils/diff';
@@ -13,16 +13,16 @@ import { RequestTracingService } from './request-tracing.service';
     template: `
         <div *ngIf="model" class="grid-item row" [class.background-editing]="_isEditing">
             <div class="actions">
-                <button class="no-border no-editing" [class.inactive]="readonly" title="Edit" (click)="onEdit()">
+                <button class="no-border no-editing" [class.inactive]="readonly" title="编辑" (click)="onEdit()">
                     <i class="fa fa-pencil color-active"></i>
                 </button>
-                <button class="no-border editing" title="Ok" (click)="onOk()" [disabled]="!isValid() || null">
+                <button class="no-border editing" title="确认" (click)="onOk()" [disabled]="!isValid() || null">
                     <i class="fa fa-check color-active"></i>
                 </button>
-                <button class="no-border editing" title="Cancel" (click)="onCancel()">
+                <button class="no-border editing" title="取消" (click)="onCancel()">
                     <i class="fa fa-times red"></i>
                 </button>
-                <button class="no-border" *ngIf="model.id" title="Delete" [class.inactive]="readonly" (click)="onDelete()">
+                <button class="no-border" *ngIf="model.id" title="删除" [class.inactive]="readonly" (click)="onDelete()">
                     <i class="fa fa-trash-o red"></i>
                 </button>
             </div>
@@ -30,8 +30,8 @@ import { RequestTracingService } from './request-tracing.service';
                 <span>{{model.path}}</span>
             </fieldset>
             <fieldset class="col-xs-9" *ngIf="_isEditing">
-                <label>Path</label>
-                <input autosize placeholder="Example: *.aspx" class="form-control" type="text" [(ngModel)]="model.path" throttle required />
+                <label>路径</label>
+                <input autosize placeholder="例如: *.aspx" class="form-control" type="text" [(ngModel)]="model.path" throttle required />
             </fieldset>
             <fieldset class="hidden-xs col-sm-3 col-md-3 col-lg-2" *ngIf="!_isEditing">
                 <span>{{model.status_codes.join(", ")}}</span>
@@ -44,31 +44,31 @@ import { RequestTracingService } from './request-tracing.service';
             </fieldset>
             <div *ngIf="_isEditing" id="statusCodes" class="col-xs-12">
                 <fieldset class="inline-block has-list">
-                    <label>Status Code(s)</label>
+                    <label>状态代码</label>
                 </fieldset>
-                <button class="pull-right background-normal" *ngIf="!!(!(statusCodes && statusCodes.list) && model.status_codes.length > 0 || statusCodes.list && statusCodes.list.length> 0)" (click)="statusCodes.add()" ><i class="fa fa-plus color-active" ></i><span>Add</span></button>
+                <button class="pull-right background-normal" *ngIf="!!(!(statusCodes && statusCodes.list) && model.status_codes.length > 0 || statusCodes.list && statusCodes.list.length> 0)" (click)="statusCodes.add()" ><i class="fa fa-plus color-active" ></i><span>添加</span></button>
                 <fieldset>
                     <string-list #statusCodes="stringList" [(model)]="model.status_codes"></string-list>
-                    <button class="background-normal" *ngIf="statusCodes.list.length == 0" (click)="statusCodes.add()"><i class="fa fa-plus color-active"></i><span>Add</span></button>
+                    <button class="background-normal" *ngIf="statusCodes.list.length == 0" (click)="statusCodes.add()"><i class="fa fa-plus color-active"></i><span>添加</span></button>
                 </fieldset>
             </div>
             <fieldset *ngIf="_isEditing" class="col-xs-12">
                 <fieldset class="inline-block"> 
-                    <label class="block">Min Request Time</label>
-                    <switch [model]="hasMinReqExecutionTime()" (modelChange)="enableRequestTime($event)">{{hasMinReqExecutionTime() ? "On" : "Off"}}</switch>
+                    <label class="block">最小请求时间</label>
+                    <switch [model]="hasMinReqExecutionTime()" (modelChange)="enableRequestTime($event)">{{hasMinReqExecutionTime() ? "启用" : "禁用"}}</switch>
                 </fieldset>
                 <fieldset class="inline-block" *ngIf="hasMinReqExecutionTime()">
-                    <label class="block">Length <span class="units">(s)</span></label>
+                    <label class="block">时间 <span class="units">(秒)</span></label>
                     <input class="form-control" type="number" [(ngModel)]="model.min_request_execution_time" throttle />
                 </fieldset>
             </fieldset>
             <fieldset *ngIf="_isEditing" class="col-xs-12">
-                <label>Event Severity</label>
+                <label>事件严重程度</label>
                 <enum [(model)]="model.event_severity">
-                    <field name="Any" value="ignore"></field>
-                    <field name="Critical Error" value="criticalerror"></field>
-                    <field name="Error" value="error"></field>
-                    <field name="Warning" value="warning"></field>
+                    <field name="所有" value="ignore"></field>
+                    <field name="关键性错误" value="criticalerror"></field>
+                    <field name="错误" value="error"></field>
+                    <field name="警告" value="warning"></field>
                 </enum>
             </fieldset>
             <div *ngIf="_isEditing" class="col-xs-12 col-sm-12 col-md-7 col-lg-6">
@@ -201,13 +201,13 @@ export class RuleComponent implements OnInit {
     private friendlyEventSeverity(eventSeverity: string) {
         switch (eventSeverity) {
             case "criticalerror":
-                return "Critical Error";
+                return "关键性错误";
             case "error":
-                return "Error";
+                return "错误";
             case "warning":
-                return "Warning";
+                return "警告";
             case "ignore":
-                return "Ignore";
+                return "忽略";
             default:
                 return "";
         }

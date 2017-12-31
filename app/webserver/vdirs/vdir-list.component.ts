@@ -1,4 +1,4 @@
-
+﻿
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange, ViewChildren, QueryList } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
@@ -20,16 +20,16 @@ import { WebApp } from '../webapps/webapp';
     template: `
         <div *ngIf="model" class="row grid-item" [class.background-editing]="_editing">
             <div class="actions">
-                <button class="no-border no-editing" title="Edit" [class.inactive]="readonly" (click)="onEdit()">
+                <button class="no-border no-editing" title="编辑" [class.inactive]="readonly" (click)="onEdit()">
                     <i class="fa fa-pencil color-active"></i>
                 </button>
-                <button [disabled]="!isValid()" class="no-border editing" title="Ok" (click)="onSave()">
+                <button [disabled]="!isValid()" class="no-border editing" title="确认" (click)="onSave()">
                     <i class="fa fa-check color-active"></i>
                 </button>
-                <button class="no-border editing" title="Cancel" (click)="onCancel()">
+                <button class="no-border editing" title="取消" (click)="onCancel()">
                     <i class="fa fa-times red"></i>
                 </button>
-                <button class="no-border" *ngIf="model.id" title="Delete" [class.inactive]="readonly" (click)="onDelete()">
+                <button class="no-border" *ngIf="model.id" title="删除" [class.inactive]="readonly" (click)="onDelete()">
                     <i class="fa fa-trash-o red"></i>
                 </button>
             </div>
@@ -56,8 +56,8 @@ import { WebApp } from '../webapps/webapp';
                     <input class="form-control" type="text" (ngModelChange)="model.path=$event" [ngModel]="model.path" throttle required />
                 </fieldset>
                 <fieldset class="col-xs-12 overflow">
-                    <label class="block">Physical Path</label>
-                    <button title="Select Folder" [class.background-active]="fileSelector.isOpen()" class="right select" (click)="fileSelector.toggle()"></button>
+                    <label class="block">物理路径</label>
+                    <button title="选择目录" [class.background-active]="fileSelector.isOpen()" class="right select" (click)="fileSelector.toggle()"></button>
                     <div class="fill">
                         <input type="text" class="form-control block" [(ngModel)]="model.physical_path" throttle required />
                     </div>
@@ -65,34 +65,34 @@ import { WebApp } from '../webapps/webapp';
                 </fieldset>
                 <div class="col-xs-12">
                     <fieldset>
-                        <label>Custom Identity</label>
-                        <switch class="block" #customIdentity="switchVal" [model]="model.identity.username" (modelChange)="onUseCustomIdentity($event)">{{model.identity.username ? "On" : "Off"}}</switch>
+                        <label>自定义身份</label>
+                        <switch class="block" #customIdentity="switchVal" [model]="model.identity.username" (modelChange)="onUseCustomIdentity($event)">{{model.identity.username ? "启用" : "禁用"}}</switch>
                     </fieldset>
                     <div *ngIf="customIdentity.model">
                         <div class="row">
                             <fieldset class="col-sm-4 col-xs-12">
-                                <label>Username</label>
+                                <label>用户名</label>
                                 <input class="form-control" type="text" [(ngModel)]="model.identity.username" throttle />
                                 <span>{{model.username}}</span>
                             </fieldset>
                         </div>
                         <div class="row">
                             <fieldset class="col-sm-4 col-xs-12">
-                                <label>Password</label>
+                                <label>密码</label>
                                 <input class="form-control" type="password" [(ngModel)]="_password" (modelChanged)="_confirm=''"/>
                             </fieldset>
                             <fieldset *ngIf="!!_password" class="col-sm-4 col-xs-12">
-                                <label>Confirm Password</label>
+                                <label>再次确认密码</label>
                                 <input class="form-control" type="password" [(ngModel)]="_confirm" (modelChanged)="onConfirmPassword" [validateEqual]="_password" />
                             </fieldset>
                         </div>
                         <fieldset>
-                            <label>Logon Method</label>
+                            <label>登陆方法</label>
                             <enum [(model)]="model.identity.logon_method">
-                                <field name="Clear Text" value="network_cleartext"></field>
-                                <field name="Network" value="network"></field>
-                                <field name="Interactive" value="interactive"></field>
-                                <field name="Batch" value="batch"></field>
+                                <field name="明文登陆" value="network_cleartext"></field>
+                                <field name="网络" value="network"></field>
+                                <field name="交互式" value="interactive"></field>
+                                <field name="批处理" value="batch"></field>
                             </enum>
                         </fieldset>
                     </div>
@@ -194,7 +194,7 @@ export class VdirListItem implements OnInit, OnChanges {
     }
 
     private onDelete() {
-        if (confirm("Are you sure you would like to delete this virtual directory?\nPath: " + this.model.path.replace("/", "") + "?")) {
+        if (confirm("你确认要删除虚拟目录?\n路径: " + this.model.path.replace("/", "") + "?")) {
             this._service.delete(this.model);
         }
     }
@@ -263,11 +263,11 @@ export class VdirListItem implements OnInit, OnChanges {
 @Component({
     selector: 'vdir-list',
     template: `
-        <button class="create" (click)="onCreate()"><i class="fa fa-plus color-active"></i><span>Create Virtual Directory</span></button>
+        <button class="create" (click)="onCreate()"><i class="fa fa-plus color-active"></i><span>创建虚拟目录</span></button>
         <div class="container-fluid" [hidden]="!_vdirs || _vdirs.length < 1">
             <div class="row hidden-xs border-active grid-list-header">
-                <label class="col-sm-4 col-lg-3" [ngClass]="sortStyle('path')" (click)="sort('path')">Path</label>
-                <label class="col-sm-4 col-md-7" [ngClass]="sortStyle('physical_path')" (click)="sort('physical_path')">Physical Path</label>
+                <label class="col-sm-4 col-lg-3" [ngClass]="sortStyle('path')" (click)="sort('path')">路径</label>
+                <label class="col-sm-4 col-md-7" [ngClass]="sortStyle('physical_path')" (click)="sort('physical_path')">物理路径</label>
             </div>
         </div>
         <ul class="grid-list container-fluid" *ngIf="_vdirs">

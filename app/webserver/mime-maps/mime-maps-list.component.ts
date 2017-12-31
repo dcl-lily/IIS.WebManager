@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, OnDestroy, SimpleChange, Input, Output, EventEmitter, ViewChildren, QueryList, ElementRef } from '@angular/core';
+﻿import { Component, OnInit, OnChanges, OnDestroy, SimpleChange, Input, Output, EventEmitter, ViewChildren, QueryList, ElementRef } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -13,23 +13,23 @@ import { StaticContentService } from '../static-content/static-content.service';
         <div *ngIf="model" class="grid-item row" [class.background-editing]="_editing">
 
             <div class="actions">
-                <button *ngIf="!_editing" class="no-border" [class.inactive]="!_editable" title="Edit" (click)="onEdit()">
+                <button *ngIf="!_editing" class="no-border" [class.inactive]="!_editable" title="编辑" (click)="onEdit()">
                     <i class="fa fa-pencil color-active"></i>
                 </button>
-                <button *ngIf="_editing" class="no-border" [disabled]="!isValid(model)" title="Ok" (click)="onSave()">
+                <button *ngIf="_editing" class="no-border" [disabled]="!isValid(model)" title="缺人" (click)="onSave()">
                     <i class="fa fa-check color-active"></i>
                 </button>
-                <button *ngIf="_editing" class="no-border" title="Cancel" (click)="onDiscard()">
+                <button *ngIf="_editing" class="no-border" title="取消" (click)="onDiscard()">
                     <i class="fa fa-times red"></i>
                 </button>
-                <button class="no-border" *ngIf="model.id" title="Delete" [class.inactive]="!_editable" (click)="onDelete()">
+                <button class="no-border" *ngIf="model.id" title="删除" [class.inactive]="!_editable" (click)="onDelete()">
                     <i class="fa fa-trash-o red"></i>
                 </button>
             </div>
 
             <fieldset class="col-xs-8 col-sm-3 col-md-4">
-                <label class="visible-xs">File Extension</label>
-                <label class="hidden-xs" *ngIf="_editing">File Extension</label>
+                <label class="visible-xs">文件扩展名</label>
+                <label class="hidden-xs" *ngIf="_editing">文件扩展名</label>
                 <input *ngIf="_editing" class="form-control" type="text" [(ngModel)]="model.file_extension" throttle required />
                 <span *ngIf="!_editing">{{model.file_extension}}</span>
                 <div *ngIf="!_editing">
@@ -38,8 +38,8 @@ import { StaticContentService } from '../static-content/static-content.service';
             </fieldset>
 
             <fieldset class="col-xs-12 col-sm-5 col-md-4">
-                <label class="visible-xs">Mime Type</label>
-                <label class="hidden-xs" *ngIf="_editing">Mime Type</label>
+                <label class="visible-xs">MIME类型</label>
+                <label class="hidden-xs" *ngIf="_editing">MIME类型</label>
                 <input *ngIf="_editing" class="form-control" type="text" [(ngModel)]="model.mime_type" throttle required />
                 <span *ngIf="!_editing">{{model.mime_type}}</span>
             </fieldset>
@@ -92,7 +92,7 @@ export class MimeMapListItem implements OnInit, OnChanges {
     }
 
     private onDelete() {
-        if (confirm("Are you sure you want to delete this mime map?\nFile Extension: " + this.model.file_extension)) {
+        if (confirm("您确定要删除此MIME映射吗？?\n文件扩展名: " + this.model.file_extension)) {
             this._service.deleteMap(this.model);
         }
     }
@@ -152,12 +152,12 @@ export class MimeMapListItem implements OnInit, OnChanges {
     selector: 'mime-maps',
     template: `
         <div *ngIf="mimeMaps">
-            <button class="create" (click)="onAdd()" [class.inactive]="_editing"><i class="fa fa-plus color-active"></i><span>Add</span></button>
+            <button class="create" (click)="onAdd()" [class.inactive]="_editing"><i class="fa fa-plus color-active"></i><span>添加</span></button>
 
             <div class="container-fluid" [hidden]="!mimeMaps || mimeMaps.length < 1">
                 <div class="row hidden-xs border-active grid-list-header">
-                    <label class="col-xs-6 col-sm-3 col-md-4">File Extension</label>
-                    <label class="col-xs-6 col-sm-5 col-md-4">Mime Type</label>
+                    <label class="col-xs-6 col-sm-3 col-md-4">文件扩展名</label>
+                    <label class="col-xs-6 col-sm-5 col-md-4">MIME类型</label>
                 </div>
             </div>
 

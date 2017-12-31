@@ -13,10 +13,10 @@ import { ServerSnapshot } from './server-snapshot';
             <div class="col-xs-4">
                 <div>
                     <label>
-                        CPU Utilization
+                        CPU利用率
                     </label>
                     <tooltip>
-                        Total CPU usage by web server processes. CPU utilization from other processes is ignored.
+                        web服务器进程的总CPU使用情况。其他进程的CPU利用率被忽略.
                     </tooltip>
                 </div>
                 {{_snapshot.cpu.percent_usage}} %
@@ -24,10 +24,10 @@ import { ServerSnapshot } from './server-snapshot';
             <div class="col-xs-4">
                 <div>
                     <label>
-                        Processes
+                        进程
                     </label>
                     <tooltip>
-                        Total number of web server processes.
+                        所有网站进程数量.
                     </tooltip>
                 </div>
                 {{_snapshot.cpu.processes}}
@@ -35,10 +35,10 @@ import { ServerSnapshot } from './server-snapshot';
             <div class="col-xs-4">
                 <div>
                     <label>
-                        Threads
+                        线程
                     </label>
                     <tooltip>
-                        Total number of threads in web server processes.
+                        Web服务器进程中的线程总数
                     </tooltip>
                 </div>
                 {{_snapshot.cpu.threads}}
@@ -106,8 +106,8 @@ export class CpuChart implements OnDestroy {
     @ViewChild('chart') private _chart: BaseChartDirective;
 
     private _data: Array<any> = [
-        { data: this._serverCpuValues, label: 'Web Server CPU %' },
-        { data: this._systemCpuValues, label: 'Total CPU %' }
+        { data: this._serverCpuValues, label: '网站CPU利用率' },
+        { data: this._systemCpuValues, label: '总共CPU利用率' }
     ];
 
     constructor(private _svc: MonitoringService) {

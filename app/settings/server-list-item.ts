@@ -18,9 +18,9 @@ import { NotificationService } from '../notification/notification.service';
                     </button>
                     <selector [right]="true">
                         <ul>
-                            <li><button class="go" title="Connect" (click)="onConnect()">Connect</button></li>
-                            <li><button class="edit" title="Edit" (click)="onEdit()">Edit</button></li>
-                            <li><button class="delete" title="Delete" (click)="onDelete()">Delete</button></li>
+                            <li><button class="go" title="Connect" (click)="onConnect()">连接</button></li>
+                            <li><button class="edit" title="Edit" (click)="onEdit()">编辑</button></li>
+                            <li><button class="delete" title="Delete" (click)="onDelete()">删除</button></li>
                         </ul>
                     </selector>
                 </div>
@@ -39,20 +39,20 @@ import { NotificationService } from '../notification/notification.service';
             </div>
             <div *ngIf="_editing" class="name">
                 <fieldset>
-                    <label>Display Name</label>
+                    <label>显示名字</label>
                     <input type="text" class="form-control block" [(ngModel)]="model.displayName"/>
                 </fieldset>
                 <fieldset>
-                    <label class="inline-block">Server Url</label>
+                    <label class="inline-block">服务URL</label>
                     <tooltip>
-                            The URL of the server to connect to. The default port for the IIS Administration API is 55539.
+                           IIS服务器的URL，默认端口是 55539.
                     </tooltip>
                     <input type="text" placeholder="ex. contoso.com" class="form-control block" #urlField [ngModel]="model.url" (ngModelChange)="setUrl($event)" required throttle/>
                 </fieldset>
                 <fieldset>
-                    <label class="inline-block">Access Token</label>
+                    <label class="inline-block">访问Token</label>
                     <tooltip>
-                        An access token is an auto generated value that is used to connect to the IIS Administration API. Only Administrators can create these tokens. <a class="link" title="More Information" href="https://docs.microsoft.com/en-us/IIS-Administration/management-portal/connecting#acquiring-an-access-token"></a>
+                       Token是访问IIS管理的凭据
                     </tooltip>
                     <input type="text" autocomplete="off" #tokenField
                         class="form-control block"
@@ -60,13 +60,12 @@ import { NotificationService } from '../notification/notification.service';
                         (ngModelChange)="setAccessToken($event)"
                         [attr.placeholder]="!model.accessToken ? null : '******************************'" 
                         [attr.required]="!model.accessToken || null"/>
-                    <a class="right" [attr.disabled]="!tokenLink() ? true : null" (click)="gotoAccessToken($event)" [attr.href]="tokenLink()">Get access token</a>
+                    <a class="right" [attr.disabled]="!tokenLink() ? true : null" (click)="gotoAccessToken($event)" [attr.href]="tokenLink()">快速获取Token</a>
                 </fieldset>
                 <fieldset>
-                    <checkbox2 [(model)]="model.persist"><b>Remember this server</b></checkbox2>
+                    <checkbox2 [(model)]="model.persist"><b>记住这个IIS</b></checkbox2>
                     <tooltip>
-                        Your Access Token and Connection will be stored locally.<br/>
-                        Use only if your device is trusted!
+                        请在自己信任的主机上选择记住，平均默认会保存在本地
                     </tooltip>
                 </fieldset>
             </div>
@@ -179,7 +178,7 @@ export class ServerListItem implements OnInit, OnDestroy {
     }
 
     private onDelete() {
-        this._notificationService.confirm("Delete Server", "Are you sure you want to delete this server? Name: " + this.model.displayName)
+        this._notificationService.confirm("删除服务器", "你确定要删除这个服务器: " + this.model.displayName)
             .then(result => result && this._svc.delete(this.model));
     }
 

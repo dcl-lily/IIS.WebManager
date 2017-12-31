@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+﻿import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -22,14 +22,14 @@ import { NotificationService } from '../../notification/notification.service';
                 [model]="_service.status == 'started' || _service.status == 'starting'" 
                 [disabled]="_service.status == 'starting' || _service.status == 'stopping'"
                 (modelChanged)="install(!s.model)">
-                    <span *ngIf="!isPending()">{{s.model ? "On" : "Off"}}</span>
+                    <span *ngIf="!isPending()">{{s.model ? "启用" : "禁用"}}</span>
                     <span *ngIf="isPending()" class="loading"></span>
         </switch>
-        <span *ngIf="_service.status == 'stopped' && !_service.webserverScope">Default Documents are off. Turn them on <a [routerLink]="['/webserver/default-documents']">here</a></span>
+        <span *ngIf="_service.status == 'stopped' && !_service.webserverScope">默认主页文件一关闭. 如需要打开请点击 <a [routerLink]="['/webserver/default-documents']">这里</a></span>
         <div *ngIf="_defDoc" [attr.disabled]="_defDoc.metadata.is_locked ? true : null">
             <fieldset>
-                <label *ngIf="!_defDoc.scope">Web Site Default</label>
-                <switch class="block" [(model)]="_defDoc.enabled" (modelChanged)="onModelChanged()">{{_defDoc.enabled ? "On" : "Off"}}</switch>
+                <label *ngIf="!_defDoc.scope">默认站点</label>
+                <switch class="block" [(model)]="_defDoc.enabled" (modelChanged)="onModelChanged()">{{_defDoc.enabled ? "启用" : "禁用"}}</switch>
             </fieldset>
             <files *ngIf="_defDoc.enabled || !_defDoc.scope"></files>
         </div>
@@ -99,7 +99,7 @@ export class DefaultDocumentsComponent implements OnInit, OnDestroy {
             return this._service.install();
         }
         else {
-            this._notificationService.confirm("Turn Off Default Documents", 'This will turn off "Default Documents" for the entire web server.')
+            this._notificationService.confirm("关闭默认文档功能", '你确认要删除服务器的默认文档功能?.')
                 .then(confirmed => {
                     if (confirmed) {
                         this._service.uninstall();

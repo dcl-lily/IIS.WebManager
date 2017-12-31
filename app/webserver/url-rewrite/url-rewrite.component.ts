@@ -13,25 +13,25 @@ import { UrlRewriteService } from './service/url-rewrite.service';
                 [model]="_service.status == 'started' || _service.status == 'starting'" 
                 [disabled]="_service.status == 'starting' || _service.status == 'stopping'"
                 (modelChanged)="install(!s.model)">
-                    <span *ngIf="!isPending()">{{s.model ? "On" : "Off"}}</span>
+                    <span *ngIf="!isPending()">{{s.model ? "启用" : "禁用"}}</span>
                     <span *ngIf="isPending()" class="loading"></span>
         </switch>
-        <span *ngIf="_service.status == 'stopped' && !_service.webserverScope">URL Rewrite is not installed. Install it <a [routerLink]="['/webserver/url-rewrite']">here</a></span>
+        <span *ngIf="_service.status == 'stopped' && !_service.webserverScope">URL地址重写模块没有安装. 如需要安装请点击 <a [routerLink]="['/webserver/url-rewrite']">这里</a></span>
         <div *ngIf="_service.status == 'started'">
             <tabs>
-                <tab [name]="'Inbound Rules'">
+                <tab [name]="'入站规则'">
                     <inbound-rules></inbound-rules>
                 </tab>
-                <tab [name]="'Outbound Rules'">
+                <tab [name]="'出战规则'">
                     <outbound-rules></outbound-rules>
                 </tab>
-                <tab [name]="'Server Variables'">
+                <tab [name]="'服务器变量'">
                     <server-variables></server-variables>
                 </tab>
-                <tab [name]="'Rewrite Maps'">
+                <tab [name]="'重写地图'">
                     <rewrite-maps></rewrite-maps>
                 </tab>
-                <tab [name]="'Providers'">
+                <tab [name]="'供应商'">
                     <providers></providers>
                 </tab>
             </tabs>
@@ -64,7 +64,7 @@ export class UrlRewriteComponent implements OnInit {
             return this._service.install();
         }
         else {
-            this._notificationService.confirm("Uninstall URL Rewrite", 'This will uninstall "URL Rewrite" for the entire web server.')
+            this._notificationService.confirm("卸载URL重写模块", '你将卸载服务器的URL地址重写模块.')
                 .then(confirmed => {
                     if (confirmed) {
                         this._service.uninstall();

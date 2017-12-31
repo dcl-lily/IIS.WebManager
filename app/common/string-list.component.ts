@@ -1,4 +1,4 @@
-import { NgModule, Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChange, ViewChild } from '@angular/core';
+﻿import { NgModule, Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChange, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Module as AutoFocus } from './focus';
@@ -8,23 +8,23 @@ import { Module as Validators } from './validators';
     selector: 'string-list',
     template: `        
         <fieldset *ngIf="useAddButton">
-            <button (click)="onAdd()"><i class="fa fa-plus color-active"></i><span>Add</span></button>
+            <button (click)="onAdd()"><i class="fa fa-plus color-active"></i><span>添加</span></button>
         </fieldset>
         <div *ngIf='list.length > 0'>
             <ul class="grid-list container-fluid">
                 <li *ngFor="let item of list; let i = index" class="row border-color grid-item" (dblclick)="onEdit(i)" [class.background-editing]="i === _editing">
                     <div class="col-xs-12">
                         <div class="actions">
-                            <button [disabled]="shouldDisable(i)" *ngIf="_editing == i" title="Ok" (click)="save(i)">
+                            <button [disabled]="shouldDisable(i)" *ngIf="_editing == i" title="确认" (click)="save(i)">
                                 <i class="fa fa-check color-active"></i>
                             </button>
-                            <button *ngIf="_editing == i" title="Cancel" (click)="cancel(i)">
+                            <button *ngIf="_editing == i" title="取消" (click)="cancel(i)">
                                 <i class="fa fa-times red"></i>
                             </button>
-                            <button *ngIf="_editing != i" title="Edit" (click)="onEdit(i)">
+                            <button *ngIf="_editing != i" title="编辑" (click)="onEdit(i)">
                                 <i class="fa fa-pencil color-active"></i>
                             </button>
-                            <button title="Delete" (click)="delete(i)">
+                            <button title="删除" (click)="delete(i)">
                                 <i class="fa fa-trash-o red"></i>
                             </button>
                         </div>

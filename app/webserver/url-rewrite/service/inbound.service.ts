@@ -99,7 +99,7 @@ export class InboundService {
                 //
                 // Caused by adding unallowed server variables
                 if (e.type == ApiErrorType.SectionLocked && e.name == "system.webServer/rewrite/allowedServerVariables") {
-                    this._notificationService.warn("The specified server variables could not be added");
+                    this._notificationService.warn("不能添加指定的服务器变量");
                 }
 
                 throw e;
@@ -117,7 +117,7 @@ export class InboundService {
                 //
                 // Caused by adding unallowed server variables
                 if (e.type == ApiErrorType.SectionLocked && e.name == "system.webServer/rewrite/allowedServerVariables") {
-                    this._notificationService.warn("The specified server variables could not be added");
+                    this._notificationService.warn("不能添加指定的服务器变量");
                 }
 
                 throw e;

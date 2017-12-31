@@ -1,4 +1,4 @@
-export type ApiFileType = "file" | "directory";
+﻿export type ApiFileType = "file" | "directory";
 export const ApiFileType = {
     File: "file" as ApiFileType,
     Directory: "directory" as ApiFileType
@@ -52,10 +52,10 @@ export class ApiFile {
     public get description(): string {
         switch (this.type) {
             case ApiFileType.Directory:
-                return "File Folder";
+                return "文件夹";
             case ApiFileType.File:
                 let ext = this.extension.toLocaleUpperCase();
-                return ext ? (ext + " File") : "";
+                return ext ? (ext + " 文件") : "";
         }
 
         return "";

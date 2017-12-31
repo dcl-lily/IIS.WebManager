@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ViewChild, ViewChildren, QueryList } from '@angular/core';
+﻿import { Component, Input, Output, EventEmitter, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { NgModel } from '@angular/forms';
 
 import { Selector } from '../../common/selector';
@@ -12,14 +12,14 @@ import { AppPoolListComponent } from '../app-pools/app-pool-list.component';
     selector: 'webapp-general',
     template: `
         <tabs>
-            <tab [name]="'Settings'">
+            <tab [name]="'设置'">
                 <fieldset>
-                    <label>Path</label>
+                    <label>路径</label>
                     <input class="form-control path" type="text" [(ngModel)]="model.path" (modelChanged)="onModelChanged()" required throttle />
                 </fieldset>
                 <fieldset class="path">
-                    <label>Physical Path</label>
-                    <button [class.background-active]="fileSelector.isOpen()" title="Select Folder" class="right select" (click)="fileSelector.toggle()"></button>
+                    <label>物理路径</label>
+                    <button [class.background-active]="fileSelector.isOpen()" title="选择目录" class="right select" (click)="fileSelector.toggle()"></button>
                     <div class="fill">
                         <input type="text" class="form-control" [(ngModel)]="model.physical_path" (modelChanged)="onModelChanged()" required />
                     </div>
@@ -27,16 +27,16 @@ import { AppPoolListComponent } from '../app-pools/app-pool-list.component';
                 </fieldset>
 
                 <fieldset class="inline-block">
-                    <label>Custom Protocols</label>
-                    <switch class="block" [(model)]="custom_protocols" (modelChange)="useCustomProtocols($event)">{{custom_protocols ? "On" : "Off"}}</switch>
+                    <label>自定义协议</label>
+                    <switch class="block" [(model)]="custom_protocols" (modelChange)="useCustomProtocols($event)">{{custom_protocols ? "启用" : "禁用"}}</switch>
                 </fieldset>
                 <fieldset class="inline-block" *ngIf="custom_protocols">
-                    <label>Protocols</label>
+                    <label>协议</label>
                     <input class="form-control" type="text" [(ngModel)]="model.enabled_protocols" (modelChanged)="onModelChanged()" required throttle />
                 </fieldset>
             </tab>
-            <tab [name]="'Application Pool'">
-                <button [class.background-active]="poolSelect.opened" (click)="selectAppPool()">Change Application Pool <i class="fa fa-caret-down"></i></button>
+            <tab [name]="'应用池'">
+                <button [class.background-active]="poolSelect.opened" (click)="selectAppPool()">创建应用池 <i class="fa fa-caret-down"></i></button>
                 <selector #poolSelect class="container-fluid create">
                     <app-pools #appPools [actions]="'view'" [lazy]="true" (itemSelected)="onAppPoolSelected($event)"></app-pools>
                 </selector>

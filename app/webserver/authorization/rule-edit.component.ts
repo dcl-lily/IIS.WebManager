@@ -8,42 +8,42 @@ import { AuthorizationService } from './authorization.service';
     template: `
         <div>   
             <fieldset>
-                <label class="inline-block">Access Type</label>
+                <label class="inline-block">访问类型</label>
                 <enum class="block" [disabled]="locked" [(model)]="rule.access_type">
-                    <field name="Allow" value="allow"></field>
-                    <field name="Deny" value="deny"></field>
+                    <field name="允许" value="allow"></field>
+                    <field name="拒绝" value="deny"></field>
                 </enum>
             </fieldset> 
             <fieldset>
-                <label>Users</label>
+                <label>用户</label>
                 <enum [disabled]="locked" [(model)]="_target">
-                    <field name="All" value="*"></field>
-                    <field name="Anonymous" value="?"></field>
-                    <field name="Specific Users" value="users"></field>
-                    <field name="Roles or Groups" value="roles"></field>
+                    <field name="所有" value="*"></field>
+                    <field name="匿名" value="?"></field>
+                    <field name="特定用户" value="users"></field>
+                    <field name="角色或组" value="roles"></field>
                 </enum>
             </fieldset>
             <fieldset class="no-label" *ngIf="_target == 'roles' || _target == 'users'">   
                 <div *ngIf="_target == 'roles'">
-                    <input placeholder="ex: Administrators, Power Users" class="form-control name" type="text" [disabled]="locked" [(ngModel)]="_roles" />
+                    <input placeholder="指定角色或者组例如:Administrators, Power Users" class="form-control name" type="text" [disabled]="locked" [(ngModel)]="_roles" />
                 </div>
                 <div *ngIf="_target == 'users'">
-                    <input placeholder="ex: Administrator, Guest" class="form-control name" type="text" [disabled]="locked" [(ngModel)]="_users" />
+                    <input placeholder="指定特定用户例如:Administrator, Guest" class="form-control name" type="text" [disabled]="locked" [(ngModel)]="_users" />
                 </div>
             </fieldset>
             <fieldset>
-                <label class="inline-block">Use Specific HTTP Methods</label>
+                <label class="inline-block">是否指定特定的方法</label>
                 <tooltip>
-                    When turned on, the rule will only be applied to requests that use one of the listed HTTP methods.
+                   打开时，该规则只适用于使用列出的HTTP方法的请求.
                 </tooltip>
-                <switch class="block" [model]="!_allVerbs" (modelChange)="_allVerbs=!$event">{{_allVerbs ? "No" : "Yes"}}</switch>
+                <switch class="block" [model]="!_allVerbs" (modelChange)="_allVerbs=!$event">{{_allVerbs ? "禁用" : "启用"}}</switch>
             </fieldset>
             <fieldset class="no-label" *ngIf="!_allVerbs">
-                <input placeholder="ex: GET, PUT, POST, DELETE" class="form-control name" type="text" [disabled]="locked" [(ngModel)]="rule.verbs" />
+                <input placeholder="请求方法例如常用的: GET, PUT, POST, DELETE" class="form-control name" type="text" [disabled]="locked" [(ngModel)]="rule.verbs" />
             </fieldset>
             <p class="pull-right">
-                <button [disabled]="!isValid()" class="ok" (click)="onOk()">OK</button>
-                <button (click)="onDiscard()" class="cancel">Cancel</button>
+                <button [disabled]="!isValid()" class="ok" (click)="onOk()">确认</button>
+                <button (click)="onDiscard()" class="cancel">取消</button>
             </p>
         </div>
     `,

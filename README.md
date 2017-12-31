@@ -3,6 +3,8 @@
 
 ### 依赖的IIS客户端软件
 *  [IIS管理API](https://github.com/microsoft/iis.administration) 必须在你的IIS服务器上安装
+*  在线预览中文版本请访问[https://manage.qnjslm.com/](https://manage.qnjslm.com/)
+*  英文原版请访问[https://manage.iis.net/](https://manage.iis.net/)
 
 ### 编译环境
 * [Typescript 2.1.* For Visual Studio 2015 ](https://www.microsoft.com/en-us/download/details.aspx?id=48593)
@@ -13,4 +15,4 @@
 
 ![IIS WEB管理中文版][file-editor]
 
-[file-editor]: https://github.com/dcl-lily/IIS.WebManager.Chinese/demo.png "IIS WEB管理中文版"
+[file-editor]: https://raw.githubusercontent.com/dcl-lily/IIS.WebManager.Chinese/dev/demo.png "IIS WEB管理中文版"

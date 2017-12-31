@@ -1,4 +1,4 @@
-
+﻿
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {NgModel} from '@angular/forms';
 
@@ -10,32 +10,32 @@ import {Limits} from './site';
     selector: 'limits',
     template: `
         <fieldset>
-            <label>Connection Timeout <span class="units">(s)</span></label>
+            <label>连接超时时间 <span class="units">(秒)</span></label>
             <input class="form-control" type="number" required [(ngModel)]="model.connection_timeout" (modelChanged)="onModelChanged()" throttle />
         </fieldset>
         <div>
             <fieldset class="inline-block">
-                <label>Network Throttling</label>
-                <switch class="block" [model]="hasBandwidthLimit()" (modelChange)="onBandwidth($event)">{{hasBandwidthLimit() ? "On" : "Off"}}</switch>
+                <label>网络连接限制</label>
+                <switch class="block" [model]="hasBandwidthLimit()" (modelChange)="onBandwidth($event)">{{hasBandwidthLimit() ? "启用" : "禁用"}}</switch>
             </fieldset>
             <fieldset *ngIf="hasBandwidthLimit()" class="inline-block">
-                <label>Bandwidth <span class="units">(bytes/s)</span></label>
+                <label>带宽 <span class="units">(字节/秒)</span></label>
                 <input class="form-control" type="number" required [(ngModel)]="model.max_bandwidth" (modelChanged)="onModelChanged()" throttle />
             </fieldset>
         </div>
         <div>
             <fieldset class="inline-block">
-                <label>Client Connections</label>
-                <switch class="block" [model]="hasConnectionsLimit()" (modelChange)="onConnectionsLimit($event)">{{hasConnectionsLimit() ? "On" : "Off"}}</switch>
+                <label>客户端连接</label>
+                <switch class="block" [model]="hasConnectionsLimit()" (modelChange)="onConnectionsLimit($event)">{{hasConnectionsLimit() ? "启用" : "禁用"}}</switch>
             </fieldset>
 
             <fieldset *ngIf="hasConnectionsLimit()" class="inline-block">
-                <label>Max Connections</label>
+                <label>最大连接数</label>
                 <input class="form-control" type="number" required [(ngModel)]="model.max_connections" (modelChanged)="onModelChanged()" throttle />
             </fieldset>
         </div>
         <fieldset>
-            <label>Max Url Segments</label>
+            <label>最大URL</label>
             <input class="form-control" type="number" required [(ngModel)]="model.max_url_segments" (modelChanged)="onModelChanged()" throttle/>
         </fieldset>
     `,
