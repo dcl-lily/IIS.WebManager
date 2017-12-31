@@ -1,37 +1,37 @@
-
+Ôªø
 import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 import {HttpResponseHeaders, CustomHeader} from './http-response-headers';
 
 @Component({
     selector: 'custom-headers',
     template: `
-        <button class="create" (click)="create()" [disabled]="locked" [class.inactive]="_editing != -1"><i class="fa fa-plus color-active"></i><span>ÃÌº”</span></button>
+        <button class="create" (click)="create()" [disabled]="locked" [class.inactive]="_editing != -1"><i class="fa fa-plus color-active"></i><span>Ê∑ªÂä†</span></button>
         <div class="container-fluid">
             <div class="row hidden-xs border-active grid-list-header" [hidden]="headers.length == 0">
-                <label class="col-sm-4 col-lg-5">√˚≥∆</label>
-                <label class="col-sm-6 col-lg-5">÷µ</label>
+                <label class="col-sm-4 col-lg-5">ÂêçÁß∞</label>
+                <label class="col-sm-6 col-lg-5">ÂÄº</label>
             </div>
         </div>
         <ul class="grid-list container-fluid">
             <li *ngFor="let header of headers; let i = index;">
                 <div class="row grid-item" [class.background-editing]="_editing == i">
                     <div class="actions">
-                        <button class="no-border" title="»∑»œ" [disabled]="locked || !isValid(header) || null" *ngIf="_editing == i" (click)="onFinishEditing(i)">
+                        <button class="no-border" title="Á°ÆËÆ§" [disabled]="locked || !isValid(header) || null" *ngIf="_editing == i" (click)="onFinishEditing(i)">
                             <i class="fa fa-check color-active"></i>
                         </button>
-                        <button class="no-border" title="»°œ˚" *ngIf="_editing == i" (click)="discard()">
+                        <button class="no-border" title="ÂèñÊ∂à" *ngIf="_editing == i" (click)="discard()">
                             <i class="fa fa-times red"></i>
                         </button>
-                        <button class="no-border" title="±‡º≠" [class.inactive]="_editing != -1" *ngIf="_editing != i" (click)="edit(i)">
+                        <button class="no-border" title="ÁºñËæë" [class.inactive]="_editing != -1" *ngIf="_editing != i" (click)="edit(i)">
                             <i class="fa fa-pencil color-active"></i>
                         </button>
-                        <button class="no-border" *ngIf="header.id" title="…æ≥˝" [disabled]="locked || _editing == i" [class.inactive]="_editing !== -1 && _editing !== i" (click)="onDelete(i)">
+                        <button class="no-border" *ngIf="header.id" title="Âà†Èô§" [disabled]="locked || _editing == i" [class.inactive]="_editing !== -1 && _editing !== i" (click)="onDelete(i)">
                             <i class="fa fa-trash-o red"></i>
                         </button>
                     </div>
                     <fieldset class="col-xs-8 col-sm-4 col-lg-5">
-                        <label class="visible-xs">√˚≥∆</label>
-                        <label *ngIf="_editing == i" class="hidden-xs">√˚≥∆</label>
+                        <label class="visible-xs">ÂêçÁß∞</label>
+                        <label *ngIf="_editing == i" class="hidden-xs">ÂêçÁß∞</label>
                         <span *ngIf="_editing != i">{{header.name}}</span>
                         <input *ngIf="_editing == i" class="form-control" type="text" [disabled]="locked" [(ngModel)]="header.name" throttle required />
                         <div *ngIf="_editing !== i">
@@ -39,8 +39,8 @@ import {HttpResponseHeaders, CustomHeader} from './http-response-headers';
                         </div>
                     </fieldset>
                     <fieldset class="col-xs-12 col-sm-5 col-lg-5">
-                        <label class="visible-xs">÷µ</label>
-                        <label *ngIf="_editing == i" class="hidden-xs">÷µ</label>
+                        <label class="visible-xs">ÂÄº</label>
+                        <label *ngIf="_editing == i" class="hidden-xs">ÂÄº</label>
                         <span *ngIf="_editing != i">{{header.value}}</span>
                         <input *ngIf="_editing == i" class="form-control" type="text" [disabled]="locked" [(ngModel)]="header.value" throttle required />
                     </fieldset>
