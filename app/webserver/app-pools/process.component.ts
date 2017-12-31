@@ -19,7 +19,7 @@ import {ApplicationPool, ProcessModel, ProcessOrphaning} from './app-pool';
             <fieldset class="inline-block">
                 <label>Web Garden</label>
                 <switch class="block" [model]="model.process_model.max_processes > 1" (modelChange)="onWebGarden($event)">
-                    {{model.process_model.max_processes > 1 ? "On" : "Off"}}
+                    {{model.process_model.max_processes > 1 ? "启用" : "禁用"}}
                 </switch>
             </fieldset>
             <fieldset class="inline-block" *ngIf="model.process_model.max_processes > 1">
@@ -39,8 +39,8 @@ import {ApplicationPool, ProcessModel, ProcessOrphaning} from './app-pool';
             <fieldset class="inline-block" *ngIf='model.process_model.idle_timeout_action'>
                 <label>活跃时间</label>
                 <enum [(model)]="model.process_model.idle_timeout_action" (modelChanged)="onModelChanged()">
-                    <field name="Terminate" value="Terminate"></field>
-                    <field name="Suspend" value="Suspend"></field>
+                    <field name="结束" value="Terminate"></field>
+                    <field name="延迟" value="Suspend"></field>
                 </enum>
             </fieldset>
         </div>
