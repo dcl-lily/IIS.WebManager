@@ -1,16 +1,16 @@
-# Microsoft IIS Web Manager
-Microsoft IIS Web Manager provides a browser interface for users to manage local and remote installations of IIS.
+# IIS WEB管理中文版本
+使用WEB管理远程IIS主机，使用官方版本进行汉化，如果不对的地方请指正
 
-### Requirements
-* The [Microsoft IIS Administration API](https://github.com/microsoft/iis.administration) must be installed on the target machine
+### 依赖的IIS客户端软件
+*  [IIS管理API](https://github.com/microsoft/iis.administration) 必须在你的IIS服务器上安装
 
-### Building
+### 编译环境
 * [Typescript 2.1.* For Visual Studio 2015 ](https://www.microsoft.com/en-us/download/details.aspx?id=48593)
 * [Microsoft Visual Studio 2015](https://www.visualstudio.com/en-us/news/releasenotes/vs2015-update3-vs)
-* The project will build in Visual Studio directly after cloning
+* 这个是可以直接在VS2015上进行创建的，虽然我没有成功，自己配置了半天，官方是这么说的
 
-### Images
+### 中文预览图片
 
-![Website settings in the web manager][file-editor]
+![IIS WEB管理中文版][file-editor]
 
-[file-editor]: https://iisnetblogs.blob.core.windows.net/media/adminapi/1.0.39/file_editor_with_diff_shrunk2.png "Website settings in the web manager"
+[file-editor]: https://github.com/dcl-lily/IIS.WebManager.Chinese/demo.png "IIS WEB管理中文版"
