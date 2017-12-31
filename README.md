@@ -11,6 +11,10 @@
 * [Microsoft Visual Studio 2015](https://www.visualstudio.com/en-us/news/releasenotes/vs2015-update3-vs)
 * 这个是可以直接在VS2015上进行创建的，虽然我没有成功，自己配置了半天，官方是这么说的
 
+### 打包版本
+
+*  鉴于小白操作困难，这里发布打包后的版本，下载解压放在WEB服务器目录即可使用[点击我下载](https://github.com/dcl-lily/IIS.WebManager.Chinese/releases)
+
 ### 中文预览图片
 
 ![IIS WEB管理中文版][file-editor]
